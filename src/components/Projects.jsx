@@ -154,7 +154,7 @@ export default function Projects() {
             }}
           >
             {/* Project Image */}
-            <div className="w-full h-56 relative overflow-hidden">
+            <div className="w-full h-72 relative overflow-hidden object-cover">
               <Image
                 src={project.image}
                 alt={project.title}
