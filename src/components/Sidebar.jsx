@@ -1,65 +1,79 @@
-'use client'
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaWhatsapp, FaFacebook, FaArrowUp, FaArrowDown } from 'react-icons/fa'
-import { MdEmail } from 'react-icons/md'
-import { useLenis } from './SmoothScroll'
+'use client';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  FaGithub,
+  FaLinkedin,
+  FaWhatsapp,
+  FaFacebook,
+  FaArrowUp,
+  FaArrowDown,
+  FaXTwitter,
+  FaInstagram,
+} from 'react-icons/fa6';
+import { MdEmail } from 'react-icons/md';
+import { useLenis } from './SmoothScroll';
 
 export default function Sidebar() {
-  const [scrollPercent, setScrollPercent] = useState(0)
-  const [scrollDirection, setScrollDirection] = useState(null)
-  const [lastScrollY, setLastScrollY] = useState(0)
-  const [showScrollTop, setShowScrollTop] = useState(false)
-  const lenis = useLenis()
+  const [scrollPercent, setScrollPercent] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const percent = docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0
-      setScrollPercent(percent)
-      
+      const scrollTop = window.scrollY;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const percent =
+        docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0;
+      setScrollPercent(percent);
+
       // Detect scroll direction
       if (scrollTop > lastScrollY) {
-        setScrollDirection('down')
+        setScrollDirection('down');
       } else if (scrollTop < lastScrollY) {
-        setScrollDirection('up')
+        setScrollDirection('up');
       }
-      setLastScrollY(scrollTop)
-      
-      // Show scroll to top button after 20%
-      setShowScrollTop(percent > 20)
-    }
+      setLastScrollY(scrollTop);
 
-    window.addEventListener('scroll', handleScroll)
-    handleScroll()
-    
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [lastScrollY])
+      // Show scroll to top button after 20%
+      setShowScrollTop(percent > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   const scrollToTop = () => {
     if (lenis) {
-      lenis.scrollTo(0, { duration: 2 })
+      lenis.scrollTo(0, { duration: 2 });
     } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }
+  };
 
   const scrollToBottom = () => {
     if (lenis) {
-      lenis.scrollTo('bottom', { duration: 2 })
+      lenis.scrollTo('bottom', { duration: 2 });
     } else {
-      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
     }
-  }
+  };
 
   return (
     <>
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex flex-col items-center justify-center w-24 gap-4 fixed left-0 top-0 h-full z-40 bg-background-dark/50 backdrop-blur-sm border-r border-slate-800/50 pt-16">
         {/* Scroll Progress Circle */}
-        <motion.div 
+        <motion.div
           className="relative w-14 h-14 mb-4"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
@@ -94,42 +108,58 @@ export default function Sidebar() {
             </defs>
           </svg>
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-xs font-bold text-cyan-400">{scrollPercent}%</span>
+            <span className="text-xs font-bold text-cyan-400">
+              {scrollPercent}%
+            </span>
           </div>
         </motion.div>
 
         <div className="h-px w-8 bg-slate-700 my-2"></div>
 
-        <Link 
-          className="p-3 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110 group relative" 
+        <Link
+          className="p-3 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110 group relative"
           href="https://github.com/hakimcolor"
           target="_blank"
         >
           <FaGithub className="w-5 h-5" />
         </Link>
-        <Link 
-          className="p-3 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110 group relative" 
+        <Link
+          className="p-3 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110 group relative"
           href="https://www.linkedin.com/in/md-azizul-hakim-b646b22a7"
           target="_blank"
         >
           <FaLinkedin className="w-5 h-5 text-blue-400" />
         </Link>
-        <Link 
-          className="p-3 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110 group relative" 
+        <Link
+          className="p-3 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110 group relative"
+          href="https://x.com/hakimcolor"
+          target="_blank"
+        >
+          <FaXTwitter className="w-5 h-5" />
+        </Link>
+        <Link
+          className="p-3 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110 group relative"
+          href="https://www.instagram.com/hakim.color/"
+          target="_blank"
+        >
+          <FaInstagram className="w-5 h-5 text-pink-500" />
+        </Link>
+        <Link
+          className="p-3 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110 group relative"
           href="https://www.facebook.com/hakimcolorofficial"
           target="_blank"
         >
           <FaFacebook className="w-5 h-5 text-blue-500" />
         </Link>
-        <Link 
-          className="p-3 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110 group relative" 
+        <Link
+          className="p-3 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110 group relative"
           href="https://wa.me/8801818777856"
           target="_blank"
         >
           <FaWhatsapp className="w-5 h-5 text-green-500" />
         </Link>
-        <Link 
-          className="p-3 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110 group relative" 
+        <Link
+          className="p-3 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110 group relative"
           href="mailto:hakimcolor777@gmail.com"
         >
           <MdEmail className="w-5 h-5 text-red-400" />
@@ -153,7 +183,7 @@ export default function Sidebar() {
               </motion.button>
             )}
           </AnimatePresence>
-          
+
           <AnimatePresence>
             {scrollPercent < 90 && (
               <motion.button
@@ -181,7 +211,9 @@ export default function Sidebar() {
               exit={{ opacity: 0 }}
               className="absolute bottom-4 left-1/2 -translate-x-1/2"
             >
-              <div className={`w-2 h-2 rounded-full ${scrollDirection === 'down' ? 'bg-cyan-400' : 'bg-purple-400'}`} />
+              <div
+                className={`w-2 h-2 rounded-full ${scrollDirection === 'down' ? 'bg-cyan-400' : 'bg-purple-400'}`}
+              />
             </motion.div>
           )}
         </AnimatePresence>
@@ -191,13 +223,13 @@ export default function Sidebar() {
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-background-dark/90 backdrop-blur-lg border-t border-slate-800/50">
         {/* Progress bar at top */}
         <div className="h-1 bg-slate-800 w-full">
-          <motion.div 
+          <motion.div
             className="h-full bg-gradient-to-r from-cyan-500 to-purple-500"
             style={{ width: `${scrollPercent}%` }}
             transition={{ duration: 0.1 }}
           />
         </div>
-        
+
         <div className="flex items-center justify-between px-4 py-3">
           {/* Scroll percentage */}
           <div className="flex items-center gap-2">
@@ -225,43 +257,59 @@ export default function Sidebar() {
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-[10px] font-bold text-cyan-400">{scrollPercent}%</span>
+                <span className="text-[10px] font-bold text-cyan-400">
+                  {scrollPercent}%
+                </span>
               </div>
             </div>
           </div>
 
           {/* Social icons */}
           <div className="flex items-center gap-3">
-            <Link 
-              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all" 
+            <Link
+              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all"
               href="https://github.com/hakimcolor"
               target="_blank"
             >
               <FaGithub className="w-5 h-5" />
             </Link>
-            <Link 
-              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all" 
+            <Link
+              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all"
               href="https://www.linkedin.com/in/md-azizul-hakim-b646b22a7"
               target="_blank"
             >
               <FaLinkedin className="w-5 h-5 text-blue-400" />
             </Link>
-            <Link 
-              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all" 
+            <Link
+              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all"
+              href="https://x.com/hakimcolor"
+              target="_blank"
+            >
+              <FaXTwitter className="w-5 h-5" />
+            </Link>
+            <Link
+              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all"
+              href="https://www.instagram.com/hakim.color/"
+              target="_blank"
+            >
+              <FaInstagram className="w-5 h-5 text-pink-500" />
+            </Link>
+            <Link
+              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all"
               href="https://www.facebook.com/hakimcolorofficial"
               target="_blank"
             >
               <FaFacebook className="w-5 h-5 text-blue-500" />
             </Link>
-            <Link 
-              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all" 
+            <Link
+              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all"
               href="https://wa.me/8801818777856"
               target="_blank"
             >
               <FaWhatsapp className="w-5 h-5 text-green-500" />
             </Link>
-            <Link 
-              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all" 
+            <Link
+              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all"
               href="mailto:hakimcolor777@gmail.com"
             >
               <MdEmail className="w-5 h-5 text-red-400" />
@@ -286,5 +334,5 @@ export default function Sidebar() {
         </AnimatePresence>
       </div>
     </>
-  )
+  );
 }
