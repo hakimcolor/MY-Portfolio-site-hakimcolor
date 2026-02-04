@@ -393,7 +393,7 @@ export default function Hero() {
             onClick={() => {
               const link = document.createElement('a');
               link.href =
-                'https://drive.google.com/uc?export=download&id=1cva4XZ2QmBKHomJsZ6xjTSQ_F61EhxG_';
+                'https://drive.google.com/file/d/1AkEiFj8gkdJ48Cgr9TiDcOPz1PP3RrdW/view?usp=sharing';
               link.download = 'Muhamaad_Azizul_Hakim_Resume.pdf';
               link.click();
             }}
@@ -572,7 +572,7 @@ function ProfileImage3D() {
             whileHover={{ scale: 1.02 }}
           >
             <Image
-              src="https://i.ibb.co.com/zTfDYTJy/Gemini-Generated-Image-3zl95m3zl95m3zl9.png"
+              src="https://i.ibb.co.com/5hydBhmc/hakimcolor.png"
               alt="Muhamaad Azizul Hakim"
               fill
               className="object-cover object-center"
