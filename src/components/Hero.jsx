@@ -393,7 +393,7 @@ export default function Hero() {
             onClick={() => {
               const link = document.createElement('a');
               link.href =
-                'https://drive.google.com/file/d/1AkEiFj8gkdJ48Cgr9TiDcOPz1PP3RrdW/view?usp=sharing';
+                'https://drive.google.com/file/d/1F3wrr4kAbeJGlrvwYwEleCyStCOsCJdQ/view?usp=sharing';
               link.download = 'Muhamaad_Azizul_Hakim_Resume.pdf';
               link.click();
             }}
