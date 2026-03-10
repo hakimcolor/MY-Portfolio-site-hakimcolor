@@ -124,7 +124,7 @@ export default function Header() {
       }
       setActiveSection('#')
     }
-
+//s
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
