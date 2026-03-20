@@ -27,7 +27,7 @@ export default function SmoothScroll({ children }) {
 
     setLenis(lenisInstance)
 
-    // Smooth scroll animation frame
+    // Smooth scroll animation fram
     function raf(time) {
       lenisInstance.raf(time)
       reqIdRef.current = requestAnimationFrame(raf)
