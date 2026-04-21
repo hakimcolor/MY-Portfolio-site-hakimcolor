@@ -278,34 +278,6 @@ export default function Hero() {
             />
           </motion.h2>
 
-          {/* Animation 2: Wave Text Animation */}
-          <motion.div
-            className="text-lg md:text-xl font-semibold text-[#AAFFC7] mt-3 flex gap-1 justify-center md:justify-start flex-wrap"
-            variants={itemVariants}
-          >
-            {'Building Amazing Web Experiences'.split('').map((char, i) => (
-              <motion.span
-                key={i}
-                animate={{
-                  opacity: [0.4, 1, 0.4],
-                  textShadow: [
-                    '0 0 0px rgba(170,255,199,0)',
-                    '0 0 12px rgba(170,255,199,0.9)',
-                    '0 0 0px rgba(170,255,199,0)',
-                  ],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 0.06,
-                  ease: 'easeInOut',
-                }}
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </motion.span>
-            ))}
-          </motion.div>
-
           {/* Animation 3: Glitch Effect */}
           <motion.div
             className="text-base md:text-lg font-medium text-purple-400 mt-3 relative"
@@ -329,28 +301,6 @@ export default function Hero() {
               }}
             >
               MongoDB • Express • React • Node.js
-            </motion.span>
-          </motion.div>
-
-          {/* Animation 4: Fade In/Out Rotation */}
-          <motion.div
-            className="text-base md:text-lg font-semibold text-pink-400 mt-3"
-            variants={itemVariants}
-          >
-            <motion.span
-              animate={{
-                opacity: [0, 1, 1, 0],
-                rotateX: [90, 0, 0, -90],
-                scale: [0.8, 1, 1, 0.8],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              style={{ display: 'inline-block' }}
-            >
-              Crafting Digital Solutions
             </motion.span>
           </motion.div>
 
@@ -676,5 +626,3 @@ function ProfileImage3D() {
     </motion.div>
   );
 }
-
-
