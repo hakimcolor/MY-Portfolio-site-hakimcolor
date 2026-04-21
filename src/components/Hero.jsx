@@ -300,7 +300,7 @@ export default function Hero() {
                 repeatDelay: 3,
               }}
             >
-              MongoDB • Express • React • Node.js
+              MongoDB • Express • React • Node.js • Next.js
             </motion.span>
           </motion.div>
 
