@@ -35,7 +35,7 @@ export default function LoadingScreen({ onComplete }) {
         <motion.div
           className="absolute w-[600px] h-[600px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(170,255,199,0.15) 0%, transparent 70%)',
             top: '-20%',
             right: '-10%',
           }}
@@ -73,7 +73,7 @@ export default function LoadingScreen({ onComplete }) {
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
-            className="absolute w-1 h-1 rounded-full bg-cyan-500/30"
+            className="absolute w-1 h-1 rounded-full bg-[#67C090]/30"
             style={{
               left: `${particle.left}%`,
               top: `${particle.top}%`,
@@ -105,7 +105,7 @@ export default function LoadingScreen({ onComplete }) {
             animate={{ scale: 1, rotate: 0 }}
             transition={{ type: 'spring', stiffness: 200, damping: 15 }}
           >
-            <div className="w-24 h-24 rounded-2xl bg-[#0f172a] flex items-center justify-center shadow-2xl shadow-cyan-500/30 overflow-hidden p-2">
+            <div className="w-24 h-24 rounded-2xl bg-[#0f172a] flex items-center justify-center shadow-2xl shadow-[#67C090]/30 overflow-hidden p-2">
               <svg viewBox="0 0 100 100" className="w-full h-full">
                 <rect x="5" y="10" width="12" height="80" fill="#E31B23" />
                 <rect x="17" y="40" width="12" height="20" fill="#FFFFFF" />
@@ -148,7 +148,7 @@ export default function LoadingScreen({ onComplete }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            I&apos;m <span className="text-cyan-400 font-semibold">Muhamaad Azizul Hakim</span>
+            I&apos;m <span className="text-[#AAFFC7] font-semibold">Muhamaad Azizul Hakim</span>
           </motion.p>
 
           <motion.p
@@ -171,7 +171,7 @@ export default function LoadingScreen({ onComplete }) {
             {[0, 1, 2].map((i) => (
               <motion.div
                 key={i}
-                className="w-2 h-2 rounded-full bg-cyan-400"
+                className="w-2 h-2 rounded-full bg-[#AAFFC7]"
                 animate={{ y: [0, -10, 0] }}
                 transition={{
                   duration: 0.6,
@@ -186,7 +186,7 @@ export default function LoadingScreen({ onComplete }) {
 
       {/* Bottom gradient line */}
       <motion.div
-        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500"
+        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#67C090] via-purple-500 to-pink-500"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.5, delay: 0.5 }}
@@ -194,3 +194,5 @@ export default function LoadingScreen({ onComplete }) {
     </motion.div>
   )
 }
+
+

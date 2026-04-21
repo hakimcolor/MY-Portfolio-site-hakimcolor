@@ -114,7 +114,7 @@ export default function Projects() {
       >
         <h3 className="text-3xl font-bold text-white flex items-center gap-3">
           <motion.span
-            className="w-1.5 h-8 bg-gradient-to-b from-cyan-500 to-purple-600 rounded-full"
+            className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
             initial={{ height: 0 }}
             whileInView={{ height: 32 }}
             viewport={{ once: true }}
@@ -127,7 +127,7 @@ export default function Projects() {
           transition={{ type: 'spring', stiffness: 400 }}
         >
           <Link
-            className="text-sm font-medium text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
+            className="text-sm font-medium text-[#AAFFC7] hover:text-[#AAFFC7] flex items-center gap-1"
             href="https://github.com/hakimcolor"
             target="_blank"
           >
@@ -146,7 +146,7 @@ export default function Projects() {
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            className="group flex flex-col rounded-2xl overflow-hidden bg-surface-dark/60 border border-slate-800 hover:border-cyan-500/50 transition-all duration-300"
+            className="group flex flex-col rounded-2xl overflow-hidden bg-surface-dark/60 border border-slate-800 hover:border-[#67C090]/50 transition-all duration-300"
             variants={itemVariants}
             whileHover={{
               y: -5,
@@ -172,7 +172,7 @@ export default function Projects() {
                 <motion.a
                   href={project.liveUrl}
                   target="_blank"
-                  className="px-5 py-2.5 bg-cyan-500 text-black font-bold rounded-full text-sm flex items-center gap-2 hover:bg-cyan-400 transition-colors"
+                  className="px-5 py-2.5 bg-[#67C090] text-black font-bold rounded-full text-sm flex items-center gap-2 hover:bg-[#AAFFC7] transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -196,7 +196,7 @@ export default function Projects() {
             <div className="flex flex-col p-6 gap-4 flex-1">
               <div>
                 <motion.h4
-                  className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-2"
+                  className="text-xl font-bold text-white group-hover:text-[#AAFFC7] transition-colors mb-2"
                   whileHover={{ x: 5 }}
                 >
                   {project.title}
@@ -211,7 +211,7 @@ export default function Projects() {
                 {project.tags.map((tag, tagIndex) => (
                   <motion.span
                     key={tagIndex}
-                    className="px-3 py-1 text-xs font-medium bg-slate-800/80 text-slate-300 rounded-full border border-slate-700/50 hover:border-cyan-500/50 hover:text-cyan-400 transition-colors cursor-default"
+                    className="px-3 py-1 text-xs font-medium bg-slate-800/80 text-slate-300 rounded-full border border-slate-700/50 hover:border-[#67C090]/50 hover:text-[#AAFFC7] transition-colors cursor-default"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
@@ -228,7 +228,7 @@ export default function Projects() {
                 <Link
                   href={project.liveUrl}
                   target="_blank"
-                  className="flex-1 py-2.5 bg-cyan-500/20 text-cyan-400 font-semibold rounded-lg text-sm flex items-center justify-center gap-2 border border-cyan-500/30 hover:bg-cyan-500/30 transition-colors"
+                  className="flex-1 py-2.5 bg-[#67C090]/20 text-[#AAFFC7] font-semibold rounded-lg text-sm flex items-center justify-center gap-2 border border-[#67C090]/30 hover:bg-[#67C090]/30 transition-colors"
                 >
                   <FaExternalLinkAlt className="text-xs" />
                   Live Demo
@@ -249,3 +249,5 @@ export default function Projects() {
     </section>
   );
 }
+
+

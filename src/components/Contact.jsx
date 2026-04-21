@@ -27,8 +27,8 @@ const contactInfo = [
     label: 'Location',
     value: 'Dhaka, Bangladesh',
     href: null,
-    color: 'text-cyan-400',
-    bgColor: 'from-cyan-500/20 to-cyan-600/10',
+    color: 'text-[#AAFFC7]',
+    bgColor: 'from-[#67C090]/20 to-cyan-600/10',
   },
 ]
 
@@ -125,7 +125,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
         >
           <motion.span 
-            className="w-1.5 h-8 bg-gradient-to-b from-cyan-500 to-purple-600 rounded-full"
+            className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
             initial={{ height: 0 }}
             whileInView={{ height: 32 }}
             viewport={{ once: true }}
@@ -178,7 +178,7 @@ export default function Contact() {
                         href={info.href}
                         target={info.href.startsWith('http') ? '_blank' : undefined}
                         rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="text-white font-medium hover:text-cyan-400 transition-colors"
+                        className="text-white font-medium hover:text-[#AAFFC7] transition-colors"
                       >
                         {info.value}
                       </a>
@@ -257,7 +257,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
+                      className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#67C090] transition-colors"
                       placeholder="John Doe"
                     />
                   </motion.div>
@@ -274,7 +274,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
+                      className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#67C090] transition-colors"
                       placeholder="john@example.com"
                     />
                   </motion.div>
@@ -293,7 +293,7 @@ export default function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
+                    className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#67C090] transition-colors"
                     placeholder="Project Inquiry"
                   />
                 </motion.div>
@@ -311,7 +311,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#67C090] transition-colors resize-none"
                     placeholder="Tell me about your project..."
                   />
                 </motion.div>
@@ -319,7 +319,7 @@ export default function Contact() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-cyan-500/25 transition-all disabled:opacity-70"
+                  className="w-full py-4 bg-gradient-to-r from-[#67C090] to-purple-600 text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-[#67C090]/25 transition-all disabled:opacity-70"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -348,3 +348,5 @@ export default function Contact() {
     </section>
   )
 }
+
+

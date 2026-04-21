@@ -74,7 +74,7 @@ export default function About() {
 
 function AboutMe() {
   const infoItems = [
-    { label: 'Name', value: 'Muhamaad Azizul Hakim', icon: MdPerson, color: 'text-cyan-400' },
+    { label: 'Name', value: 'Muhamaad Azizul Hakim', icon: MdPerson, color: 'text-[#AAFFC7]' },
     { label: 'Email', value: 'hakimcolor777@gmail.com', icon: MdEmail, color: 'text-pink-400' },
     { label: 'Experience', value: '2+ years experience', icon: MdWork, color: 'text-purple-400' },
     { label: 'Location', value: 'Dhaka, Bangladesh', icon: MdLocationOn, color: 'text-green-400' },
@@ -90,7 +90,7 @@ function AboutMe() {
         transition={{ duration: 0.5 }}
       >
         <motion.span 
-          className="w-1.5 h-8 bg-gradient-to-b from-cyan-500 to-purple-600 rounded-full"
+          className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
           initial={{ height: 0 }}
           whileInView={{ height: 32 }}
           viewport={{ once: true }}
@@ -104,7 +104,7 @@ function AboutMe() {
         transition={{ duration: 0.3 }}
       >
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-600/5"
+          className="absolute inset-0 bg-gradient-to-br from-[#67C090]/5 to-purple-600/5"
           initial={{ opacity: 0 }}
           whileHover={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -134,7 +134,7 @@ function AboutMe() {
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
         >
-          I value clean code, performance, and continuous learning, and I enjoy working on projects that challenge me to grow as a developer. Search <span className="text-cyan-400 font-semibold">&quot;hakimcolor&quot;</span> on Google or any platform and you&apos;ll find me!
+          I value clean code, performance, and continuous learning, and I enjoy working on projects that challenge me to grow as a developer. Search <span className="text-[#AAFFC7] font-semibold">&quot;hakimcolor&quot;</span> on Google or any platform and you&apos;ll find me!
         </motion.p>
         
         <motion.div 
@@ -151,7 +151,7 @@ function AboutMe() {
               variants={infoItemVariants}
               whileHover={{ 
                 x: 5, 
-                borderColor: '#22d3ee',
+                borderColor: '#AAFFC7',
                 transition: { duration: 0.2 }
               }}
             >
@@ -184,10 +184,10 @@ function AboutMe() {
 
 function Skills() {
   const frontendSkills = [
-    { name: 'HTML5', icon: FaHtml5, color: 'text-orange-500', bgColor: 'from-orange-500/20 to-orange-600/10', barColor: 'bg-orange-500', percent: 95 },
+    { name: 'HTML5', icon: FaHtml5, color: 'text-[#67C090]', bgColor: 'from-[#67C090]/20 to-orange-600/10', barColor: 'bg-[#67C090]', percent: 95 },
     { name: 'CSS3', icon: FaCss3Alt, color: 'text-blue-500', bgColor: 'from-blue-500/20 to-blue-600/10', barColor: 'bg-blue-500', percent: 90 },
     { name: 'JavaScript', icon: FaJs, color: 'text-yellow-500', bgColor: 'from-yellow-500/20 to-yellow-600/10', barColor: 'bg-yellow-500', percent: 88 },
-    { name: 'React JS', icon: FaReact, color: 'text-cyan-400', bgColor: 'from-cyan-400/20 to-cyan-500/10', barColor: 'bg-cyan-400', percent: 90 },
+    { name: 'React JS', icon: FaReact, color: 'text-[#AAFFC7]', bgColor: 'from-[#AAFFC7]/20 to-[#67C090]/10', barColor: 'bg-[#AAFFC7]', percent: 90 },
     { name: 'Next.js', icon: TbBrandNextjs, color: 'text-white', bgColor: 'from-slate-400/20 to-slate-500/10', barColor: 'bg-white', percent: 82 },
     { name: 'Tailwind CSS', icon: SiTailwindcss, color: 'text-sky-400', bgColor: 'from-sky-400/20 to-sky-500/10', barColor: 'bg-sky-400', percent: 92 },
     { name: 'Bootstrap', icon: FaBootstrap, color: 'text-purple-500', bgColor: 'from-purple-500/20 to-purple-600/10', barColor: 'bg-purple-500', percent: 85 },
@@ -198,7 +198,7 @@ function Skills() {
     { name: 'Node JS', icon: FaNodeJs, color: 'text-green-500', bgColor: 'from-green-500/20 to-green-600/10', barColor: 'bg-green-500', percent: 85 },
     { name: 'Express JS', icon: SiExpress, color: 'text-slate-300', bgColor: 'from-slate-300/20 to-slate-400/10', barColor: 'bg-slate-300', percent: 82 },
     { name: 'MongoDB', icon: SiMongodb, color: 'text-green-400', bgColor: 'from-green-400/20 to-green-500/10', barColor: 'bg-green-400', percent: 80 },
-    { name: 'Firebase', icon: SiFirebase, color: 'text-orange-400', bgColor: 'from-orange-400/20 to-orange-500/10', barColor: 'bg-orange-400', percent: 75 },
+    { name: 'Firebase', icon: SiFirebase, color: 'text-[#AAFFC7]', bgColor: 'from-[#AAFFC7]/20 to-[#67C090]/10', barColor: 'bg-[#AAFFC7]', percent: 75 },
   ]
 
   const toolsSkills = [
@@ -208,7 +208,7 @@ function Skills() {
     { name: 'NPM', icon: FaNpm, color: 'text-red-500', bgColor: 'from-red-500/20 to-red-600/10', barColor: 'bg-red-500', percent: 88 },
     { name: 'Netlify', icon: SiNetlify, color: 'text-teal-400', bgColor: 'from-teal-400/20 to-teal-500/10', barColor: 'bg-teal-400', percent: 85 },
     { name: 'Vercel', icon: SiVercel, color: 'text-white', bgColor: 'from-slate-400/20 to-slate-500/10', barColor: 'bg-white', percent: 88 },
-    { name: 'Postman', icon: SiPostman, color: 'text-orange-500', bgColor: 'from-orange-500/20 to-orange-600/10', barColor: 'bg-orange-500', percent: 80 },
+    { name: 'Postman', icon: SiPostman, color: 'text-[#67C090]', bgColor: 'from-[#67C090]/20 to-orange-600/10', barColor: 'bg-[#67C090]', percent: 80 },
   ]
 
   const wordpressSkills = [
@@ -218,7 +218,7 @@ function Skills() {
   ]
 
   const skillCategories = [
-    { title: 'Frontend Development', skills: frontendSkills, gradient: 'from-cyan-500 to-blue-500' },
+    { title: 'Frontend Development', skills: frontendSkills, gradient: 'from-[#67C090] to-blue-500' },
     { title: 'Backend Development', skills: backendSkills, gradient: 'from-green-500 to-emerald-500' },
     { title: 'Tools & Technologies', skills: toolsSkills, gradient: 'from-purple-500 to-pink-500' },
     { title: 'WordPress Development', skills: wordpressSkills, gradient: 'from-blue-500 to-indigo-500' },
@@ -234,7 +234,7 @@ function Skills() {
         transition={{ duration: 0.5 }}
       >
         <motion.span 
-          className="w-1.5 h-8 bg-gradient-to-b from-cyan-500 to-purple-600 rounded-full"
+          className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
           initial={{ height: 0 }}
           whileInView={{ height: 32 }}
           viewport={{ once: true }}
@@ -389,7 +389,7 @@ function Experience() {
         transition={{ duration: 0.5 }}
       >
         <motion.span 
-          className="w-1.5 h-8 bg-gradient-to-b from-cyan-500 to-purple-600 rounded-full"
+          className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
           initial={{ height: 0 }}
           whileInView={{ height: 32 }}
           viewport={{ once: true }}
@@ -471,7 +471,7 @@ function Education() {
         transition={{ duration: 0.5 }}
       >
         <motion.span 
-          className="w-1.5 h-8 bg-gradient-to-b from-cyan-500 to-purple-600 rounded-full"
+          className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
           initial={{ height: 0 }}
           whileInView={{ height: 32 }}
           viewport={{ once: true }}
@@ -499,7 +499,7 @@ function Education() {
             </motion.div>
             <div>
               <h4 className="text-lg font-bold text-white">{edu.title}</h4>
-              <p className="text-cyan-400 font-medium text-sm mb-1">{edu.institution}</p>
+              <p className="text-[#AAFFC7] font-medium text-sm mb-1">{edu.institution}</p>
               <p className="text-slate-500 text-xs mb-2">{edu.period}</p>
               <p className="text-slate-400 text-sm">{edu.description}</p>
             </div>
@@ -554,7 +554,7 @@ function FAQ() {
         transition={{ duration: 0.5 }}
       >
         <motion.span 
-          className="w-1.5 h-8 bg-gradient-to-b from-cyan-500 to-purple-600 rounded-full"
+          className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
           initial={{ height: 0 }}
           whileInView={{ height: 32 }}
           viewport={{ once: true }}
@@ -580,18 +580,18 @@ function FAQ() {
             >
               <div className="flex items-center gap-3">
                 <motion.div
-                  className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-600/20 border border-slate-700/50 flex items-center justify-center"
+                  className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#67C090]/20 to-purple-600/20 border border-slate-700/50 flex items-center justify-center"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: 'spring', stiffness: 400 }}
                 >
-                  <MdQuestionAnswer className="text-cyan-400 text-xl" />
+                  <MdQuestionAnswer className="text-[#AAFFC7] text-xl" />
                 </motion.div>
                 <span className="text-lg font-semibold text-white">{faq.question}</span>
               </div>
               <motion.div
                 animate={{ rotate: openIndex === index ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
-                className="text-cyan-400"
+                className="text-[#AAFFC7]"
               >
                 <IoChevronDown className="text-2xl" />
               </motion.div>
@@ -607,7 +607,7 @@ function FAQ() {
               className="overflow-hidden"
             >
               <div className="px-5 pb-5 pt-0">
-                <div className="pl-13 ml-[52px] border-l-2 border-cyan-500/30 pl-4">
+                <div className="pl-13 ml-[52px] border-l-2 border-[#67C090]/30 pl-4">
                   <motion.p
                     className="text-slate-300 leading-relaxed"
                     initial={{ y: -10, opacity: 0 }}
@@ -625,3 +625,5 @@ function FAQ() {
     </motion.div>
   )
 }
+
+

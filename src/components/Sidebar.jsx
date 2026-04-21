@@ -102,13 +102,13 @@ export default function Sidebar() {
             />
             <defs>
               <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#22d3ee" />
+                <stop offset="0%" stopColor="#AAFFC7" />
                 <stop offset="100%" stopColor="#a855f7" />
               </linearGradient>
             </defs>
           </svg>
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-xs font-bold text-cyan-400">
+            <span className="text-xs font-bold text-[#AAFFC7]">
               {scrollPercent}%
             </span>
           </div>
@@ -177,7 +177,7 @@ export default function Sidebar() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={scrollToTop}
-                className="p-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-shadow"
+                className="p-3 rounded-full bg-gradient-to-r from-[#67C090] to-purple-500 text-white shadow-lg shadow-[#67C090]/25 hover:shadow-[#67C090]/40 transition-shadow"
               >
                 <FaArrowUp className="w-4 h-4" />
               </motion.button>
@@ -193,7 +193,7 @@ export default function Sidebar() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={scrollToBottom}
-                className="p-3 rounded-full bg-surface-dark border border-slate-700 text-slate-400 hover:text-white hover:border-cyan-500/50 transition-all"
+                className="p-3 rounded-full bg-surface-dark border border-slate-700 text-slate-400 hover:text-white hover:border-[#67C090]/50 transition-all"
               >
                 <FaArrowDown className="w-4 h-4" />
               </motion.button>
@@ -212,7 +212,7 @@ export default function Sidebar() {
               className="absolute bottom-4 left-1/2 -translate-x-1/2"
             >
               <div
-                className={`w-2 h-2 rounded-full ${scrollDirection === 'down' ? 'bg-cyan-400' : 'bg-purple-400'}`}
+                className={`w-2 h-2 rounded-full ${scrollDirection === 'down' ? 'bg-[#AAFFC7]' : 'bg-purple-400'}`}
               />
             </motion.div>
           )}
@@ -224,7 +224,7 @@ export default function Sidebar() {
         {/* Progress bar at top */}
         <div className="h-1 bg-slate-800 w-full">
           <motion.div
-            className="h-full bg-gradient-to-r from-cyan-500 to-purple-500"
+            className="h-full bg-gradient-to-r from-[#67C090] to-purple-500"
             style={{ width: `${scrollPercent}%` }}
             transition={{ duration: 0.1 }}
           />
@@ -248,7 +248,7 @@ export default function Sidebar() {
                   cy="20"
                   r="16"
                   fill="none"
-                  stroke="#22d3ee"
+                  stroke="#AAFFC7"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeDasharray={100.5}
@@ -257,7 +257,7 @@ export default function Sidebar() {
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-[10px] font-bold text-cyan-400">
+                <span className="text-[10px] font-bold text-[#AAFFC7]">
                   {scrollPercent}%
                 </span>
               </div>
@@ -326,7 +326,7 @@ export default function Sidebar() {
               exit={{ scale: 0, opacity: 0 }}
               whileTap={{ scale: 0.9 }}
               onClick={scrollToTop}
-              className="fixed bottom-20 right-4 p-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white shadow-lg shadow-cyan-500/25 z-50"
+              className="fixed bottom-20 right-4 p-3 rounded-full bg-gradient-to-r from-[#67C090] to-purple-500 text-white shadow-lg shadow-[#67C090]/25 z-50"
             >
               <FaArrowUp className="w-4 h-4" />
             </motion.button>
@@ -336,3 +336,5 @@ export default function Sidebar() {
     </>
   );
 }
+
+

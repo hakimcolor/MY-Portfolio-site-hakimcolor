@@ -1,11 +1,11 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-primary: #00d2ff;
-  --color-secondary: #3a7bd5;
+  --color-primary: #aaffc7;
+  --color-secondary: #67c090;
   --color-background-dark: #0b1120;
   --color-surface-dark: #151e32;
-  --color-accent-pink: #d946ef;
+  --color-accent-pink: #f43f5e;
   --color-accent-purple: #8b5cf6;
 }
 
@@ -40,12 +40,12 @@ select,
   background: #334155;
 }
 .text-gradient {
-  background: linear-gradient(to right, #22d3ee, #a855f7, #ec4899);
+  background: linear-gradient(to right, #aaffc7, #8b5cf6, #67c090);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .border-gradient {
-  background: linear-gradient(to bottom right, #22d3ee, #a855f7, #ec4899);
+  background: linear-gradient(to bottom right, #aaffc7, #8b5cf6, #67c090);
 }
 body {
   min-height: max(884px, 100dvh);

@@ -93,7 +93,7 @@ export default function Hero() {
           className="absolute w-[800px] h-[800px] rounded-full"
           style={{
             background:
-              'radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%)',
+              'radial-gradient(circle, rgba(170,255,199,0.15) 0%, transparent 70%)',
             top: '-20%',
             right: '-10%',
           }}
@@ -144,7 +144,7 @@ export default function Hero() {
           (symbol, i) => (
             <motion.div
               key={i}
-              className="absolute text-cyan-500/20 font-mono text-2xl font-bold"
+              className="absolute text-[#67C090]/20 font-mono text-2xl font-bold"
               style={{
                 left: `${10 + i * 9}%`,
                 top: `${15 + i * 8}%`,
@@ -188,7 +188,7 @@ export default function Hero() {
         />
         <defs>
           <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#22d3ee" />
+            <stop offset="0%" stopColor="#AAFFC7" />
             <stop offset="100%" stopColor="#a855f7" />
           </linearGradient>
           <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -203,7 +203,7 @@ export default function Hero() {
         className="absolute w-64 h-64 rounded-full pointer-events-none"
         style={{
           background:
-            'radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%)',
+            'radial-gradient(circle, rgba(170,255,199,0.15) 0%, transparent 70%)',
           filter: 'blur(40px)',
         }}
         animate={{
@@ -221,16 +221,16 @@ export default function Hero() {
       >
         <motion.div className="space-y-3" variants={itemVariants}>
           <motion.span
-            className="inline-block py-1 px-3 rounded-full bg-surface-dark border border-slate-700 text-sm font-medium text-cyan-400 mb-2"
+            className="inline-block py-1 px-3 rounded-full bg-surface-dark border border-slate-700 text-sm font-medium text-[#AAFFC7] mb-2"
             whileHover={{
               scale: 1.05,
-              boxShadow: '0 0 20px rgba(34,211,238,0.3)',
+              boxShadow: '0 0 20px rgba(170,255,199,0.3)',
             }}
             animate={{
               boxShadow: [
-                '0 0 0px rgba(34,211,238,0)',
-                '0 0 15px rgba(34,211,238,0.3)',
-                '0 0 0px rgba(34,211,238,0)',
+                '0 0 0px rgba(170,255,199,0)',
+                '0 0 15px rgba(170,255,199,0.3)',
+                '0 0 0px rgba(170,255,199,0)',
               ],
             }}
             transition={{ duration: 2, repeat: Infinity }}
@@ -280,7 +280,7 @@ export default function Hero() {
 
           {/* Animation 2: Wave Text Animation */}
           <motion.div
-            className="text-lg md:text-xl font-semibold text-cyan-400 mt-3 flex gap-1 justify-center md:justify-start flex-wrap"
+            className="text-lg md:text-xl font-semibold text-[#AAFFC7] mt-3 flex gap-1 justify-center md:justify-start flex-wrap"
             variants={itemVariants}
           >
             {'Building Amazing Web Experiences'.split('').map((char, i) => (
@@ -289,9 +289,9 @@ export default function Hero() {
                 animate={{
                   opacity: [0.4, 1, 0.4],
                   textShadow: [
-                    '0 0 0px rgba(34,211,238,0)',
-                    '0 0 12px rgba(34,211,238,0.9)',
-                    '0 0 0px rgba(34,211,238,0)',
+                    '0 0 0px rgba(170,255,199,0)',
+                    '0 0 12px rgba(170,255,199,0.9)',
+                    '0 0 0px rgba(170,255,199,0)',
                   ],
                 }}
                 transition={{
@@ -317,7 +317,7 @@ export default function Hero() {
                 textShadow: [
                   '0 0 0px rgba(168,85,247,0)',
                   '-2px 0 10px rgba(168,85,247,0.8)',
-                  '2px 0 10px rgba(34,211,238,0.8)',
+                  '2px 0 10px rgba(170,255,199,0.8)',
                   '-2px 0 10px rgba(168,85,247,0.8)',
                   '0 0 0px rgba(168,85,247,0)',
                 ],
@@ -397,7 +397,7 @@ export default function Hero() {
               link.download = 'Muhamaad_Azizul_Hakim_Resume.pdf';
               link.click();
             }}
-            className="h-14 px-8 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold text-base shadow-lg shadow-purple-500/25 flex items-center justify-center gap-2"
+            className="h-14 px-8 rounded-full bg-gradient-to-r from-[#67C090] to-purple-600 text-white font-bold text-base shadow-lg shadow-purple-500/25 flex items-center justify-center gap-2"
           >
             <MdDownload className="text-xl" />
             <span>Download Resume</span>
@@ -408,15 +408,15 @@ export default function Hero() {
                 .getElementById('contact')
                 ?.scrollIntoView({ behavior: 'smooth' })
             }
-            className="h-14 px-8 rounded-full border border-slate-700 hover:border-cyan-400 text-white font-bold text-base transition-all flex items-center justify-center gap-2 relative overflow-hidden"
+            className="h-14 px-8 rounded-full border border-slate-700 hover:border-[#AAFFC7] text-white font-bold text-base transition-all flex items-center justify-center gap-2 relative overflow-hidden"
             whileHover={{
               scale: 1.05,
-              boxShadow: '0 0 20px rgba(34,211,238,0.3)',
+              boxShadow: '0 0 20px rgba(170,255,199,0.3)',
             }}
             whileTap={{ scale: 0.95 }}
           >
             <motion.div
-              className="absolute inset-0 bg-cyan-500/10"
+              className="absolute inset-0 bg-[#67C090]/10"
               initial={{ x: '-100%' }}
               whileHover={{ x: '100%' }}
               transition={{ duration: 0.5 }}
@@ -464,11 +464,11 @@ export default function Hero() {
         <span className="text-slate-500 text-sm">Scroll Down</span>
         <motion.div
           className="w-6 h-10 rounded-full border-2 border-slate-600 flex justify-center pt-2"
-          animate={{ borderColor: ['#475569', '#22d3ee', '#475569'] }}
+          animate={{ borderColor: ['#475569', '#AAFFC7', '#475569'] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
           <motion.div
-            className="w-1.5 h-1.5 rounded-full bg-cyan-400"
+            className="w-1.5 h-1.5 rounded-full bg-[#AAFFC7]"
             animate={{ y: [0, 16, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           />
@@ -536,14 +536,14 @@ function ProfileImage3D() {
         className="absolute -inset-8 rounded-full opacity-30"
         style={{
           background:
-            'conic-gradient(from 0deg, #22d3ee, #a855f7, #ec4899, #22d3ee)',
+            'conic-gradient(from 0deg, #AAFFC7, #a855f7, #ec4899, #AAFFC7)',
           filter: 'blur(40px)',
         }}
         animate={{ rotate: 360 }}
         transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
       />
       <motion.div
-        className="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition duration-1000"
+        className="absolute -inset-4 bg-gradient-to-r from-[#67C090] to-purple-600 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition duration-1000"
         animate={{
           scale: [1, 1.1, 1],
         }}
@@ -555,7 +555,7 @@ function ProfileImage3D() {
       />
 
       <motion.div
-        className="relative p-1.5 rounded-full border-gradient shadow-2xl shadow-cyan-500/10"
+        className="relative p-1.5 rounded-full border-gradient shadow-2xl shadow-[#67C090]/10"
         style={{
           rotateX,
           rotateY,
@@ -584,7 +584,7 @@ function ProfileImage3D() {
 
         {/* Rotating rings */}
         <motion.div
-          className="absolute inset-[-10px] rounded-full border border-cyan-500/20"
+          className="absolute inset-[-10px] rounded-full border border-[#67C090]/20"
           animate={{ rotate: 360 }}
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
         />
@@ -628,7 +628,7 @@ function ProfileImage3D() {
         <div className="text-xs font-bold">
           <motion.span
             className="block text-white"
-            animate={{ color: ['#ffffff', '#22d3ee', '#ffffff'] }}
+            animate={{ color: ['#ffffff', '#AAFFC7', '#ffffff'] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
             2+ Years
@@ -657,8 +657,8 @@ function ProfileImage3D() {
               width: 6 - i,
               height: 6 - i,
               x: 160 + i * 15,
-              background: `linear-gradient(135deg, #22d3ee, #a855f7)`,
-              boxShadow: '0 0 10px rgba(34,211,238,0.5)',
+              background: `linear-gradient(135deg, #AAFFC7, #a855f7)`,
+              boxShadow: '0 0 10px rgba(170,255,199,0.5)',
             }}
             animate={{
               scale: [1, 1.5, 1],
@@ -676,3 +676,5 @@ function ProfileImage3D() {
     </motion.div>
   );
 }
+
+

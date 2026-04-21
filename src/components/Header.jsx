@@ -172,7 +172,7 @@ export default function Header() {
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 rounded-full bg-cyan-500/40"
+            className="absolute w-1 h-1 rounded-full bg-[#67C090]/40"
             initial={{
               x: `${Math.random() * 100}%`,
               y: '100%',
@@ -194,7 +194,7 @@ export default function Header() {
 
       {/* Glowing line at bottom */}
       <motion.div
-        className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"
+        className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-[#67C090] to-transparent"
         initial={{ width: '0%', left: '50%', x: '-50%' }}
         animate={{ width: '100%' }}
         transition={{ duration: 1.5, delay: 0.5, ease: 'easeOut' }}
@@ -221,7 +221,7 @@ export default function Header() {
           animate="visible"
         >
           <motion.div
-            className="relative flex items-center justify-center size-10 rounded-lg bg-[#0f172a] shadow-xl shadow-cyan-500/40 cursor-pointer overflow-hidden p-1"
+            className="relative flex items-center justify-center size-10 rounded-lg bg-[#0f172a] shadow-xl shadow-[#67C090]/40 cursor-pointer overflow-hidden p-1"
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => handleNavClick('#')}
@@ -235,7 +235,7 @@ export default function Header() {
               className="absolute inset-0 rounded-lg"
               style={{
                 background:
-                  'linear-gradient(90deg, #22d3ee, #a855f7, #ec4899, #22d3ee)',
+                  'linear-gradient(90deg, #AAFFC7, #a855f7, #ec4899, #AAFFC7)',
                 backgroundSize: '300% 100%',
                 padding: '2px',
               }}
@@ -267,7 +267,7 @@ export default function Header() {
 
             {/* Glow effect */}
             <motion.div
-              className="absolute inset-0 rounded-lg bg-cyan-500/20"
+              className="absolute inset-0 rounded-lg bg-[#67C090]/20"
               animate={{
                 opacity: [0.2, 0.5, 0.2],
               }}
@@ -293,12 +293,12 @@ export default function Header() {
                 onClick={() => handleNavClick(item.href)}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-2 group relative overflow-hidden ${
                   activeSection === item.href
-                    ? 'text-cyan-400 bg-white/10'
+                    ? 'text-[#AAFFC7] bg-white/10'
                     : 'text-slate-300 hover:text-white hover:bg-white/5'
                 }`}
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/10 to-cyan-500/0"
+                  className="absolute inset-0 bg-gradient-to-r from-[#67C090]/0 via-[#67C090]/10 to-[#67C090]/0"
                   initial={{ x: '-100%' }}
                   whileHover={{ x: '100%' }}
                   transition={{ duration: 0.5 }}
@@ -310,15 +310,15 @@ export default function Header() {
                   <item.icon
                     className={`text-lg transition-colors ${
                       activeSection === item.href
-                        ? 'text-cyan-400'
-                        : 'text-cyan-400 group-hover:text-white'
+                        ? 'text-[#AAFFC7]'
+                        : 'text-[#AAFFC7] group-hover:text-white'
                     }`}
                   />
                 </motion.span>
                 {item.name}
                 {activeSection === item.href && (
                   <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-400"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#AAFFC7]"
                     layoutId="activeTab"
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
@@ -344,7 +344,7 @@ export default function Header() {
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <HiX className="text-2xl text-cyan-400" />
+                <HiX className="text-2xl text-[#AAFFC7]" />
               </motion.div>
             ) : (
               <motion.div
@@ -378,7 +378,7 @@ export default function Header() {
                     onClick={() => handleNavClick(item.href)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                       activeSection === item.href
-                        ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
+                        ? 'bg-[#67C090]/20 text-[#AAFFC7] border border-[#67C090]/30'
                         : 'text-slate-300 hover:bg-white/5 hover:text-white'
                     }`}
                   >
@@ -389,15 +389,15 @@ export default function Header() {
                       <item.icon
                         className={`text-xl ${
                           activeSection === item.href
-                            ? 'text-cyan-400'
-                            : 'text-cyan-400'
+                            ? 'text-[#AAFFC7]'
+                            : 'text-[#AAFFC7]'
                         }`}
                       />
                     </motion.div>
                     <span className="font-medium">{item.name}</span>
                     {activeSection === item.href && (
                       <motion.div
-                        className="ml-auto w-2 h-2 rounded-full bg-cyan-400"
+                        className="ml-auto w-2 h-2 rounded-full bg-[#AAFFC7]"
                         layoutId="activeMobileTab"
                         transition={{
                           type: 'spring',
@@ -426,3 +426,5 @@ export default function Header() {
     </header>
   );
 }
+
+

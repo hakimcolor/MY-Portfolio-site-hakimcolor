@@ -104,11 +104,13 @@ export default function Footer() {
           className="text-center mt-6 pt-6 border-t border-slate-800/50"
         >
           <p className="text-slate-500 text-xs">
-            Built with <span className="text-cyan-400">Next.js</span> and{' '}
-            <span className="text-cyan-400">Tailwind CSS</span>
+            Built with <span className="text-[#AAFFC7]">Next.js</span> and{' '}
+            <span className="text-[#AAFFC7]">Tailwind CSS</span>
           </p>
         </motion.div>
       </div>
     </footer>
   );
 }
+
+

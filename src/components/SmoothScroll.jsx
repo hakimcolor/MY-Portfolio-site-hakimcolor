@@ -81,3 +81,5 @@ export default function SmoothScroll({ children }) {
     </LenisContext.Provider>
   )
 }
+
+
