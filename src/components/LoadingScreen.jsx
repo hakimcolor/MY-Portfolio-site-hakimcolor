@@ -1,27 +1,29 @@
-'use client'
-import { useState, useEffect, useMemo } from 'react'
-import { motion } from 'framer-motion'
-import { FaCode } from 'react-icons/fa'
+'use client';
+import { useState, useEffect, useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { FaCode } from 'react-icons/fa';
 
 export default function LoadingScreen({ onComplete }) {
   // Pre-generate random values for particles
-  const particles = useMemo(() => 
-    [...Array(20)].map((_, i) => ({
-      id: i,
-      left: (i * 5 + 2.5) % 100,
-      top: (i * 7 + 3) % 100,
-      duration: 2 + (i % 5) * 0.5,
-      delay: (i % 4) * 0.5,
-    })), []
-  )
+  const particles = useMemo(
+    () =>
+      [...Array(20)].map((_, i) => ({
+        id: i,
+        left: (i * 5 + 2.5) % 100,
+        top: (i * 7 + 3) % 100,
+        duration: 2 + (i % 5) * 0.5,
+        delay: (i % 4) * 0.5,
+      })),
+    []
+  );
 
   // Show welcome for 3 seconds, then go to main site
   useEffect(() => {
     const timer = setTimeout(() => {
-      onComplete()
-    }, 3000)
-    return () => clearTimeout(timer)
-  }, [onComplete])
+      onComplete();
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [onComplete]);
 
   return (
     <motion.div
@@ -35,7 +37,8 @@ export default function LoadingScreen({ onComplete }) {
         <motion.div
           className="absolute w-[600px] h-[600px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(170,255,199,0.15) 0%, transparent 70%)',
+            background:
+              'radial-gradient(circle, rgba(170,255,199,0.15) 0%, transparent 70%)',
             top: '-20%',
             right: '-10%',
           }}
@@ -48,7 +51,8 @@ export default function LoadingScreen({ onComplete }) {
         <motion.div
           className="absolute w-[500px] h-[500px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)',
+            background:
+              'radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)',
             bottom: '-10%',
             left: '-5%',
           }}
@@ -60,7 +64,7 @@ export default function LoadingScreen({ onComplete }) {
         />
 
         {/* Grid pattern */}
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: `linear-gradient(rgba(34, 211, 238, 0.5) 1px, transparent 1px),
@@ -143,21 +147,26 @@ export default function LoadingScreen({ onComplete }) {
           </motion.h1>
 
           <motion.p
-            className="text-xl md:text-2xl text-slate-300 mb-2"
+            className="text-xl md:text-2xl mb-2"
+            style={{ color: '#A1A1AA' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            I&apos;m <span className="text-[#AAFFC7] font-semibold">Muhamaad Azizul Hakim</span>
+            I&apos;m{' '}
+            <span style={{ color: '#FFFFFF' }} className="font-semibold">
+              Muhamaad Azizul Hakim
+            </span>
           </motion.p>
 
           <motion.p
-            className="text-slate-400 flex items-center gap-2"
+            className="flex items-center gap-2"
+            style={{ color: '#A1A1AA' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <FaCode className="text-purple-400" />
+            <FaCode className="text-cyan-400" />
             MERN Stack Developer
           </motion.p>
 
@@ -171,7 +180,7 @@ export default function LoadingScreen({ onComplete }) {
             {[0, 1, 2].map((i) => (
               <motion.div
                 key={i}
-                className="w-2 h-2 rounded-full bg-[#AAFFC7]"
+                className="w-2 h-2 rounded-full bg-cyan-400"
                 animate={{ y: [0, -10, 0] }}
                 transition={{
                   duration: 0.6,
@@ -192,7 +201,5 @@ export default function LoadingScreen({ onComplete }) {
         transition={{ duration: 1.5, delay: 0.5 }}
       />
     </motion.div>
-  )
+  );
 }
-
-
