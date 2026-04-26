@@ -47,7 +47,7 @@ const projects = [
       'A community-based website where you can donate for public damage and upload posts about damaged public property.',
     image: 'https://i.ibb.co.com/MkQfSKPj/Screenshot-2026-01-06-110118.png',
     liveUrl: 'https://community-cleanliness.netlify.app/',
-    githubUrl: 'https://github.com/hakimcolor',
+    githubUrl: 'https://github.com/hakimcolor/Community-cleanliness-and-issue',
     tags: [
       'React',
       'Node.js',
