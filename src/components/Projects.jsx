@@ -28,7 +28,8 @@ const projects = [
       'A local chef bazaar app where admins manage users, chefs upload food, and users order meals.',
     image: 'https://i.ibb.co.com/pBcCkWPR/Screenshot-2026-01-06-105931.png',
     liveUrl: 'https://localchefbazaarbyhakimcolor.netlify.app/',
-    githubUrl: 'https://github.com/hakimcolor',
+    githubUrl:
+      'https://github.com/hakimcolor/UI-LocalChefBazaar-Marketplace-for-Local-Home-Cooked-Meals',
     tags: [
       'React',
       'Node.js',
@@ -182,7 +183,7 @@ export default function Projects() {
                 <motion.a
                   href={project.githubUrl}
                   target="_blank"
-                  className="px-5 py-2.5 bg-white/10 backdrop-blur-sm text-white font-bold rounded-full text-sm flex items-center gap-2 border border-white/20 hover:bg-white/20 transition-colors"
+                  className="px-5 py-2.5 bg-slate-900 text-white font-bold rounded-full text-sm flex items-center gap-2 border border-white/30 hover:bg-white hover:text-slate-900 transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -236,7 +237,7 @@ export default function Projects() {
                 <Link
                   href={project.githubUrl}
                   target="_blank"
-                  className="flex-1 py-2.5 bg-slate-800/80 text-slate-300 font-semibold rounded-lg text-sm flex items-center justify-center gap-2 border border-slate-700/50 hover:bg-slate-700/80 transition-colors"
+                  className="flex-1 py-2.5 bg-slate-900 text-white font-semibold rounded-lg text-sm flex items-center justify-center gap-2 border border-slate-600 hover:bg-white hover:text-slate-900 transition-colors"
                 >
                   <FaGithub />
                   GitHub
@@ -249,5 +250,3 @@ export default function Projects() {
     </section>
   );
 }
-
-
