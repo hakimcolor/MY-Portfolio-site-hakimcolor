@@ -12,7 +12,8 @@ const projects = [
       'A comprehensive money management application for tracking income, expenses, and financial reports with interactive charts and analytics.',
     image: 'https://i.ibb.co.com/Df8PhWQg/Screenshot-2026-01-17-002601.png',
     liveUrl: 'https://fineasmanagmentapp.netlify.app/',
-    githubUrl: 'https://github.com/hakimcolor',
+    githubUrl:
+      'https://github.com/hakimcolor/FinEaseUIIIIIIIIIIIIIIIIIIIIIIIII---Personal-Finance-Management-App',
     tags: [
       'MongoDB',
       'Express',
