@@ -336,7 +336,7 @@ export default function Contact() {
                   ) : (
                     <>
                       <MdSend className="text-xl" />
-                      Send Message
+                      Send Messagedf
                     </>
                   )}
                 </motion.button>
