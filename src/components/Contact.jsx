@@ -1,9 +1,9 @@
-'use client'
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { FaGithub, FaFacebook, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
-import { MdEmail, MdLocationOn, MdPhone, MdSend } from 'react-icons/md'
-import { IoCheckmarkCircle } from 'react-icons/io5'
+'use client';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { FaGithub, FaFacebook, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { MdEmail, MdLocationOn, MdPhone, MdSend } from 'react-icons/md';
+import { IoCheckmarkCircle } from 'react-icons/io5';
 
 const contactInfo = [
   {
@@ -30,7 +30,7 @@ const contactInfo = [
     color: 'text-[#AAFFC7]',
     bgColor: 'from-[#67C090]/20 to-cyan-600/10',
   },
-]
+];
 
 const socialLinks = [
   {
@@ -57,7 +57,7 @@ const socialLinks = [
     href: 'https://wa.me/8801818777856',
     color: 'hover:text-green-400 hover:bg-green-500/20',
   },
-]
+];
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -65,18 +65,18 @@ export default function Contact() {
     email: '',
     subject: '',
     message: '',
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
+    e.preventDefault();
+    setIsSubmitting(true);
+
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -91,40 +91,43 @@ export default function Contact() {
           message: formData.message,
           from_name: 'Portfolio Contact Form',
         }),
-      })
+      });
 
-      const result = await response.json()
-      
+      const result = await response.json();
+
       if (result.success) {
-        setIsSubmitted(true)
-        setFormData({ name: '', email: '', subject: '', message: '' })
-        setTimeout(() => setIsSubmitted(false), 5000)
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setIsSubmitted(false), 5000);
       }
     } catch (error) {
-      console.error('Error submitting form:', error)
+      console.error('Error submitting form:', error);
     }
-    
-    setIsSubmitting(false)
-  }
+
+    setIsSubmitting(false);
+  };
 
   return (
-    <section className="w-full px-6 py-20 md:pl-8 max-w-7xl mx-auto" id="contact">
+    <section
+      className="w-full px-6 py-20 md:pl-8 max-w-7xl mx-auto"
+      id="contact"
+    >
       <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent mb-12"></div>
-      
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <motion.h3 
+        <motion.h3
           className="text-3xl font-bold text-white flex items-center gap-3 mb-8"
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <motion.span 
+          <motion.span
             className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
             initial={{ height: 0 }}
             whileInView={{ height: 32 }}
@@ -144,8 +147,9 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="text-slate-300 text-lg leading-relaxed">
-              Have a project in mind or want to collaborate? Feel free to reach out! 
-              I&apos;m always open to discussing new opportunities and ideas.
+              Have a project in mind or want to collaborate? Feel free to reach
+              out! I&apos;m always open to discussing new opportunities and
+              ideas.
             </p>
 
             {/* Contact Cards */}
@@ -158,8 +162,8 @@ export default function Contact() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 + 0.3 }}
-                  whileHover={{ 
-                    scale: 1.02, 
+                  whileHover={{
+                    scale: 1.02,
                     borderColor: 'rgba(34, 211, 238, 0.3)',
                     x: 5,
                   }}
@@ -174,10 +178,16 @@ export default function Contact() {
                   <div>
                     <p className="text-slate-500 text-sm">{info.label}</p>
                     {info.href ? (
-                      <a 
+                      <a
                         href={info.href}
-                        target={info.href.startsWith('http') ? '_blank' : undefined}
-                        rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        target={
+                          info.href.startsWith('http') ? '_blank' : undefined
+                        }
+                        rel={
+                          info.href.startsWith('http')
+                            ? 'noopener noreferrer'
+                            : undefined
+                        }
                         className="text-white font-medium hover:text-[#AAFFC7] transition-colors"
                       >
                         {info.value}
@@ -192,7 +202,9 @@ export default function Contact() {
 
             {/* Social Links */}
             <div className="pt-4">
-              <p className="text-slate-400 text-sm mb-4">Connect with me on social media:</p>
+              <p className="text-slate-400 text-sm mb-4">
+                Connect with me on social media:
+              </p>
               <div className="flex gap-3">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -204,7 +216,11 @@ export default function Contact() {
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 + 0.5, type: 'spring', stiffness: 200 }}
+                    transition={{
+                      delay: index * 0.1 + 0.5,
+                      type: 'spring',
+                      stiffness: 200,
+                    }}
                     whileHover={{ scale: 1.1, y: -3 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -238,8 +254,12 @@ export default function Contact() {
                 >
                   <IoCheckmarkCircle className="text-6xl text-green-400 mb-4" />
                 </motion.div>
-                <h4 className="text-2xl font-bold text-white mb-2">Message Sent!</h4>
-                <p className="text-slate-400">Thank you for reaching out. I&apos;ll get back to you soon!</p>
+                <h4 className="text-2xl font-bold text-white mb-2">
+                  Message Sent!
+                </h4>
+                <p className="text-slate-400">
+                  Thank you for reaching out. I&apos;ll get back to you soon!
+                </p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -250,7 +270,9 @@ export default function Contact() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 }}
                   >
-                    <label className="text-slate-400 text-sm mb-2 block">Your Name</label>
+                    <label className="text-slate-400 text-sm mb-2 block">
+                      Your Name
+                    </label>
                     <input
                       type="text"
                       name="name"
@@ -267,7 +289,9 @@ export default function Contact() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.5 }}
                   >
-                    <label className="text-slate-400 text-sm mb-2 block">Your Email</label>
+                    <label className="text-slate-400 text-sm mb-2 block">
+                      Your Email
+                    </label>
                     <input
                       type="email"
                       name="email"
@@ -286,7 +310,9 @@ export default function Contact() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.6 }}
                 >
-                  <label className="text-slate-400 text-sm mb-2 block">Subject</label>
+                  <label className="text-slate-400 text-sm mb-2 block">
+                    Subject
+                  </label>
                   <input
                     type="text"
                     name="subject"
@@ -304,7 +330,9 @@ export default function Contact() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.7 }}
                 >
-                  <label className="text-slate-400 text-sm mb-2 block">Message</label>
+                  <label className="text-slate-400 text-sm mb-2 block">
+                    Message
+                  </label>
                   <textarea
                     name="message"
                     value={formData.message}
@@ -331,12 +359,16 @@ export default function Contact() {
                     <motion.div
                       className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full"
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        ease: 'linear',
+                      }}
                     />
                   ) : (
                     <>
                       <MdSend className="text-xl" />
-                      Send Messagedf
+                      Send Message
                     </>
                   )}
                 </motion.button>
@@ -346,7 +378,5 @@ export default function Contact() {
         </div>
       </motion.div>
     </section>
-  )
+  );
 }
-
-
