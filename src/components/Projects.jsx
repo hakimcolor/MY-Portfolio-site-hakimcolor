@@ -122,7 +122,10 @@ export default function Projects() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           />
-          <span className="text-gradient">Featured Projects</span>
+          <span>
+            <span className="text-green-500">Featured</span>{' '}
+            <span className="text-white">Projects</span>
+          </span>
         </h3>
         <motion.div
           whileHover={{ x: 5 }}
@@ -174,7 +177,7 @@ export default function Projects() {
                 <motion.a
                   href={project.liveUrl}
                   target="_blank"
-                  className="px-5 py-2.5 bg-[#67C090] text-black font-bold rounded-full text-sm flex items-center gap-2 hover:bg-[#AAFFC7] transition-colors"
+                  className="px-5 py-2.5 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full text-sm flex items-center gap-2 transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -198,10 +201,16 @@ export default function Projects() {
             <div className="flex flex-col p-6 gap-4 flex-1">
               <div>
                 <motion.h4
-                  className="text-xl font-bold text-white group-hover:text-[#AAFFC7] transition-colors mb-2"
+                  className="text-xl font-bold group-hover:text-green-400 transition-colors mb-2"
                   whileHover={{ x: 5 }}
                 >
-                  {project.title}
+                  <span className="text-green-500">
+                    {project.title.split(' ')[0]}
+                  </span>
+                  <span className="text-white">
+                    {' '}
+                    {project.title.split(' ').slice(1).join(' ')}
+                  </span>
                 </motion.h4>
                 <p className="text-sm text-slate-400 leading-relaxed">
                   {project.description}
@@ -230,7 +239,7 @@ export default function Projects() {
                 <Link
                   href={project.liveUrl}
                   target="_blank"
-                  className="flex-1 py-2.5 bg-[#67C090]/20 text-[#AAFFC7] font-semibold rounded-lg text-sm flex items-center justify-center gap-2 border border-[#67C090]/30 hover:bg-[#67C090]/30 transition-colors"
+                  className="flex-1 py-2.5 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg text-sm flex items-center justify-center gap-2 transition-colors"
                 >
                   <FaExternalLinkAlt className="text-xs" />
                   Live Demo

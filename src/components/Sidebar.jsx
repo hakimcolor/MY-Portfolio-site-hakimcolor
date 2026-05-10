@@ -13,7 +13,7 @@ import {
   FaInstagram,
 } from 'react-icons/fa6';
 import { MdEmail } from 'react-icons/md';
-import { useLenis } from './SmoothScroll';
+import { useLenis } from './useLenis';
 
 export default function Sidebar() {
   const [scrollPercent, setScrollPercent] = useState(0);
@@ -71,7 +71,13 @@ export default function Sidebar() {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex flex-col items-center justify-center w-24 gap-4 fixed left-0 top-0 h-full z-40 bg-background-dark/50 backdrop-blur-sm border-r border-slate-800/50 pt-16">
+      <aside
+        className="hidden md:flex flex-col items-center justify-center w-24 gap-4 fixed left-0 top-0 h-full z-40 bg-background-dark/50 backdrop-blur-sm border-r border-white/10 pt-16"
+        style={{
+          borderImage:
+            'linear-gradient(to bottom, #22c55e, #ffffff, #22c55e) 1',
+        }}
+      >
         {/* Scroll Progress Circle */}
         <motion.div
           className="relative w-14 h-14 mb-4"
@@ -101,14 +107,15 @@ export default function Sidebar() {
               style={{ transition: 'stroke-dashoffset 0.1s ease-out' }}
             />
             <defs>
-              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#AAFFC7" />
-                <stop offset="100%" stopColor="#a855f7" />
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#22c55e" />
+                <stop offset="50%" stopColor="#ffffff" />
+                <stop offset="100%" stopColor="#22c55e" />
               </linearGradient>
             </defs>
           </svg>
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-xs font-bold text-[#AAFFC7]">
+            <span className="text-xs font-bold text-green-500">
               {scrollPercent}%
             </span>
           </div>
@@ -177,7 +184,7 @@ export default function Sidebar() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={scrollToTop}
-                className="p-3 rounded-full bg-gradient-to-r from-[#67C090] to-purple-500 text-white shadow-lg shadow-[#67C090]/25 hover:shadow-[#67C090]/40 transition-shadow"
+                className="p-3 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg shadow-green-500/25 transition-colors"
               >
                 <FaArrowUp className="w-4 h-4" />
               </motion.button>
@@ -212,7 +219,7 @@ export default function Sidebar() {
               className="absolute bottom-4 left-1/2 -translate-x-1/2"
             >
               <div
-                className={`w-2 h-2 rounded-full ${scrollDirection === 'down' ? 'bg-[#AAFFC7]' : 'bg-purple-400'}`}
+                className={`w-2 h-2 rounded-full ${scrollDirection === 'down' ? 'bg-green-500' : 'bg-white'}`}
               />
             </motion.div>
           )}
@@ -224,7 +231,7 @@ export default function Sidebar() {
         {/* Progress bar at top */}
         <div className="h-1 bg-slate-800 w-full">
           <motion.div
-            className="h-full bg-gradient-to-r from-[#67C090] to-purple-500"
+            className="h-full bg-green-500"
             style={{ width: `${scrollPercent}%` }}
             transition={{ duration: 0.1 }}
           />
@@ -248,7 +255,7 @@ export default function Sidebar() {
                   cy="20"
                   r="16"
                   fill="none"
-                  stroke="#AAFFC7"
+                  stroke="#22c55e"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeDasharray={100.5}
@@ -257,7 +264,7 @@ export default function Sidebar() {
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-[10px] font-bold text-[#AAFFC7]">
+                <span className="text-[10px] font-bold text-green-500">
                   {scrollPercent}%
                 </span>
               </div>
@@ -326,7 +333,7 @@ export default function Sidebar() {
               exit={{ scale: 0, opacity: 0 }}
               whileTap={{ scale: 0.9 }}
               onClick={scrollToTop}
-              className="fixed bottom-20 right-4 p-3 rounded-full bg-gradient-to-r from-[#67C090] to-purple-500 text-white shadow-lg shadow-[#67C090]/25 z-50"
+              className="fixed bottom-20 right-4 p-3 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg shadow-green-500/25 z-50 transition-colors"
             >
               <FaArrowUp className="w-4 h-4" />
             </motion.button>
@@ -336,5 +343,3 @@ export default function Sidebar() {
     </>
   );
 }
-
-

@@ -11,8 +11,9 @@ const contactInfo = [
     label: 'Email',
     value: 'hakimcolor777@gmail.com',
     href: 'mailto:hakimcolor777@gmail.com',
-    color: 'text-pink-400',
-    bgColor: 'from-pink-500/20 to-pink-600/10',
+    color: 'text-violet-400',
+    bgColor: 'bg-violet-500/10 border-violet-500/30',
+    iconBg: 'bg-violet-500/20',
   },
   {
     icon: FaWhatsapp,
@@ -20,15 +21,17 @@ const contactInfo = [
     value: '+880 1818 777 856',
     href: 'https://wa.me/8801818777856',
     color: 'text-green-400',
-    bgColor: 'from-green-500/20 to-green-600/10',
+    bgColor: 'bg-green-500/10 border-green-500/30',
+    iconBg: 'bg-green-500/20',
   },
   {
     icon: MdLocationOn,
     label: 'Location',
     value: 'Dhaka, Bangladesh',
     href: null,
-    color: 'text-[#AAFFC7]',
-    bgColor: 'from-[#67C090]/20 to-cyan-600/10',
+    color: 'text-cyan-400',
+    bgColor: 'bg-cyan-500/10 border-cyan-500/30',
+    iconBg: 'bg-cyan-500/20',
   },
 ];
 
@@ -134,7 +137,10 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           />
-          <span className="text-gradient">Get In Touch</span>
+          <span>
+            <span className="text-green-500">Get</span>{' '}
+            <span className="text-white">In Touch</span>
+          </span>
         </motion.h3>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -157,19 +163,15 @@ export default function Contact() {
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={info.label}
-                  className={`bg-gradient-to-br ${info.bgColor} border border-slate-800 rounded-xl p-4 flex items-center gap-4`}
+                  className={`${info.bgColor} border rounded-xl p-4 flex items-center gap-4`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 + 0.3 }}
-                  whileHover={{
-                    scale: 1.02,
-                    borderColor: 'rgba(34, 211, 238, 0.3)',
-                    x: 5,
-                  }}
+                  whileHover={{ scale: 1.02, x: 5 }}
                 >
                   <motion.div
-                    className={`w-12 h-12 rounded-xl bg-surface-dark/80 border border-slate-700/50 flex items-center justify-center ${info.color}`}
+                    className={`w-12 h-12 rounded-xl ${info.iconBg} border border-white/10 flex items-center justify-center ${info.color}`}
                     whileHover={{ rotate: 10, scale: 1.1 }}
                     transition={{ type: 'spring', stiffness: 400 }}
                   >
@@ -347,7 +349,7 @@ export default function Contact() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 bg-gradient-to-r from-[#67C090] to-purple-600 text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-[#67C090]/25 transition-all disabled:opacity-70"
+                  className="w-full py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl flex items-center justify-center gap-2 transition-colors disabled:opacity-70"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

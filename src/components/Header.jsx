@@ -213,7 +213,7 @@ export default function Header() {
         }}
       />
 
-      <div className="relative flex items-center justify-between px-4 py-3 max-w-7xl mx-auto w-full backdrop-blur-md bg-background-dark/60">
+      <div className="relative flex items-center justify-between px-4 py-3 max-w-7xl mx-auto w-full backdrop-blur-md bg-green-950/40">
         <motion.div
           className="flex items-center gap-2"
           variants={logoVariants}
@@ -293,16 +293,10 @@ export default function Header() {
                 onClick={() => handleNavClick(item.href)}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-2 group relative overflow-hidden ${
                   activeSection === item.href
-                    ? 'text-[#AAFFC7] bg-white/10'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    ? 'text-green-400 bg-green-500/10'
+                    : 'text-white hover:text-green-400 hover:bg-green-500/10'
                 }`}
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-[#67C090]/0 via-[#67C090]/10 to-[#67C090]/0"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.5 }}
-                />
                 <motion.span
                   whileHover={{ scale: 1.2, rotate: 10 }}
                   transition={{ type: 'spring', stiffness: 400 }}
@@ -310,15 +304,15 @@ export default function Header() {
                   <item.icon
                     className={`text-lg transition-colors ${
                       activeSection === item.href
-                        ? 'text-[#AAFFC7]'
-                        : 'text-[#AAFFC7] group-hover:text-white'
+                        ? 'text-green-400'
+                        : 'text-green-500 group-hover:text-green-400'
                     }`}
                   />
                 </motion.span>
                 {item.name}
                 {activeSection === item.href && (
                   <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#AAFFC7]"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
                     layoutId="activeTab"
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
@@ -344,7 +338,7 @@ export default function Header() {
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <HiX className="text-2xl text-[#AAFFC7]" />
+                <HiX className="text-2xl text-green-500" />
               </motion.div>
             ) : (
               <motion.div
@@ -378,26 +372,20 @@ export default function Header() {
                     onClick={() => handleNavClick(item.href)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                       activeSection === item.href
-                        ? 'bg-[#67C090]/20 text-[#AAFFC7] border border-[#67C090]/30'
-                        : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                        ? 'bg-green-500/20 text-white border border-green-500/40'
+                        : 'text-white hover:bg-green-500/10 hover:text-green-400'
                     }`}
                   >
                     <motion.div
                       whileHover={{ scale: 1.2, rotate: 10 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      <item.icon
-                        className={`text-xl ${
-                          activeSection === item.href
-                            ? 'text-[#AAFFC7]'
-                            : 'text-[#AAFFC7]'
-                        }`}
-                      />
+                      <item.icon className="text-xl text-green-500" />
                     </motion.div>
                     <span className="font-medium">{item.name}</span>
                     {activeSection === item.href && (
                       <motion.div
-                        className="ml-auto w-2 h-2 rounded-full bg-[#AAFFC7]"
+                        className="ml-auto w-2 h-2 rounded-full bg-green-500"
                         layoutId="activeMobileTab"
                         transition={{
                           type: 'spring',
@@ -426,5 +414,3 @@ export default function Header() {
     </header>
   );
 }
-
-

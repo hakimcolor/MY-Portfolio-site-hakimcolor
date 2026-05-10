@@ -1,5 +1,6 @@
 'use client';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
@@ -39,23 +40,85 @@ const itemVariants = {
   },
 };
 
-// Typewriter text
-const TypeWriter = ({ text }) => {
+// Name with per-word color: white / green / green
+const TypeWriter = () => {
+  const words = [
+    { text: 'Muhamaad', color: 'text-white' },
+    { text: ' Azizul', color: 'text-green-500' },
+    { text: ' Hakim', color: 'text-green-500' },
+  ];
+  let charIndex = 0;
   return (
-    <motion.span className="text-gradient">
-      {text.split('').map((char, i) => (
-        <motion.span
-          key={i}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.05, duration: 0.3 }}
-        >
-          {char}
-        </motion.span>
+    <>
+      {words.map((word) => (
+        <span key={word.text} className={word.color}>
+          {word.text.split('').map((char) => {
+            const i = charIndex++;
+            return (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.05, duration: 0.3 }}
+              >
+                {char}
+              </motion.span>
+            );
+          })}
+        </span>
       ))}
-    </motion.span>
+    </>
   );
 };
+
+// Splits typed role text: first word green, rest white
+function RoleTyper() {
+  const roles = [
+    'MERN Stack Developer',
+    'WordPress Developer',
+    'Full Stack Developer',
+    'React Developer',
+    'Node.js Developer',
+  ];
+  const [display, setDisplay] = React.useState('');
+  const [roleIdx, setRoleIdx] = React.useState(0);
+  const [typing, setTyping] = React.useState(true);
+
+  React.useEffect(() => {
+    const current = roles[roleIdx];
+    let timeout;
+    if (typing) {
+      if (display.length < current.length) {
+        timeout = setTimeout(
+          () => setDisplay(current.slice(0, display.length + 1)),
+          60
+        );
+      } else {
+        timeout = setTimeout(() => setTyping(false), 2000);
+      }
+    } else {
+      if (display.length > 0) {
+        timeout = setTimeout(() => setDisplay(display.slice(0, -1)), 30);
+      } else {
+        setRoleIdx((i) => (i + 1) % roles.length);
+        setTyping(true);
+      }
+    }
+    return () => clearTimeout(timeout);
+  }, [display, typing, roleIdx]);
+
+  const parts = display.split(' ');
+  const first = parts[0];
+  const rest = parts.slice(1).join(' ');
+
+  return (
+    <span>
+      <span className="text-green-500">{first}</span>
+      {rest && <span className="text-white"> {rest}</span>}
+      <span className="animate-pulse text-green-500">|</span>
+    </span>
+  );
+}
 
 export default function Hero() {
   const heroRef = useRef(null);
@@ -241,7 +304,7 @@ export default function Hero() {
             className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight"
             variants={itemVariants}
           >
-            <TypeWriter text="Muhamaad Azizul Hakim" />
+            <TypeWriter />
           </motion.h1>
           <motion.h2
             className="text-blue-200xl md:text-3xl font-bold text-slate-300 mt-3 flex items-center gap-2 justify-center md:justify-start flex-wrap"
@@ -258,24 +321,7 @@ export default function Hero() {
             </motion.span>
 
             {/* Animation 1: Typing Effect with Multiple Roles */}
-            <TypeAnimation
-              sequence={[
-                'MERN Stack Developer',
-                2000,
-                'WordPress Developer',
-                2000,
-                'Full Stack Developer',
-                2000,
-                'React Developer',
-                2000,
-                'Node.js Developer',
-                2000,
-              ]}
-              wrapper="span"
-              speed={50}
-              className="text-gradient"
-              repeat={Infinity}
-            />
+            <RoleTyper />
           </motion.h2>
 
           {/* Animation 3: Glitch Effect */}
@@ -347,7 +393,9 @@ export default function Hero() {
               link.download = 'Muhamaad_Azizul_Hakim_Resume.pdf';
               link.click();
             }}
-            className="h-14 px-8 rounded-full bg-gradient-to-r from-[#67C090] to-purple-600 text-white font-bold text-base shadow-lg shadow-purple-500/25 flex items-center justify-center gap-2"
+            className="h-14 px-8 rounded-full bg-green-500 hover:bg-green-600 text-white font-bold text-base shadow-lg shadow-green-500/25 flex items-center justify-center gap-2 transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             <MdDownload className="text-xl" />
             <span>Download Resume</span>
@@ -358,19 +406,10 @@ export default function Hero() {
                 .getElementById('contact')
                 ?.scrollIntoView({ behavior: 'smooth' })
             }
-            className="h-14 px-8 rounded-full border border-slate-700 hover:border-[#AAFFC7] text-white font-bold text-base transition-all flex items-center justify-center gap-2 relative overflow-hidden"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: '0 0 20px rgba(170,255,199,0.3)',
-            }}
+            className="h-14 px-8 rounded-full border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-bold text-base transition-colors flex items-center justify-center gap-2"
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <motion.div
-              className="absolute inset-0 bg-[#67C090]/10"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: '100%' }}
-              transition={{ duration: 0.5 }}
-            />
             <MdSend className="text-xl" />
             <span>Contact Me</span>
           </motion.button>
