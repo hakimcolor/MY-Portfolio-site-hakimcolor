@@ -292,46 +292,61 @@ function ProfileImage() {
   return (
     <motion.div
       className="relative shrink-0 z-10"
-      initial={{ opacity: 0, x: 60 }}
+      initial={{ opacity: 0, x: 80 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8, type: 'spring', stiffness: 80, delay: 0.4 }}
+      transition={{ duration: 0.9, type: 'spring', stiffness: 70, delay: 0.5 }}
     >
-      {/* Green glow behind image */}
+      {/* Floating animation wrapper */}
       <motion.div
-        className="absolute -inset-4 bg-green-500/10 rounded-2xl blur-2xl"
-        animate={{ opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 3, repeat: Infinity }}
-      />
-
-      {/* Image container - NOT rounded, rectangular with slight radius */}
-      <motion.div
-        className="relative w-72 h-80 md:w-80 md:h-96 lg:w-96 lg:h-[28rem] rounded-2xl overflow-hidden border border-green-500/20 shadow-2xl shadow-green-500/10"
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.3 }}
+        animate={{ y: [0, -12, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        className="relative"
       >
-        <Image
-          src="/hakimcolor.png"
-          alt="Muhamaad Azizul Hakim"
-          fill
-          className="object-cover object-top"
-          priority
+        {/* Rotating outer ring */}
+        <motion.div
+          className="absolute -inset-3 rounded-2xl"
+          style={{
+            background:
+              'conic-gradient(from 0deg, #22c55e, transparent, #22c55e, transparent, #22c55e)',
+            opacity: 0.4,
+          }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
         />
-        {/* Subtle green overlay at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background-dark/60 to-transparent" />
-      </motion.div>
 
-      {/* Corner accent lines */}
-      <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-green-500 rounded-tl-2xl" />
-      <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-green-500 rounded-tr-2xl" />
-      <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-green-500 rounded-bl-2xl" />
-      <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-green-500 rounded-br-2xl" />
+        {/* Pulsing green glow */}
+        <motion.div
+          className="absolute -inset-6 rounded-3xl blur-3xl bg-green-500/20"
+          animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.95, 1.05, 0.95] }}
+          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
+        {/* Image container — rectangular, slight radius */}
+        <div className="relative w-72 h-80 md:w-80 md:h-96 lg:w-96 lg:h-[28rem] rounded-2xl overflow-hidden border-2 border-green-500/30 shadow-2xl shadow-green-500/20">
+          <Image
+            src="/hakimcolor.png"
+            alt="Muhamaad Azizul Hakim"
+            fill
+            className="object-cover object-top"
+            priority
+          />
+          {/* Bottom fade */}
+          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background-dark/50 to-transparent" />
+        </div>
+
+        {/* Corner accent lines */}
+        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-green-400 rounded-tl-2xl" />
+        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-green-400 rounded-tr-2xl" />
+        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-green-400 rounded-bl-2xl" />
+        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-green-400 rounded-br-2xl" />
+      </motion.div>
 
       {/* Experience badge */}
       <motion.div
-        className="absolute -bottom-4 -right-4 bg-surface-dark border border-green-500/30 px-4 py-2 rounded-xl shadow-xl flex items-center gap-2"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1.2, type: 'spring', stiffness: 200 }}
+        className="absolute -bottom-6 -right-4 bg-surface-dark border border-green-500/30 px-4 py-2 rounded-xl shadow-xl flex items-center gap-2"
+        initial={{ opacity: 0, scale: 0, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ delay: 1.4, type: 'spring', stiffness: 200 }}
         whileHover={{ scale: 1.1 }}
       >
         <div className="flex -space-x-2">
