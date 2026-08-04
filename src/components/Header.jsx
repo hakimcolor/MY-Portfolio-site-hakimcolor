@@ -152,147 +152,156 @@ export default function Header() {
       {/* Full-width green glow line at bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-green-500/50 to-transparent" />
 
-      {/* Content constrained to match body layout */}
-      <div className="relative flex items-center justify-between px-6 py-3 md:pl-28 max-w-screen-2xl mx-auto w-full">
-        <motion.div
-          className="flex items-center gap-2"
-          variants={logoVariants}
-          initial="hidden"
-          animate="visible"
-        >
+      {/* Content constrained to match body layout — sidebar is 96px wide on md+ */}
+      <div className="relative flex items-center justify-between py-3 w-full md:pl-24">
+        <div className="flex items-center justify-between w-full max-w-[80%] mx-auto">
           <motion.div
-            className="relative flex items-center justify-center size-10 rounded-lg bg-[#0f172a] shadow-xl shadow-[#67C090]/40 cursor-pointer overflow-hidden p-1"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => handleNavClick('#')}
-            style={{
-              boxShadow:
-                '0 0 20px rgba(34, 211, 238, 0.4), 0 0 40px rgba(34, 211, 238, 0.2), inset 0 0 20px rgba(34, 211, 238, 0.1)',
-            }}
+            className="flex items-center gap-2"
+            variants={logoVariants}
+            initial="hidden"
+            animate="visible"
           >
-            {/* Animated border */}
             <motion.div
-              className="absolute inset-0 rounded-lg"
+              className="relative flex items-center justify-center size-10 rounded-lg bg-[#0f172a] shadow-xl shadow-[#67C090]/40 cursor-pointer overflow-hidden p-1"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => handleNavClick('#')}
               style={{
-                background:
-                  'linear-gradient(90deg, #AAFFC7, #a855f7, #ec4899, #AAFFC7)',
-                backgroundSize: '300% 100%',
-                padding: '2px',
-              }}
-              animate={{
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: 'linear',
+                boxShadow:
+                  '0 0 20px rgba(34, 211, 238, 0.4), 0 0 40px rgba(34, 211, 238, 0.2), inset 0 0 20px rgba(34, 211, 238, 0.1)',
               }}
             >
-              <div className="w-full h-full rounded-lg bg-[#0f172a]" />
+              {/* Animated border */}
+              <motion.div
+                className="absolute inset-0 rounded-lg"
+                style={{
+                  background:
+                    'linear-gradient(90deg, #AAFFC7, #a855f7, #ec4899, #AAFFC7)',
+                  backgroundSize: '300% 100%',
+                  padding: '2px',
+                }}
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: 'linear',
+                }}
+              >
+                <div className="w-full h-full rounded-lg bg-[#0f172a]" />
+              </motion.div>
+
+              {/* Logo SVG */}
+              <svg
+                viewBox="0 0 100 100"
+                className="w-full h-full relative z-10"
+              >
+                {/* H letter - Red part */}
+                <rect x="5" y="10" width="12" height="80" fill="#E31B23" />
+                {/* H letter - White connector */}
+                <rect x="17" y="40" width="12" height="20" fill="#FFFFFF" />
+                {/* H letter - Cyan part */}
+                <rect x="29" y="10" width="12" height="80" fill="#0891B2" />
+                {/* K letter - Dark with shadow effect */}
+                <rect x="50" y="10" width="12" height="80" fill="#1e293b" />
+                <polygon points="62,50 95,10 80,10 62,35" fill="#1e293b" />
+                <polygon points="62,50 95,90 80,90 62,65" fill="#1e293b" />
+              </svg>
+
+              {/* Glow effect */}
+              <motion.div
+                className="absolute inset-0 rounded-lg bg-[#67C090]/20"
+                animate={{
+                  opacity: [0.2, 0.5, 0.2],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+              />
             </motion.div>
-
-            {/* Logo SVG */}
-            <svg viewBox="0 0 100 100" className="w-full h-full relative z-10">
-              {/* H letter - Red part */}
-              <rect x="5" y="10" width="12" height="80" fill="#E31B23" />
-              {/* H letter - White connector */}
-              <rect x="17" y="40" width="12" height="20" fill="#FFFFFF" />
-              {/* H letter - Cyan part */}
-              <rect x="29" y="10" width="12" height="80" fill="#0891B2" />
-              {/* K letter - Dark with shadow effect */}
-              <rect x="50" y="10" width="12" height="80" fill="#1e293b" />
-              <polygon points="62,50 95,10 80,10 62,35" fill="#1e293b" />
-              <polygon points="62,50 95,90 80,90 62,65" fill="#1e293b" />
-            </svg>
-
-            {/* Glow effect */}
-            <motion.div
-              className="absolute inset-0 rounded-lg bg-[#67C090]/20"
-              animate={{
-                opacity: [0.2, 0.5, 0.2],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            />
           </motion.div>
-        </motion.div>
 
-        {/* Desktop Navigation */}
-        <motion.nav
-          className="hidden md:flex items-center gap-1"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {navItems.map((item) => (
-            <motion.div key={item.name} variants={itemVariants}>
-              <button
-                onClick={() => handleNavClick(item.href)}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-2 group relative overflow-hidden ${
-                  activeSection === item.href
-                    ? 'text-green-400 bg-green-500/10'
-                    : 'text-white hover:text-green-400 hover:bg-green-500/10'
-                }`}
-              >
-                <motion.span
-                  whileHover={{ scale: 1.2, rotate: 10 }}
-                  transition={{ type: 'spring', stiffness: 400 }}
+          {/* Desktop Navigation */}
+          <motion.nav
+            className="hidden md:flex items-center gap-1"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {navItems.map((item) => (
+              <motion.div key={item.name} variants={itemVariants}>
+                <button
+                  onClick={() => handleNavClick(item.href)}
+                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-2 group relative overflow-hidden ${
+                    activeSection === item.href
+                      ? 'text-green-400 bg-green-500/10'
+                      : 'text-white hover:text-green-400 hover:bg-green-500/10'
+                  }`}
                 >
-                  <item.icon
-                    className={`text-lg transition-colors ${
-                      activeSection === item.href
-                        ? 'text-green-400'
-                        : 'text-green-500 group-hover:text-green-400'
-                    }`}
-                  />
-                </motion.span>
-                {item.name}
-                {activeSection === item.href && (
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
-                    layoutId="activeTab"
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  />
-                )}
-              </button>
-            </motion.div>
-          ))}
-        </motion.nav>
+                  <motion.span
+                    whileHover={{ scale: 1.2, rotate: 10 }}
+                    transition={{ type: 'spring', stiffness: 400 }}
+                  >
+                    <item.icon
+                      className={`text-lg transition-colors ${
+                        activeSection === item.href
+                          ? 'text-green-400'
+                          : 'text-green-500 group-hover:text-green-400'
+                      }`}
+                    />
+                  </motion.span>
+                  {item.name}
+                  {activeSection === item.href && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
+                      layoutId="activeTab"
+                      transition={{
+                        type: 'spring',
+                        stiffness: 300,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                </button>
+              </motion.div>
+            ))}
+          </motion.nav>
 
-        {/* Mobile Menu Button */}
-        <motion.button
-          className="md:hidden flex items-center justify-center size-10 rounded-lg hover:bg-surface-dark transition-colors text-white"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <AnimatePresence mode="wait">
-            {isMenuOpen ? (
-              <motion.div
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <HiX className="text-2xl text-green-500" />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="menu"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <HiMenu className="text-2xl" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.button>
+          {/* Mobile Menu Button */}
+          <motion.button
+            className="md:hidden flex items-center justify-center size-10 rounded-lg hover:bg-surface-dark transition-colors text-white"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <AnimatePresence mode="wait">
+              {isMenuOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <HiX className="text-2xl text-green-500" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <HiMenu className="text-2xl" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -305,7 +314,7 @@ export default function Header() {
             animate="visible"
             exit="hidden"
           >
-            <div className="max-w-[80%] mx-auto px-4 py-4 space-y-2">
+            <div className="max-w-[80%] mx-auto md:ml-24 px-4 py-4 space-y-2">
               {navItems.map((item, index) => (
                 <motion.div key={item.name} variants={mobileItemVariants}>
                   <button
@@ -341,7 +350,7 @@ export default function Header() {
 
             {/* Mobile menu footer */}
             <motion.div
-              className="max-w-[80%] mx-auto px-4 py-4 border-t border-slate-800/50"
+              className="max-w-[80%] mx-auto md:ml-24 px-4 py-4 border-t border-slate-800/50"
               variants={mobileItemVariants}
             >
               <p className="text-center text-slate-500 text-sm">

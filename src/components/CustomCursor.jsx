@@ -31,12 +31,16 @@ export default function CustomCursor() {
 
     const onOver = (e) => {
       const t = e.target;
+      // Never trigger hover state on images
+      if (t.tagName === 'IMG') {
+        setIsHovering(false);
+        return;
+      }
       const hoverable =
         t.tagName === 'A' ||
         t.tagName === 'BUTTON' ||
         t.closest('a') ||
-        t.closest('button') ||
-        window.getComputedStyle(t).cursor === 'pointer';
+        t.closest('button');
       setIsHovering(!!hoverable);
     };
 
