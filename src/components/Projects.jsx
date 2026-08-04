@@ -78,9 +78,10 @@ const projects = [
 export default function Projects() {
   return (
     <section
-      className="flex flex-col gap-12 px-6 py-12 max-w-[95%] mx-auto w-full"
+      className="flex flex-col gap-12 px-6 py-16 max-w-[95%] mx-auto w-full"
       id="projects"
     >
+      <div className="h-px w-full bg-slate-800 mb-4" />
       <motion.div
         className="flex items-center justify-between"
         initial={{ opacity: 0, y: 20 }}
