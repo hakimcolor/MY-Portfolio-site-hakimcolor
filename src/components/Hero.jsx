@@ -184,13 +184,10 @@ export default function Hero() {
           </motion.h2>
 
           {/* Tech stack line */}
-          <motion.div
-            className="text-sm md:text-base font-body text-slate-400 mt-3"
-            variants={itemVariants}
-          >
+          <div className="text-sm md:text-base font-body text-slate-400 mt-3">
             MongoDB • Express • React • Node.js • Next.js • PostgreSQL • SQL •
             TypeScript
-          </motion.div>
+          </div>
         </motion.div>
 
         <motion.p
