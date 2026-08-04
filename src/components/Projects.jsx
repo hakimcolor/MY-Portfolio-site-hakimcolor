@@ -7,27 +7,10 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 const projects = [
   {
-    title: 'Finance Management App',
-    description:
-      'A comprehensive money management application for tracking income, expenses, and financial reports with interactive charts and analytics.',
-    image: 'https://i.ibb.co.com/Df8PhWQg/Screenshot-2026-01-17-002601.png',
-    liveUrl: 'https://fineasmanagmentapp.netlify.app/',
-    githubUrl:
-      'https://github.com/hakimcolor/FinEaseUIIIIIIIIIIIIIIIIIIIIIIIII---Personal-Finance-Management-App',
-    tags: [
-      'MongoDB',
-      'Express',
-      'React',
-      'Node.js',
-      'Chart.js',
-      'Tailwind CSS',
-    ],
-  },
-  {
     title: 'Local Chef Bazaar',
     description:
-      'A local chef bazaar app where admins manage users, chefs upload food, and users order meals.',
-    image: 'https://i.ibb.co.com/pBcCkWPR/Screenshot-2026-01-06-105931.png',
+      'A local chef bazaar app where admins manage users, chefs upload food, and users order meals with JWT authentication and real-time updates.',
+    image: '/localchefBzer_hakimcolor.png',
     liveUrl: 'https://localchefbazaarbyhakimcolor.netlify.app/',
     githubUrl:
       'https://github.com/hakimcolor/UI-LocalChefBazaar-Marketplace-for-Local-Home-Cooked-Meals',
@@ -42,10 +25,27 @@ const projects = [
     ],
   },
   {
+    title: 'Finance Management App',
+    description:
+      'A comprehensive money management application for tracking income, expenses, and financial reports with interactive charts and analytics.',
+    image: '/finance management app.png',
+    liveUrl: 'https://fineasmanagmentapp.netlify.app/',
+    githubUrl:
+      'https://github.com/hakimcolor/FinEaseUIIIIIIIIIIIIIIIIIIIIIIIII---Personal-Finance-Management-App',
+    tags: [
+      'MongoDB',
+      'Express',
+      'React',
+      'Node.js',
+      'Chart.js',
+      'Tailwind CSS',
+    ],
+  },
+  {
     title: 'Community Cleanliness',
     description:
-      'A community-based website where you can donate for public damage and upload posts about damaged public property.',
-    image: 'https://i.ibb.co.com/MkQfSKPj/Screenshot-2026-01-06-110118.png',
+      'A community-based platform where users can donate for public damage and upload posts about damaged public property to keep communities clean.',
+    image: '/ComunityCCIRP.png',
     liveUrl: 'https://community-cleanliness.netlify.app/',
     githubUrl: 'https://github.com/hakimcolor/Community-cleanliness-and-issue',
     tags: [
@@ -55,15 +55,13 @@ const projects = [
       'Express',
       'Tailwind CSS',
       'Firebase',
-      'Swiper',
-      'SweetAlert2',
     ],
   },
   {
-    title: 'Pet Care Services',
+    title: 'Winter Pet Care',
     description:
-      'A pet care website where you can find many different services and book any service easily for your beloved pets.',
-    image: 'https://i.ibb.co.com/C3HcdXsb/Screenshot-2026-01-06-105336.png',
+      'A pet care website where you can find many different services and book any service easily for your beloved pets during the winter season.',
+    image: '/winter pet care.png',
     liveUrl: 'https://petcareinwinterssevises.netlify.app/',
     githubUrl: 'https://github.com/hakimcolor',
     tags: [
@@ -73,38 +71,14 @@ const projects = [
       'Express',
       'Firebase',
       'Tailwind CSS',
-      'CSS',
     ],
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 100,
-      damping: 12,
-    },
-  },
-};
-
 export default function Projects() {
   return (
     <section
-      className="flex flex-col gap-8 px-6 py-12 md:pl-8 max-w-7xl mx-auto w-full"
+      className="flex flex-col gap-12 px-6 py-12 max-w-[95%] mx-auto w-full"
       id="projects"
     >
       <motion.div
@@ -114,16 +88,16 @@ export default function Projects() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h3 className="text-3xl font-bold text-white flex items-center gap-3">
+        <h3 className="font-title text-3xl font-bold flex items-center gap-3">
           <motion.span
-            className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
+            className="w-1.5 h-8 bg-green-500 rounded-full"
             initial={{ height: 0 }}
             whileInView={{ height: 32 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           />
           <span>
-            <span className="text-green-500">Featured</span>{' '}
+            <span className="text-green-500">My</span>{' '}
             <span className="text-white">Projects</span>
           </span>
         </h3>
@@ -132,7 +106,7 @@ export default function Projects() {
           transition={{ type: 'spring', stiffness: 400 }}
         >
           <Link
-            className="text-sm font-medium text-[#AAFFC7] hover:text-[#AAFFC7] flex items-center gap-1"
+            className="font-body text-sm font-medium text-green-400 hover:text-green-300 flex items-center gap-1"
             href="https://github.com/hakimcolor"
             target="_blank"
           >
@@ -141,69 +115,54 @@ export default function Projects() {
         </motion.div>
       </motion.div>
 
-      <motion.div
-        className="grid grid-cols-1 lg:grid-cols-2 gap-8"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            className="group flex flex-col rounded-2xl overflow-hidden bg-surface-dark/60 border border-slate-800 hover:border-[#67C090]/50 transition-all duration-300"
-            variants={itemVariants}
-            whileHover={{
-              y: -5,
-              boxShadow: '0 20px 40px -20px rgba(34, 211, 238, 0.3)',
-            }}
-          >
-            {/* Project Image */}
-            <div className="w-full h-72 relative overflow-hidden object-cover">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-
-              {/* Overlay buttons */}
+      <div className="flex flex-col gap-12">
+        {projects.map((project, index) => {
+          const isEven = index % 2 === 0;
+          return (
+            <motion.div
+              key={index}
+              className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center border border-slate-800 rounded-2xl overflow-hidden p-6 lg:p-8`}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              whileHover={{ borderColor: 'rgba(34,197,94,0.3)' }}
+            >
+              {/* Image */}
               <motion.div
-                className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                initial={{ y: 20 }}
-                whileHover={{ y: 0 }}
+                className="w-full lg:w-1/2 h-60 lg:h-72 relative rounded-xl overflow-hidden shrink-0"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
-                <motion.a
-                  href={project.liveUrl}
-                  target="_blank"
-                  className="px-5 py-2.5 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full text-sm flex items-center gap-2 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaExternalLinkAlt className="text-xs" />
-                  Live Demo
-                </motion.a>
-                <motion.a
-                  href={project.githubUrl}
-                  target="_blank"
-                  className="px-5 py-2.5 bg-slate-900 text-white font-bold rounded-full text-sm flex items-center gap-2 border border-white/30 hover:bg-white hover:text-slate-900 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaGithub />
-                  GitHub
-                </motion.a>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background-dark/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 gap-3">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-title font-bold rounded-full text-sm flex items-center gap-2 transition-colors"
+                  >
+                    <FaExternalLinkAlt className="text-xs" /> Live Demo
+                  </a>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-slate-900 border border-white/20 text-white font-title font-bold rounded-full text-sm flex items-center gap-2 hover:bg-white hover:text-slate-900 transition-colors"
+                  >
+                    <FaGithub /> GitHub
+                  </a>
+                </div>
               </motion.div>
-            </div>
 
-            {/* Project Info */}
-            <div className="flex flex-col p-6 gap-4 flex-1">
-              <div>
-                <motion.h4
-                  className="text-xl font-bold group-hover:text-green-400 transition-colors mb-2"
-                  whileHover={{ x: 5 }}
-                >
+              {/* Text */}
+              <div className="flex flex-col gap-4 w-full lg:w-1/2">
+                <h4 className="font-title text-2xl font-bold">
                   <span className="text-green-500">
                     {project.title.split(' ')[0]}
                   </span>
@@ -211,52 +170,45 @@ export default function Projects() {
                     {' '}
                     {project.title.split(' ').slice(1).join(' ')}
                   </span>
-                </motion.h4>
-                <p className="text-sm text-slate-400 leading-relaxed">
+                </h4>
+                <p className="font-body text-slate-400 leading-relaxed">
                   {project.description}
                 </p>
-              </div>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mt-auto">
-                {project.tags.map((tag, tagIndex) => (
-                  <motion.span
-                    key={tagIndex}
-                    className="px-3 py-1 text-xs font-medium bg-slate-800/80 text-slate-300 rounded-full border border-slate-700/50 hover:border-[#67C090]/50 hover:text-[#AAFFC7] transition-colors cursor-default"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + tagIndex * 0.05 }}
-                    whileHover={{ scale: 1.05, y: -2 }}
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-body px-3 py-1 text-xs font-medium bg-slate-800 text-slate-300 rounded-full border border-slate-700 hover:border-green-500/50 hover:text-green-400 transition-colors cursor-default"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex gap-3 mt-2">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-5 py-2.5 bg-green-500 hover:bg-green-600 text-white font-title font-bold rounded-full text-sm flex items-center gap-2 transition-colors"
                   >
-                    {tag}
-                  </motion.span>
-                ))}
+                    <FaExternalLinkAlt className="text-xs" /> Live Demo
+                  </a>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-5 py-2.5 bg-transparent border border-slate-600 text-white font-title font-bold rounded-full text-sm flex items-center gap-2 hover:border-green-500 hover:text-green-400 transition-colors"
+                  >
+                    <FaGithub /> GitHub
+                  </a>
+                </div>
               </div>
-
-              {/* Links for mobile */}
-              <div className="flex gap-3 pt-2 lg:hidden">
-                <Link
-                  href={project.liveUrl}
-                  target="_blank"
-                  className="flex-1 py-2.5 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg text-sm flex items-center justify-center gap-2 transition-colors"
-                >
-                  <FaExternalLinkAlt className="text-xs" />
-                  Live Demo
-                </Link>
-                <Link
-                  href={project.githubUrl}
-                  target="_blank"
-                  className="flex-1 py-2.5 bg-slate-900 text-white font-semibold rounded-lg text-sm flex items-center justify-center gap-2 border border-slate-600 hover:bg-white hover:text-slate-900 transition-colors"
-                >
-                  <FaGithub />
-                  GitHub
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+            </motion.div>
+          );
+        })}
+      </div>
     </section>
   );
 }
