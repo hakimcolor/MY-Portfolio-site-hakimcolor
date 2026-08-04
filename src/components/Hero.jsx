@@ -194,11 +194,11 @@ export default function Hero() {
           className="font-body text-base md:text-lg text-slate-400 leading-relaxed max-w-lg"
           variants={itemVariants}
         >
-          I&apos;m a passionate MERN Stack & Full Stack Developer with 2+ years
-          of experience building scalable web applications using MongoDB,
-          Express, React, Node.js, PostgreSQL, SQL, Prisma, and TypeScript. I
-          transform ideas into seamless digital experiences — and I&apos;m also
-          a WordPress Elementor Developer.
+          I&apos;m a Full Stack Developer with 2+ years of experience crafting
+          scalable web apps using MongoDB, Express, React, Node.js, PostgreSQL,
+          SQL, Prisma, and TypeScript. I turn ideas into polished digital
+          products — and also build fast, SEO-ready sites as a WordPress
+          Elementor Developer.
         </motion.p>
 
         <motion.div
