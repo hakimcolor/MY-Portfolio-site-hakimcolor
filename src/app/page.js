@@ -35,7 +35,7 @@ export default function Home() {
           <Sidebar />
           <div className="md:pl-24">
             <Hero />
-            <main className="flex-1 w-full max-w-7xl mx-auto flex flex-col">
+            <main className="flex-1 w-full flex flex-col">
               <About />
               <div className="h-px bg-gradient-to-r from-transparent via-slate-800 to-transparent w-full my-4"></div>
               <Projects />

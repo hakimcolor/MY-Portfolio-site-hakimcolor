@@ -269,7 +269,7 @@ export default function Contact() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 }}
                   >
-                    <label className="text-slate-400 text-sm mb-2 block">
+                    <label className="font-body text-slate-400 text-sm mb-2 block">
                       Your Name
                     </label>
                     <input
@@ -288,7 +288,7 @@ export default function Contact() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.5 }}
                   >
-                    <label className="text-slate-400 text-sm mb-2 block">
+                    <label className="font-body text-slate-400 text-sm mb-2 block">
                       Your Email
                     </label>
                     <input
@@ -309,7 +309,7 @@ export default function Contact() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.6 }}
                 >
-                  <label className="text-slate-400 text-sm mb-2 block">
+                  <label className="font-body text-slate-400 text-sm mb-2 block">
                     Subject
                   </label>
                   <input
@@ -329,7 +329,7 @@ export default function Contact() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.7 }}
                 >
-                  <label className="text-slate-400 text-sm mb-2 block">
+                  <label className="font-body text-slate-400 text-sm mb-2 block">
                     Message
                   </label>
                   <textarea
