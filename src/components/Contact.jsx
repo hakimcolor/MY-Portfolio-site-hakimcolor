@@ -128,7 +128,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
         >
           <motion.span
-            className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
+            className="w-1.5 h-8 bg-green-500 rounded-full"
             initial={{ height: 0 }}
             whileInView={{ height: 32 }}
             viewport={{ once: true }}
