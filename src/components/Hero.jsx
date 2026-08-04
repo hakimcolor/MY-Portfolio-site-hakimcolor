@@ -175,9 +175,15 @@ export default function Hero() {
         animate="visible"
       >
         <motion.div className="space-y-3" variants={itemVariants}>
-          <motion.span className="inline-block py-1 px-3 rounded-full bg-surface-dark border border-green-500/30 text-sm font-medium text-green-400 mb-2">
-            Hello, I&apos;m
-          </motion.span>
+          <div className="flex items-center gap-3 flex-wrap">
+            <motion.span className="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-surface-dark border border-green-500/30 text-sm font-medium text-green-400">
+              Hello, I&apos;m
+            </motion.span>
+            <motion.span className="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-green-500/10 border border-green-500/30 text-xs font-medium text-green-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              Available for work
+            </motion.span>
+          </div>
           <motion.h1
             className="font-title text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight"
             variants={itemVariants}
