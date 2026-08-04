@@ -11,27 +11,18 @@ const contactInfo = [
     label: 'Email',
     value: 'hakimcolor777@gmail.com',
     href: 'mailto:hakimcolor777@gmail.com',
-    color: 'text-violet-400',
-    bgColor: 'bg-violet-500/10 border-violet-500/30',
-    iconBg: 'bg-violet-500/20',
   },
   {
     icon: FaWhatsapp,
     label: 'WhatsApp',
     value: '+880 1818 777 856',
     href: 'https://wa.me/8801818777856',
-    color: 'text-green-400',
-    bgColor: 'bg-green-500/10 border-green-500/30',
-    iconBg: 'bg-green-500/20',
   },
   {
     icon: MdLocationOn,
     label: 'Location',
     value: 'Dhaka, Bangladesh',
     href: null,
-    color: 'text-cyan-400',
-    bgColor: 'bg-cyan-500/10 border-cyan-500/30',
-    iconBg: 'bg-cyan-500/20',
   },
 ];
 
@@ -160,7 +151,7 @@ export default function Contact() {
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={info.label}
-                  className={`${info.bgColor} border rounded-xl p-4 flex items-center gap-4`}
+                  className="bg-green-500/10 border border-green-500/25 rounded-xl p-4 flex items-center gap-4"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -168,7 +159,7 @@ export default function Contact() {
                   whileHover={{ scale: 1.02, x: 5 }}
                 >
                   <motion.div
-                    className={`w-12 h-12 rounded-xl ${info.iconBg} border border-white/10 flex items-center justify-center ${info.color}`}
+                    className="w-12 h-12 rounded-xl bg-green-500/20 border border-green-500/20 flex items-center justify-center text-green-400"
                     whileHover={{ rotate: 10, scale: 1.1 }}
                     transition={{ type: 'spring', stiffness: 400 }}
                   >
@@ -187,7 +178,7 @@ export default function Contact() {
                             ? 'noopener noreferrer'
                             : undefined
                         }
-                        className="text-white font-medium hover:text-[#AAFFC7] transition-colors"
+                        className="text-white font-medium hover:text-green-400 transition-colors"
                       >
                         {info.value}
                       </a>

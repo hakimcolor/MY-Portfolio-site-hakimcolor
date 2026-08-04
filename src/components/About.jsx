@@ -29,6 +29,7 @@ import {
   SiPrisma,
   SiPostgresql,
   SiMysql,
+  SiStripe,
 } from 'react-icons/si';
 import {
   MdSchool,
@@ -38,6 +39,7 @@ import {
   MdWork,
   MdLocationOn,
   MdQuestionAnswer,
+  MdPayment,
 } from 'react-icons/md';
 import { TbBrandNextjs, TbBrandVscode, TbCircleLetterN } from 'react-icons/tb';
 import { IoChevronDown } from 'react-icons/io5';
@@ -149,14 +151,10 @@ function AboutMe() {
   ];
 
   const languages = [
-    { name: 'Bangla', level: 'Native', color: 'text-green-400', bar: 100 },
-    { name: 'English', level: 'Professional', color: 'text-blue-400', bar: 80 },
-    {
-      name: 'Hindi',
-      level: 'Conversational',
-      color: 'text-orange-400',
-      bar: 55,
-    },
+    { name: 'Bangla', level: 'Native', bar: 100 },
+    { name: 'English', level: 'Professional', bar: 80 },
+    { name: 'Hindi', level: 'Conversational', bar: 55 },
+    { name: 'Urdu', level: 'Basic', bar: 30 },
   ];
 
   return (
@@ -268,23 +266,12 @@ function AboutMe() {
           <div className="flex flex-col gap-3">
             {languages.map((lang) => (
               <div key={lang.name} className="flex items-center gap-4">
-                <span
-                  className={`font-body text-sm font-medium w-24 ${lang.color}`}
-                >
+                <span className="font-body text-sm font-medium w-24 text-green-400">
                   {lang.name}
                 </span>
                 <div className="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden">
                   <motion.div
-                    className="h-full rounded-full"
-                    style={{
-                      backgroundColor: lang.color
-                        .replace('text-', '')
-                        .includes('green')
-                        ? '#22c55e'
-                        : lang.color.includes('blue')
-                          ? '#60a5fa'
-                          : '#fb923c',
-                    }}
+                    className="h-full rounded-full bg-green-500"
                     initial={{ width: 0 }}
                     whileInView={{ width: `${lang.bar}%` }}
                     viewport={{ once: true }}
@@ -370,6 +357,15 @@ function Skills() {
         { name: 'WordPress', icon: FaWordpress, color: '#21759B' },
         { name: 'Elementor', icon: FaElementor, color: '#E2155A' },
         { name: 'WooCommerce', icon: SiWoocommerce, color: '#96588A' },
+      ],
+    },
+    {
+      title: 'Payment',
+      rest: ' Integration',
+      accent: '#635BFF',
+      skills: [
+        { name: 'Stripe', icon: SiStripe, color: '#635BFF' },
+        { name: 'SSL Commerz', icon: MdPayment, color: '#22c55e' },
       ],
     },
   ];

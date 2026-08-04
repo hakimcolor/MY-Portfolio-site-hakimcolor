@@ -12,37 +12,21 @@ const certificates = [
     title: 'AI Workflows & Agents GP',
     issuer: 'Programming Hero',
     category: 'AI / Agents',
-    color: 'from-violet-500/20 to-purple-500/10',
-    border: 'border-violet-500/30',
-    accent: 'text-violet-400',
-    badge: 'bg-violet-500/10 text-violet-400 border-violet-500/30',
   },
   {
     title: 'GenAI and Prompt Engineering GP',
     issuer: 'Programming Hero',
     category: 'Generative AI',
-    color: 'from-cyan-500/20 to-blue-500/10',
-    border: 'border-cyan-500/30',
-    accent: 'text-cyan-400',
-    badge: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
   },
   {
     title: 'Skill Development (PH)',
     issuer: 'Programming Hero',
     category: 'Full Stack Dev',
-    color: 'from-green-500/20 to-emerald-500/10',
-    border: 'border-green-500/30',
-    accent: 'text-green-400',
-    badge: 'bg-green-500/10 text-green-400 border-green-500/30',
   },
   {
     title: 'WordPress Elementor',
     issuer: 'Codeman BD',
     category: 'CMS / Design',
-    color: 'from-blue-500/20 to-indigo-500/10',
-    border: 'border-blue-500/30',
-    accent: 'text-blue-400',
-    badge: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
   },
 ];
 
@@ -166,27 +150,23 @@ export default function Certificates() {
             variants={cardVariants}
             whileHover={{ y: -6, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className={`relative flex flex-col gap-4 p-6 rounded-2xl bg-linear-to-br ${cert.color} border ${cert.border} backdrop-blur-sm cursor-pointer group overflow-hidden`}
+            className="relative flex flex-col gap-4 p-6 rounded-2xl bg-surface-dark/40 border border-green-500/25 backdrop-blur-sm cursor-pointer group overflow-hidden"
           >
             {/* Subtle glow on hover */}
             <motion.div
               className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{
                 background:
-                  'radial-gradient(circle at 50% 0%, rgba(34,197,94,0.08) 0%, transparent 70%)',
+                  'radial-gradient(circle at 50% 0%, rgba(34,197,94,0.10) 0%, transparent 70%)',
               }}
             />
 
             {/* Top row */}
             <div className="flex items-start justify-between gap-3 relative z-10">
-              <div
-                className={`w-10 h-10 rounded-xl bg-slate-900/60 border ${cert.border} flex items-center justify-center shrink-0`}
-              >
-                <FaAward className={`${cert.accent} text-lg`} />
+              <div className="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/30 flex items-center justify-center shrink-0">
+                <FaAward className="text-green-400 text-lg" />
               </div>
-              <span
-                className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${cert.badge} font-body`}
-              >
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full border bg-green-500/10 text-green-400 border-green-500/30 font-body">
                 {cert.category}
               </span>
             </div>
