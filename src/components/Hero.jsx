@@ -1,9 +1,9 @@
 'use client';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import {
   FaGithub,
@@ -13,34 +13,25 @@ import {
   FaNodeJs,
 } from 'react-icons/fa';
 import { MdEmail, MdDownload, MdSend, MdCode } from 'react-icons/md';
-import { SiMongodb } from 'react-icons/si';
-import { TypeAnimation } from 'react-type-animation';
+import { SiMongodb, SiTypescript } from 'react-icons/si';
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.3,
-    },
+    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
   },
 };
-
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 100,
-      damping: 12,
-    },
+    transition: { type: 'spring', stiffness: 100, damping: 12 },
   },
 };
 
-// Name with per-word color: white / green / green
+// Name: Muhamaad white, Azizul green, Hakim green
 const TypeWriter = () => {
   const words = [
     { text: 'Muhamaad', color: 'text-white' },
@@ -71,7 +62,7 @@ const TypeWriter = () => {
   );
 };
 
-// Splits typed role text: first word green, rest white
+// Custom role typer: first word green, rest white
 function RoleTyper() {
   const roles = [
     'MERN Stack Developer',
@@ -105,12 +96,12 @@ function RoleTyper() {
       }
     }
     return () => clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [display, typing, roleIdx]);
 
   const parts = display.split(' ');
   const first = parts[0];
   const rest = parts.slice(1).join(' ');
-
   return (
     <span>
       <span className="text-green-500">{first}</span>
@@ -125,7 +116,6 @@ export default function Hero() {
   const particlesRef = useRef(null);
 
   useEffect(() => {
-    // GSAP particles animation
     const particles = particlesRef.current?.children;
     if (particles) {
       gsap.to(particles, {
@@ -136,10 +126,7 @@ export default function Hero() {
         repeat: -1,
         yoyo: true,
         ease: 'sine.inOut',
-        stagger: {
-          amount: 2,
-          from: 'random',
-        },
+        stagger: { amount: 2, from: 'random' },
       });
     }
   }, []);
@@ -147,57 +134,9 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative flex flex-col-reverse lg:flex-row items-center justify-center px-6 py-16 gap-8 lg:gap-12 w-full mx-auto min-h-[calc(100vh-80px)] overflow-hidden"
+      className="relative flex flex-col-reverse lg:flex-row items-center justify-center px-6 py-16 gap-12 lg:gap-16 w-full max-w-[95%] mx-auto min-h-[calc(100vh-80px)] overflow-hidden"
       id="home"
     >
-      {/* Animated mesh gradient background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute w-[800px] h-[800px] rounded-full"
-          style={{
-            background:
-              'radial-gradient(circle, rgba(170,255,199,0.15) 0%, transparent 70%)',
-            top: '-20%',
-            right: '-10%',
-          }}
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute w-[600px] h-[600px] rounded-full"
-          style={{
-            background:
-              'radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)',
-            bottom: '-10%',
-            left: '-5%',
-          }}
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -30, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute w-[500px] h-[500px] rounded-full"
-          style={{
-            background:
-              'radial-gradient(circle, rgba(236,72,153,0.1) 0%, transparent 70%)',
-            top: '40%',
-            left: '30%',
-          }}
-          animate={{
-            scale: [1, 1.4, 1],
-            rotate: [0, 180, 360],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-        />
-      </div>
-
       {/* Floating code symbols */}
       <div
         ref={particlesRef}
@@ -207,11 +146,8 @@ export default function Hero() {
           (symbol, i) => (
             <motion.div
               key={i}
-              className="absolute text-[#67C090]/20 font-mono text-2xl font-bold"
-              style={{
-                left: `${10 + i * 9}%`,
-                top: `${15 + i * 8}%`,
-              }}
+              className="absolute text-green-500/10 font-mono text-2xl font-bold"
+              style={{ left: `${10 + i * 9}%`, top: `${15 + i * 8}%` }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: i * 0.2 }}
@@ -222,60 +158,7 @@ export default function Hero() {
         )}
       </div>
 
-      {/* Animated lines */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ opacity: 0.1 }}
-      >
-        <motion.line
-          x1="0%"
-          y1="20%"
-          x2="100%"
-          y2="80%"
-          stroke="url(#gradient1)"
-          strokeWidth="1"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 2, delay: 0.5 }}
-        />
-        <motion.line
-          x1="100%"
-          y1="10%"
-          x2="0%"
-          y2="90%"
-          stroke="url(#gradient2)"
-          strokeWidth="1"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 2, delay: 0.8 }}
-        />
-        <defs>
-          <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#AAFFC7" />
-            <stop offset="100%" stopColor="#a855f7" />
-          </linearGradient>
-          <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#a855f7" />
-            <stop offset="100%" stopColor="#ec4899" />
-          </linearGradient>
-        </defs>
-      </svg>
-
-      {/* Glowing cursor trail effect */}
-      <motion.div
-        className="absolute w-64 h-64 rounded-full pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(circle, rgba(170,255,199,0.15) 0%, transparent 70%)',
-          filter: 'blur(40px)',
-        }}
-        animate={{
-          x: [0, 200, -100, 150, 0],
-          y: [0, -100, 150, -50, 0],
-        }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
+      {/* Left: text content */}
       <motion.div
         className="flex flex-col items-center md:items-start text-center md:text-left gap-6 max-w-2xl w-full z-10"
         variants={containerVariants}
@@ -283,102 +166,42 @@ export default function Hero() {
         animate="visible"
       >
         <motion.div className="space-y-3" variants={itemVariants}>
-          <motion.span
-            className="inline-block py-1 px-3 rounded-full bg-surface-dark border border-slate-700 text-sm font-medium text-[#AAFFC7] mb-2"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: '0 0 20px rgba(170,255,199,0.3)',
-            }}
-            animate={{
-              boxShadow: [
-                '0 0 0px rgba(170,255,199,0)',
-                '0 0 15px rgba(170,255,199,0.3)',
-                '0 0 0px rgba(170,255,199,0)',
-              ],
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
+          <motion.span className="inline-block py-1 px-3 rounded-full bg-surface-dark border border-green-500/30 text-sm font-medium text-green-400 mb-2">
             Hello, I&apos;m
           </motion.span>
           <motion.h1
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight"
+            className="font-title text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight"
             variants={itemVariants}
           >
             <TypeWriter />
           </motion.h1>
           <motion.h2
-            className="text-blue-200xl md:text-3xl font-bold text-slate-300 mt-3 flex items-center gap-2 justify-center md:justify-start flex-wrap"
+            className="font-title text-xl md:text-3xl font-bold mt-3 flex items-center gap-2 justify-center md:justify-start flex-wrap"
             variants={itemVariants}
           >
-            <motion.span
-              animate={{
-                rotate: [0, 360],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-            >
-              <MdCode className="text-accent-purple text-2xl" />
-            </motion.span>
-
-            {/* Animation 1: Typing Effect with Multiple Roles */}
+            <MdCode className="text-green-500 text-2xl" />
             <RoleTyper />
           </motion.h2>
 
-          {/* Animation 3: Glitch Effect */}
+          {/* Tech stack line */}
           <motion.div
-            className="text-base md:text-lg font-medium text-purple-400 mt-3 relative"
+            className="text-sm md:text-base font-body text-slate-400 mt-3"
             variants={itemVariants}
           >
-            <motion.span
-              animate={{
-                x: [0, -2, 2, -2, 0],
-                textShadow: [
-                  '0 0 0px rgba(168,85,247,0)',
-                  '-2px 0 10px rgba(168,85,247,0.8)',
-                  '2px 0 10px rgba(170,255,199,0.8)',
-                  '-2px 0 10px rgba(168,85,247,0.8)',
-                  '0 0 0px rgba(168,85,247,0)',
-                ],
-              }}
-              transition={{
-                duration: 0.5,
-                repeat: Infinity,
-                repeatDelay: 3,
-              }}
-            >
-              MongoDB • Express • React • Node.js • Next.js
-            </motion.span>
-          </motion.div>
-
-          {/* Animation 5: Letter Spacing Pulse */}
-          <motion.div
-            className="text-sm md:text-base font-bold text-slate-400 mt-3 tracking-wider"
-            variants={itemVariants}
-          >
-            <motion.span
-              animate={{
-                opacity: [0.3, 1, 0.3],
-                y: [6, 0, -6],
-              }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            >
-              PASSIONATE • CREATIVE • INNOVATIVE
-            </motion.span>
+            MongoDB • Express • React • Node.js • Next.js • PostgreSQL • SQL •
+            TypeScript
           </motion.div>
         </motion.div>
 
         <motion.p
-          className="text-base md:text-lg text-slate-400 leading-relaxed max-w-lg mt-[-5]"
+          className="font-body text-base md:text-lg text-slate-400 leading-relaxed max-w-lg"
           variants={itemVariants}
         >
-          I am a passionate and dedicated developer with expertise in building
-          scalable web applications. With a strong foundation in MongoDB,
-          Express, React, and Node.js, I transform ideas into seamless digital
-          experiences. I am also a WordPress Elementor Developer.
+          I&apos;m a passionate MERN Stack & Full Stack Developer with 2+ years
+          of experience building scalable web applications using MongoDB,
+          Express, React, Node.js, PostgreSQL, SQL, Prisma, and TypeScript. I
+          transform ideas into seamless digital experiences — and I&apos;m also
+          a WordPress Elementor Developer.
         </motion.p>
 
         <motion.div
@@ -389,11 +212,11 @@ export default function Hero() {
             onClick={() => {
               const link = document.createElement('a');
               link.href =
-                'https://drive.google.com/file/d/1F3wrr4kAbeJGlrvwYwEleCyStCOsCJdQ/view?usp=sharing';
-              link.download = 'Muhamaad_Azizul_Hakim_Resume.pdf';
+                'https://drive.google.com/drive/u/0/folders/1Wzq2c2AyQPZ1MwUb5mnoX0bCnYr25JNX';
+              link.target = '_blank';
               link.click();
             }}
-            className="h-14 px-8 rounded-full bg-green-500 hover:bg-green-600 text-white font-bold text-base shadow-lg shadow-green-500/25 flex items-center justify-center gap-2 transition-colors"
+            className="h-14 px-8 rounded-full bg-green-500 hover:bg-green-600 text-white font-title font-bold text-base shadow-lg shadow-green-500/25 flex items-center justify-center gap-2 transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -406,7 +229,7 @@ export default function Hero() {
                 .getElementById('contact')
                 ?.scrollIntoView({ behavior: 'smooth' })
             }
-            className="h-14 px-8 rounded-full border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-bold text-base transition-colors flex items-center justify-center gap-2"
+            className="h-14 px-8 rounded-full border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-title font-bold text-base transition-colors flex items-center justify-center gap-2"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -441,7 +264,8 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      <ProfileImage3D />
+      {/* Right: profile image */}
+      <ProfileImage />
 
       {/* Scroll indicator */}
       <motion.div
@@ -450,14 +274,14 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2 }}
       >
-        <span className="text-slate-500 text-sm">Scroll Down</span>
+        <span className="font-body text-slate-500 text-sm">Scroll Down</span>
         <motion.div
           className="w-6 h-10 rounded-full border-2 border-slate-600 flex justify-center pt-2"
-          animate={{ borderColor: ['#475569', '#AAFFC7', '#475569'] }}
+          animate={{ borderColor: ['#475569', '#22c55e', '#475569'] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
           <motion.div
-            className="w-1.5 h-1.5 rounded-full bg-[#AAFFC7]"
+            className="w-1.5 h-1.5 rounded-full bg-green-500"
             animate={{ y: [0, 16, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           />
@@ -467,201 +291,75 @@ export default function Hero() {
   );
 }
 
-function ProfileImage3D() {
-  const ref = useRef(null);
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 15 });
-  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 15 });
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['15deg', '-15deg']);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-15deg', '15deg']);
-
-  const handleMouseMove = (e) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
+function ProfileImage() {
   return (
     <motion.div
-      ref={ref}
-      className="relative group shrink-0"
-      style={{
-        perspective: '1000px',
-        transformStyle: 'preserve-3d',
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
-      animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-      transition={{
-        duration: 1,
-        type: 'spring',
-        stiffness: 100,
-        damping: 15,
-        delay: 0.5,
-      }}
+      className="relative shrink-0 z-10"
+      initial={{ opacity: 0, x: 60 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, type: 'spring', stiffness: 80, delay: 0.4 }}
     >
-      {/* Multiple glow layers */}
+      {/* Green glow behind image */}
       <motion.div
-        className="absolute -inset-8 rounded-full opacity-30"
-        style={{
-          background:
-            'conic-gradient(from 0deg, #AAFFC7, #a855f7, #ec4899, #AAFFC7)',
-          filter: 'blur(40px)',
-        }}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-      />
-      <motion.div
-        className="absolute -inset-4 bg-gradient-to-r from-[#67C090] to-purple-600 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition duration-1000"
-        animate={{
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
+        className="absolute -inset-4 bg-green-500/10 rounded-2xl blur-2xl"
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 3, repeat: Infinity }}
       />
 
+      {/* Image container - NOT rounded, rectangular with slight radius */}
       <motion.div
-        className="relative p-1.5 rounded-full border-gradient shadow-2xl shadow-[#67C090]/10"
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: 'preserve-3d',
-        }}
+        className="relative w-72 h-80 md:w-80 md:h-96 lg:w-96 lg:h-[28rem] rounded-2xl overflow-hidden border border-green-500/20 shadow-2xl shadow-green-500/10"
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.3 }}
       >
-        <div
-          className="relative bg-background-dark rounded-full p-2"
-          style={{ transformStyle: 'preserve-3d' }}
-        >
-          <motion.div
-            className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden bg-slate-800"
-            style={{ transform: 'translateZ(50px)' }}
-            whileHover={{ scale: 1.02 }}
-          >
-            <Image
-              src="https://i.ibb.co.com/5hydBhmc/hakimcolor.png"
-              alt="Muhamaad Azizul Hakim"
-              fill
-              className="object-cover object-center"
-            />
-            {/* Image overlay effect */}
-            <motion.div className="absolute inset-0 bg-gradient-to-t from-background-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </motion.div>
-        </div>
-
-        {/* Rotating rings */}
-        <motion.div
-          className="absolute inset-[-10px] rounded-full border border-[#67C090]/20"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+        <Image
+          src="/hakimcolor.png"
+          alt="Muhamaad Azizul Hakim"
+          fill
+          className="object-cover object-top"
+          priority
         />
-        <motion.div
-          className="absolute inset-[-20px] rounded-full border border-purple-500/20"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-        />
-        <motion.div
-          className="absolute inset-[-30px] rounded-full border border-pink-500/10"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-        />
+        {/* Subtle green overlay at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background-dark/60 to-transparent" />
       </motion.div>
+
+      {/* Corner accent lines */}
+      <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-green-500 rounded-tl-2xl" />
+      <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-green-500 rounded-tr-2xl" />
+      <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-green-500 rounded-bl-2xl" />
+      <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-green-500 rounded-br-2xl" />
 
       {/* Experience badge */}
       <motion.div
-        className="absolute bottom-4 right-4 md:bottom-10 md:right-10 bg-surface-dark/90 backdrop-blur-sm border border-slate-700 p-3 rounded-2xl shadow-xl flex items-center gap-3"
-        initial={{ opacity: 0, y: 20, scale: 0 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
+        className="absolute -bottom-4 -right-4 bg-surface-dark border border-green-500/30 px-4 py-2 rounded-xl shadow-xl flex items-center gap-2"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1.2, type: 'spring', stiffness: 200 }}
-        whileHover={{ scale: 1.1, rotateZ: 5 }}
+        whileHover={{ scale: 1.1 }}
       >
         <div className="flex -space-x-2">
           {[
             { icon: FaReact, bg: '#61DAFB', color: 'text-black' },
             { icon: FaNodeJs, bg: '#339933', color: 'text-white' },
             { icon: SiMongodb, bg: 'white', color: 'text-green-600' },
+            { icon: SiTypescript, bg: '#3178C6', color: 'text-white' },
           ].map((tech, i) => (
             <motion.div
               key={i}
-              className={`w-8 h-8 rounded-full p-1.5 flex items-center justify-center border-2 border-surface-dark`}
+              className="w-7 h-7 rounded-full p-1 flex items-center justify-center border-2 border-surface-dark"
               style={{ backgroundColor: tech.bg }}
-              whileHover={{ scale: 1.3, y: -8, zIndex: 10 }}
+              whileHover={{ y: -4, zIndex: 10 }}
               transition={{ type: 'spring', stiffness: 400 }}
             >
               <tech.icon className={`w-full h-full ${tech.color}`} />
             </motion.div>
           ))}
         </div>
-        <div className="text-xs font-bold">
-          <motion.span
-            className="block text-white"
-            animate={{ color: ['#ffffff', '#AAFFC7', '#ffffff'] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            2+ Years
-          </motion.span>
+        <div className="text-xs font-title font-bold">
+          <span className="block text-green-500">2+ Years</span>
           <span className="text-slate-400">Experience</span>
         </div>
       </motion.div>
-
-      {/* Orbiting dots */}
-      {[0, 1, 2, 3].map((i) => (
-        <motion.div
-          key={i}
-          className="absolute top-1/2 left-1/2 w-3 h-3"
-          style={{ transformOrigin: '0 0' }}
-          animate={{ rotate: 360 }}
-          transition={{
-            duration: 6 + i * 2,
-            repeat: Infinity,
-            ease: 'linear',
-            delay: i * 0.5,
-          }}
-        >
-          <motion.div
-            className="absolute rounded-full"
-            style={{
-              width: 6 - i,
-              height: 6 - i,
-              x: 160 + i * 15,
-              background: `linear-gradient(135deg, #AAFFC7, #a855f7)`,
-              boxShadow: '0 0 10px rgba(170,255,199,0.5)',
-            }}
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.7, 1, 0.7],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: 'easeInOut',
-              delay: i * 0.3,
-            }}
-          />
-        </motion.div>
-      ))}
     </motion.div>
   );
 }
