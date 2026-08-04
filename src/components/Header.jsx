@@ -11,6 +11,7 @@ import {
   BsBriefcase,
   BsFolder,
   BsEnvelope,
+  BsPatchCheck,
 } from 'react-icons/bs';
 
 const navItems = [
@@ -19,6 +20,7 @@ const navItems = [
   { name: 'Skills', href: '#skills', icon: BsLightning },
   { name: 'Experience', href: '#experience', icon: BsBriefcase },
   { name: 'Projects', href: '#projects', icon: BsFolder },
+  { name: 'Certificates', href: '#certificates', icon: BsPatchCheck },
   { name: 'Contact', href: '#contact', icon: BsEnvelope },
 ];
 

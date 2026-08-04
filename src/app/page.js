@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
+import Certificates from '@/components/Certificates';
 import Contact from '@/components/Contact';
 import Sidebar from '@/components/Sidebar';
 import LoadingScreen from '@/components/LoadingScreen';
@@ -38,6 +39,7 @@ export default function Home() {
             <main className="flex-1 w-full flex flex-col">
               <About />
               <Projects />
+              <Certificates />
               <Contact />
             </main>
             <Footer />
