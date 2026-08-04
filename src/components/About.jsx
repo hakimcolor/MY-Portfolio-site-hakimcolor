@@ -290,6 +290,7 @@ function Skills() {
         { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
         { name: 'Docker', icon: FaDocker, color: '#2496ED' },
         { name: 'Beekeeper', icon: VscDatabase, color: '#22c55e' },
+        { name: 'CI/CD', icon: FaGitAlt, color: '#F05032' },
       ],
     },
     {
