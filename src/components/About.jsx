@@ -124,7 +124,7 @@ function AboutMe() {
   const infoItems = [
     {
       label: 'Name',
-      value: 'Muhamaad Azizul Hakim',
+      value: 'Muhammad Azizul Hakim',
       icon: MdPerson,
       color: 'text-green-400',
     },
@@ -142,9 +142,20 @@ function AboutMe() {
     },
     {
       label: 'Location',
-      value: 'Dhaka, Bangladesh',
+      value: 'Jashore, Khulna, Bangladesh',
       icon: MdLocationOn,
       color: 'text-green-500',
+    },
+  ];
+
+  const languages = [
+    { name: 'Bangla', level: 'Native', color: 'text-green-400', bar: 100 },
+    { name: 'English', level: 'Professional', color: 'text-blue-400', bar: 80 },
+    {
+      name: 'Hindi',
+      level: 'Conversational',
+      color: 'text-orange-400',
+      bar: 55,
     },
   ];
 
@@ -158,6 +169,7 @@ function AboutMe() {
       >
         {/* Top green accent line */}
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-green-500/50 rounded-t-2xl" />
+
         <motion.p
           className="font-body text-slate-300 leading-relaxed text-lg relative z-10"
           initial={{ opacity: 0, y: 20 }}
@@ -167,16 +179,19 @@ function AboutMe() {
         >
           I&apos;m{' '}
           <span className="text-white font-semibold">
-            Muhamaad Azizul Hakim
+            Muhammad Azizul Hakim
           </span>
-          , a MERN Stack &amp; Full Stack Developer with 2+ years of hands-on
-          experience building scalable, high-performance web applications. I
-          specialize in MongoDB, Express.js, React.js, Node.js,{' '}
+          , a Full Stack Developer with hands-on experience building scalable
+          and secure web applications using{' '}
           <span className="text-green-400">
-            PostgreSQL, SQL, Prisma, and TypeScript
-          </span>{' '}
-          — crafting clean architecture and user-centric digital experiences.
+            JavaScript, TypeScript, React.js, Next.js, Node.js, Express.js,
+            MongoDB, PostgreSQL, and SQL
+          </span>
+          . I specialise in RESTful API development, JWT &amp; Firebase
+          Authentication, database design, and writing clean, production-ready
+          code.
         </motion.p>
+
         <motion.p
           className="font-body text-slate-300 leading-relaxed text-lg relative z-10 mt-4"
           initial={{ opacity: 0, y: 20 }}
@@ -184,12 +199,14 @@ function AboutMe() {
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          Whether it&apos;s a full-stack app, REST API, or a polished marketing
-          site — I deliver fast, reliable, and maintainable code. I&apos;m also
-          a{' '}
+          Whether it&apos;s a full-stack app, a REST API, or a polished
+          marketing site — I deliver fast, reliable, and maintainable solutions.
+          I&apos;m also a{' '}
           <span className="text-green-400">WordPress Elementor Developer</span>,
-          building conversion-optimized, SEO-friendly websites.
+          building conversion-optimised, SEO-friendly websites with WooCommerce
+          integration.
         </motion.p>
+
         <motion.p
           className="font-body text-slate-300 leading-relaxed text-lg relative z-10 mt-4"
           initial={{ opacity: 0, y: 20 }}
@@ -205,6 +222,7 @@ function AboutMe() {
           on any platform and you&apos;ll find me!
         </motion.p>
 
+        {/* Info grid */}
         <motion.div
           className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 relative z-10"
           variants={containerVariants}
@@ -212,7 +230,7 @@ function AboutMe() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {infoItems.map((item, index) => (
+          {infoItems.map((item) => (
             <motion.div
               key={item.label}
               className="flex items-center gap-3 border-l-2 border-slate-700 pl-4"
@@ -234,6 +252,51 @@ function AboutMe() {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Languages */}
+        <motion.div
+          className="mt-8 relative z-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+        >
+          <h4 className="font-title text-sm uppercase tracking-widest text-slate-500 font-semibold mb-4">
+            Languages
+          </h4>
+          <div className="flex flex-col gap-3">
+            {languages.map((lang) => (
+              <div key={lang.name} className="flex items-center gap-4">
+                <span
+                  className={`font-body text-sm font-medium w-24 ${lang.color}`}
+                >
+                  {lang.name}
+                </span>
+                <div className="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                  <motion.div
+                    className="h-full rounded-full"
+                    style={{
+                      backgroundColor: lang.color
+                        .replace('text-', '')
+                        .includes('green')
+                        ? '#22c55e'
+                        : lang.color.includes('blue')
+                          ? '#60a5fa'
+                          : '#fb923c',
+                    }}
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${lang.bar}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.7, ease: 'easeOut' }}
+                  />
+                </div>
+                <span className="font-body text-xs text-slate-500 w-28 text-right">
+                  {lang.level}
+                </span>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </motion.div>
     </motion.div>
@@ -374,18 +437,24 @@ function Skills() {
 function Experience() {
   const experiences = [
     {
-      title: 'Freelance Web Developer',
+      title: 'Freelance Full Stack Developer',
       company: 'Self-Employed',
-      period: '2023 - Present',
-      description:
-        'Building custom websites and web applications for clients using MERN stack, TypeScript, PostgreSQL, and WordPress Elementor.',
+      period: '2023 – Present',
+      bullets: [
+        'Building responsive full-stack applications with integrated user dashboards and secure multi-role authentication systems.',
+        'Delivering client-optimised database architectures using MongoDB, PostgreSQL, and NeonDB.',
+        'Developing WordPress sites with Elementor, WooCommerce, and custom theme customisation.',
+      ],
     },
     {
-      title: 'Full Stack Development Training',
+      title: 'Full Stack Web Development Training',
       company: 'Programming Hero',
-      period: '2024 - 2025',
-      description:
-        'Completed intensive training in MongoDB, Express.js, React.js, Node.js, and modern web development practices.',
+      period: '2024 – 2025',
+      bullets: [
+        'Completed intensive full-stack engineering training with hands-on mastery in system architecture and API design.',
+        'Covered relational & non-relational database management (PostgreSQL, MongoDB) and high-performance deployment pipelines.',
+        'Built and deployed production-grade projects using React.js, Node.js, Express.js, Firebase, and JWT.',
+      ],
     },
   ];
 
@@ -437,12 +506,20 @@ function Experience() {
                   {exp.period}
                 </span>
               </div>
-              <p className="font-body text-sm font-medium text-slate-300 mb-2">
+              <p className="font-body text-sm font-medium text-slate-300 mb-3">
                 {exp.company}
               </p>
-              <p className="font-body text-sm text-slate-400 leading-relaxed">
-                {exp.description}
-              </p>
+              <ul className="space-y-1.5">
+                {exp.bullets.map((b, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-2 font-body text-sm text-slate-400 leading-relaxed"
+                  >
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           </motion.div>
         ))}
@@ -455,9 +532,10 @@ function Education() {
   const educations = [
     {
       title: 'BBA in Management',
-      institution: 'National University of Bangladesh',
-      period: '2024 - 2027',
-      description: 'Pursuing undergraduate degree in Business Administration.',
+      institution: 'National University, Bangladesh',
+      period: '2023 – 2027',
+      description:
+        'Pursuing Bachelor of Business Administration in Management.',
       icon: MdSchool,
     },
     {
