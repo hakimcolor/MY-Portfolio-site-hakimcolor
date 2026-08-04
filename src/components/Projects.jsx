@@ -106,7 +106,7 @@ export default function Projects() {
           transition={{ type: 'spring', stiffness: 400 }}
         >
           <Link
-            className="font-body text-sm font-medium text-green-400 hover:text-green-300 flex items-center gap-1"
+            className="font-body text-sm font-medium text-green-400 hover:text-green-300 flex items-center gap-1 border border-green-500/30 px-4 py-2 rounded-full hover:border-green-500 transition-colors"
             href="https://github.com/hakimcolor"
             target="_blank"
           >
