@@ -224,7 +224,7 @@ export default function Hero() {
             onClick={() => {
               const link = document.createElement('a');
               link.href =
-                'https://drive.google.com/drive/u/0/folders/1Wzq2c2AyQPZ1MwUb5mnoX0bCnYr25JNX';
+                'https://drive.google.com/file/d/1b8rBshfwkjyEOih8A2-Obn7zDqXohPij/view?usp=sharing';
               link.target = '_blank';
               link.click();
             }}
