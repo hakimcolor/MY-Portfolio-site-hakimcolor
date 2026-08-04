@@ -17,11 +17,11 @@ export default function LoadingScreen({ onComplete }) {
     []
   );
 
-  // Show welcome for 3 seconds, then go to main site
+  // Show welcome for 0.1s, then go to main site
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete();
-    }, 3000);
+    }, 100);
     return () => clearTimeout(timer);
   }, [onComplete]);
 

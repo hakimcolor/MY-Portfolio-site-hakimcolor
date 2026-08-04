@@ -9,58 +9,40 @@ const DRIVE_LINK =
 
 const certificates = [
   {
-    title: 'Full Stack Web Development',
+    title: 'AI Workflows & Agents GP',
     issuer: 'Programming Hero',
-    category: 'Development',
-    color: 'from-green-500/20 to-emerald-500/10',
-    border: 'border-green-500/30',
-    accent: 'text-green-400',
-    badge: 'bg-green-500/10 text-green-400 border-green-500/30',
+    category: 'AI / Agents',
+    color: 'from-violet-500/20 to-purple-500/10',
+    border: 'border-violet-500/30',
+    accent: 'text-violet-400',
+    badge: 'bg-violet-500/10 text-violet-400 border-violet-500/30',
   },
   {
-    title: 'React & Next.js Mastery',
-    issuer: 'Online Course',
-    category: 'Frontend',
+    title: 'GenAI and Prompt Engineering GP',
+    issuer: 'Programming Hero',
+    category: 'Generative AI',
     color: 'from-cyan-500/20 to-blue-500/10',
     border: 'border-cyan-500/30',
     accent: 'text-cyan-400',
     badge: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
   },
   {
-    title: 'Node.js & Express Backend',
-    issuer: 'Online Course',
-    category: 'Backend',
-    color: 'from-purple-500/20 to-violet-500/10',
-    border: 'border-purple-500/30',
-    accent: 'text-purple-400',
-    badge: 'bg-purple-500/10 text-purple-400 border-purple-500/30',
+    title: 'Skill Development (PH)',
+    issuer: 'Programming Hero',
+    category: 'Full Stack Dev',
+    color: 'from-green-500/20 to-emerald-500/10',
+    border: 'border-green-500/30',
+    accent: 'text-green-400',
+    badge: 'bg-green-500/10 text-green-400 border-green-500/30',
   },
   {
-    title: 'MongoDB Database Design',
-    issuer: 'Online Course',
-    category: 'Database',
-    color: 'from-yellow-500/20 to-orange-500/10',
-    border: 'border-yellow-500/30',
-    accent: 'text-yellow-400',
-    badge: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30',
-  },
-  {
-    title: 'WordPress & Elementor',
-    issuer: 'Online Course',
-    category: 'CMS',
+    title: 'WordPress Elementor',
+    issuer: 'Codeman BD',
+    category: 'CMS / Design',
     color: 'from-blue-500/20 to-indigo-500/10',
     border: 'border-blue-500/30',
     accent: 'text-blue-400',
     badge: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
-  },
-  {
-    title: 'UI/UX & Tailwind CSS',
-    issuer: 'Online Course',
-    category: 'Design',
-    color: 'from-pink-500/20 to-rose-500/10',
-    border: 'border-pink-500/30',
-    accent: 'text-pink-400',
-    badge: 'bg-pink-500/10 text-pink-400 border-pink-500/30',
   },
 ];
 
@@ -144,9 +126,9 @@ export default function Certificates() {
         transition={{ duration: 0.5, delay: 0.1 }}
       >
         {[
-          { label: 'Certificates Earned', value: '6+', icon: FaAward },
+          { label: 'Certificates Earned', value: '4', icon: FaAward },
           { label: 'Verified & Authentic', value: '100%', icon: MdVerified },
-          { label: 'Courses Completed', value: '10+', icon: BsPatchCheckFill },
+          { label: 'Courses Completed', value: '20+', icon: BsPatchCheckFill },
         ].map((stat, i) => (
           <div key={i} className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
@@ -169,7 +151,7 @@ export default function Certificates() {
 
       {/* Certificate cards grid */}
       <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-5"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
