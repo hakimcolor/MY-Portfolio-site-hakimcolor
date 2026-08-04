@@ -37,7 +37,6 @@ export default function Home() {
             <Hero />
             <main className="flex-1 w-full flex flex-col">
               <About />
-              <div className="h-px bg-gradient-to-r from-transparent via-slate-800 to-transparent w-full my-4"></div>
               <Projects />
               <Contact />
             </main>
