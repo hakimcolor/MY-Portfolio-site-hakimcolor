@@ -33,23 +33,27 @@ select,
   background: #0b1120;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #22c55e40;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #22c55e80;
 }
+
 .text-gradient {
-  background: linear-gradient(to right, #22c55e, #8b5cf6, #16a34a);
+  background: linear-gradient(to right, #22c55e, #16a34a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .border-gradient {
-  background: linear-gradient(to bottom right, #22c55e, #8b5cf6, #16a34a);
+  background: linear-gradient(to bottom right, #22c55e, #16a34a);
 }
+
 body {
   min-height: max(884px, 100dvh);
   font-family: var(--font-space), sans-serif;
+  background-color: #0b1120;
 }
 
 h1,
@@ -59,4 +63,9 @@ h4,
 h5,
 h6 {
   font-family: var(--font-syne), sans-serif;
+}
+
+/* Smooth section transitions */
+section {
+  scroll-margin-top: 80px;
 }
