@@ -13,7 +13,9 @@ module.exports = {
         'accent-purple': '#8b5cf6',
       },
       fontFamily: {
-        display: ['Inter', 'sans-serif'],
+        title: ['var(--font-syne)', 'sans-serif'],
+        body: ['var(--font-space)', 'sans-serif'],
+        display: ['var(--font-syne)', 'sans-serif'],
       },
     },
   },
