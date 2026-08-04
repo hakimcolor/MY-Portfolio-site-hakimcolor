@@ -243,6 +243,7 @@ function Skills() {
     {
       title: 'Frontend',
       rest: ' Development',
+      accent: '#61DAFB',
       skills: [
         { name: 'HTML5', icon: FaHtml5, color: '#E34F26' },
         { name: 'CSS3', icon: FaCss3Alt, color: '#1572B6' },
@@ -258,6 +259,7 @@ function Skills() {
     {
       title: 'Backend',
       rest: ' Development',
+      accent: '#339933',
       skills: [
         { name: 'Node.js', icon: FaNodeJs, color: '#339933' },
         { name: 'Express.js', icon: SiExpress, color: '#ffffff' },
@@ -270,6 +272,7 @@ function Skills() {
     {
       title: 'Database',
       rest: '',
+      accent: '#47A248',
       skills: [
         { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
         { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
@@ -280,6 +283,7 @@ function Skills() {
     {
       title: 'Tools',
       rest: ' & Technologies',
+      accent: '#F05032',
       skills: [
         { name: 'VS Code', icon: TbBrandVscode, color: '#007ACC' },
         { name: 'Git', icon: FaGitAlt, color: '#F05032' },
@@ -296,6 +300,7 @@ function Skills() {
     {
       title: 'WordPress',
       rest: ' Development',
+      accent: '#21759B',
       skills: [
         { name: 'WordPress', icon: FaWordpress, color: '#21759B' },
         { name: 'Elementor', icon: FaElementor, color: '#E2155A' },
@@ -318,10 +323,18 @@ function Skills() {
             transition={{ delay: catIndex * 0.08, duration: 0.5 }}
             whileHover={{ borderColor: 'rgba(34,197,94,0.3)' }}
           >
+            {/* Top accent line */}
+            <div
+              className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl"
+              style={{ backgroundColor: category.accent, opacity: 0.7 }}
+            />
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-1 h-6 bg-green-500 rounded-full" />
+              <div
+                className="w-1 h-6 rounded-full"
+                style={{ backgroundColor: category.accent }}
+              />
               <h4 className="font-title text-lg font-bold">
-                <span className="text-green-500">{category.title}</span>
+                <span style={{ color: category.accent }}>{category.title}</span>
                 <span className="text-white">{category.rest}</span>
               </h4>
             </div>
