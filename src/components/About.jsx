@@ -344,19 +344,21 @@ function Skills() {
               {category.skills.map((skill) => (
                 <motion.div
                   key={skill.name}
-                  className="flex flex-col items-center gap-1.5 p-3 border border-slate-700/50 rounded-xl bg-slate-800/30 cursor-default"
+                  className="flex flex-col items-center gap-1.5 p-3 border border-slate-700/50 rounded-xl bg-slate-800/30 cursor-default group"
                   whileHover={{
-                    scale: 1.08,
-                    borderColor: 'rgba(34,197,94,0.4)',
-                    y: -2,
+                    scale: 1.1,
+                    y: -3,
                   }}
                   transition={{ type: 'spring', stiffness: 300 }}
+                  style={{
+                    '--icon-color': skill.color,
+                  }}
                 >
                   <skill.icon
-                    className="text-2xl"
+                    className="text-2xl transition-all duration-200 group-hover:drop-shadow-[0_0_6px_var(--icon-color)]"
                     style={{ color: skill.color }}
                   />
-                  <span className="font-body text-xs text-slate-300 whitespace-nowrap">
+                  <span className="font-body text-xs text-slate-400 whitespace-nowrap group-hover:text-slate-200 transition-colors">
                     {skill.name}
                   </span>
                 </motion.div>
