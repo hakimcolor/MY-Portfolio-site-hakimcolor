@@ -311,33 +311,14 @@ function ProfileImage() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.9, type: 'spring', stiffness: 70, delay: 0.5 }}
     >
-      {/* Floating animation wrapper */}
+      {/* Gentle float — no background animation */}
       <motion.div
-        animate={{ y: [0, -12, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
         className="relative"
       >
-        {/* Rotating outer ring */}
-        <motion.div
-          className="absolute -inset-3 rounded-2xl"
-          style={{
-            background:
-              'conic-gradient(from 0deg, #22c55e, transparent, #22c55e, transparent, #22c55e)',
-            opacity: 0.4,
-          }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-        />
-
-        {/* Pulsing green glow */}
-        <motion.div
-          className="absolute -inset-6 rounded-3xl blur-3xl bg-green-500/20"
-          animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.95, 1.05, 0.95] }}
-          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-        />
-
-        {/* Image container — rectangular, slight radius */}
-        <div className="relative w-72 h-80 md:w-80 md:h-96 lg:w-96 lg:h-[28rem] rounded-2xl overflow-hidden border-2 border-green-500/30 shadow-2xl shadow-green-500/20">
+        {/* Image container — rectangular */}
+        <div className="relative w-72 h-80 md:w-80 md:h-96 lg:w-96 lg:h-[28rem] rounded-2xl overflow-hidden border border-green-500/25 shadow-2xl shadow-green-500/10">
           <Image
             src="/hakimcolor.png"
             alt="Muhamaad Azizul Hakim"
@@ -345,15 +326,13 @@ function ProfileImage() {
             className="object-cover object-top"
             priority
           />
-          {/* Bottom fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background-dark/50 to-transparent" />
         </div>
 
         {/* Corner accent lines */}
-        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-green-400 rounded-tl-2xl" />
-        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-green-400 rounded-tr-2xl" />
-        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-green-400 rounded-bl-2xl" />
-        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-green-400 rounded-br-2xl" />
+        <div className="absolute -top-1.5 -left-1.5 w-8 h-8 border-t-2 border-l-2 border-green-500 rounded-tl-xl" />
+        <div className="absolute -top-1.5 -right-1.5 w-8 h-8 border-t-2 border-r-2 border-green-500 rounded-tr-xl" />
+        <div className="absolute -bottom-1.5 -left-1.5 w-8 h-8 border-b-2 border-l-2 border-green-500 rounded-bl-xl" />
+        <div className="absolute -bottom-1.5 -right-1.5 w-8 h-8 border-b-2 border-r-2 border-green-500 rounded-br-xl" />
       </motion.div>
 
       {/* Experience badge */}
@@ -362,7 +341,7 @@ function ProfileImage() {
         initial={{ opacity: 0, scale: 0, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ delay: 1.4, type: 'spring', stiffness: 200 }}
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: 1.08 }}
       >
         <div className="flex -space-x-2">
           {[
