@@ -13,6 +13,7 @@ import {
   FaGithub,
   FaNpm,
   FaElementor,
+  FaDocker,
 } from 'react-icons/fa';
 import {
   SiTailwindcss,
@@ -24,6 +25,10 @@ import {
   SiVercel,
   SiPostman,
   SiWoocommerce,
+  SiTypescript,
+  SiPrisma,
+  SiPostgresql,
+  SiMysql,
 } from 'react-icons/si';
 import {
   MdSchool,
@@ -34,58 +39,68 @@ import {
   MdLocationOn,
   MdQuestionAnswer,
 } from 'react-icons/md';
-import { TbBrandNextjs, TbBrandVscode } from 'react-icons/tb';
+import { TbBrandNextjs, TbBrandVscode, TbCircleLetterN } from 'react-icons/tb';
 import { IoChevronDown } from 'react-icons/io5';
+import { VscDatabase } from 'react-icons/vsc';
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
-
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 100,
-      damping: 12,
-    },
+    transition: { type: 'spring', stiffness: 100, damping: 12 },
   },
 };
-
 const infoItemVariants = {
   hidden: { opacity: 0, x: -20 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 100,
-      damping: 12,
-    },
+    transition: { type: 'spring', stiffness: 100, damping: 12 },
   },
 };
+
+function SectionHeading({ green, white }) {
+  return (
+    <motion.h3
+      className="font-title text-3xl font-bold flex items-center gap-3"
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
+      <motion.span
+        className="w-1.5 h-8 bg-green-500 rounded-full"
+        initial={{ height: 0 }}
+        whileInView={{ height: 32 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      />
+      <span>
+        <span className="text-green-500">{green}</span>
+        {white && <span className="text-white"> {white}</span>}
+      </span>
+    </motion.h3>
+  );
+}
 
 export default function About() {
   return (
     <section
-      className="w-full px-6 pb-20 md:pl-8 max-w-7xl mx-auto flex flex-col gap-16 relative z-10"
+      className="w-full px-6 pb-20 max-w-[95%] mx-auto flex flex-col gap-16 relative z-10"
       id="about"
     >
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent mb-4"></div>
+      <div className="h-px w-full bg-slate-800 mb-4" />
       <motion.div
         className="flex flex-col gap-12"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         <AboutMe />
         <Skills />
@@ -95,7 +110,7 @@ export default function About() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         <Experience />
         <Education />
@@ -111,96 +126,77 @@ function AboutMe() {
       label: 'Name',
       value: 'Muhamaad Azizul Hakim',
       icon: MdPerson,
-      color: 'text-[#AAFFC7]',
+      color: 'text-green-400',
     },
     {
       label: 'Email',
       value: 'hakimcolor777@gmail.com',
       icon: MdEmail,
-      color: 'text-pink-400',
+      color: 'text-violet-400',
     },
     {
       label: 'Experience',
       value: '2+ years experience',
       icon: MdWork,
-      color: 'text-purple-400',
+      color: 'text-white',
     },
     {
       label: 'Location',
       value: 'Dhaka, Bangladesh',
       icon: MdLocationOn,
-      color: 'text-green-400',
+      color: 'text-green-500',
     },
   ];
 
   return (
     <motion.div className="space-y-6" variants={itemVariants}>
-      <motion.h3
-        className="text-3xl font-bold text-white flex items-center gap-3"
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        <motion.span
-          className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
-          initial={{ height: 0 }}
-          whileInView={{ height: 32 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        />
-        <span>
-          <span className="text-green-500">About</span>{' '}
-          <span className="text-white">Me</span>
-        </span>
-      </motion.h3>
+      <SectionHeading green="About" white="Me" />
       <motion.div
-        className="bg-surface-dark/40 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 lg:p-8 shadow-xl relative overflow-hidden group"
-        whileHover={{ borderColor: 'rgba(34, 211, 238, 0.3)' }}
+        className="border border-slate-800 rounded-2xl p-6 lg:p-8 shadow-xl relative overflow-hidden"
+        whileHover={{ borderColor: 'rgba(34,197,94,0.3)' }}
         transition={{ duration: 0.3 }}
       >
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#67C090]/5 to-purple-600/5"
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        />
         <motion.p
-          className="text-slate-300 leading-relaxed text-lg relative z-10"
+          className="font-body text-slate-300 leading-relaxed text-lg relative z-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          I&apos;m Muhamaad Azizul Hakim, a MERN Stack Developer with over 2
-          years of hands-on experience building scalable, high-performance web
-          applications. I specialize in MongoDB, Express.js, React.js, and
-          Node.js, with a strong focus on clean architecture, reusable
-          components, and user-centric design.
+          I&apos;m{' '}
+          <span className="text-white font-semibold">
+            Muhamaad Azizul Hakim
+          </span>
+          , a MERN Stack &amp; Full Stack Developer with 2+ years of hands-on
+          experience building scalable, high-performance web applications. I
+          specialize in MongoDB, Express.js, React.js, Node.js,{' '}
+          <span className="text-green-400">
+            PostgreSQL, SQL, Prisma, and TypeScript
+          </span>{' '}
+          — with a strong focus on clean architecture and user-centric design.
         </motion.p>
         <motion.p
-          className="text-slate-300 leading-relaxed text-lg relative z-10 mt-4"
+          className="font-body text-slate-300 leading-relaxed text-lg relative z-10 mt-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
           I&apos;m passionate about transforming ideas into seamless digital
-          experiences, whether it&apos;s developing full-stack applications or
-          crafting responsive, visually engaging websites. In addition to MERN
-          development, I&apos;m also a WordPress Elementor Developer, capable of
-          delivering fast, SEO-friendly, and conversion-optimized websites.
+          experiences — whether it&apos;s building full-stack applications or
+          crafting responsive, conversion-optimized websites. I&apos;m also a{' '}
+          <span className="text-green-400">WordPress Elementor Developer</span>,
+          delivering fast, SEO-friendly websites.
         </motion.p>
         <motion.p
-          className="text-slate-300 leading-relaxed text-lg relative z-10 mt-4"
+          className="font-body text-slate-300 leading-relaxed text-lg relative z-10 mt-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
         >
-          I value clean code, performance, and continuous learning, and I enjoy
-          working on projects that challenge me to grow as a developer. Search{' '}
-          <span className="text-[#AAFFC7] font-semibold">
+          I value clean code, performance, and continuous learning. Search{' '}
+          <span className="text-green-400 font-semibold">
             &quot;hakimcolor&quot;
           </span>{' '}
           on Google or any platform and you&apos;ll find me!
@@ -216,34 +212,22 @@ function AboutMe() {
           {infoItems.map((item, index) => (
             <motion.div
               key={item.label}
-              className="flex items-center gap-3 border-l-2 border-slate-700 pl-4 group/item cursor-default"
+              className="flex items-center gap-3 border-l-2 border-slate-700 pl-4"
               variants={infoItemVariants}
               whileHover={{
                 x: 5,
-                borderColor: '#AAFFC7',
+                borderColor: '#22c55e',
                 transition: { duration: 0.2 },
               }}
             >
-              <motion.div
-                className={`${item.color}`}
-                whileHover={{ scale: 1.2, rotate: 10 }}
-                transition={{ type: 'spring', stiffness: 400 }}
-              >
-                <item.icon className="text-2xl" />
-              </motion.div>
+              <item.icon className={`text-2xl ${item.color}`} />
               <div className="flex flex-col">
-                <span className="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-1">
+                <span className="font-body text-xs uppercase tracking-wider text-slate-500 font-semibold mb-1">
                   {item.label}
                 </span>
-                <motion.span
-                  className="text-white font-medium"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6 + index * 0.1 }}
-                >
+                <span className="font-body text-white font-medium">
                   {item.value}
-                </motion.span>
+                </span>
               </div>
             </motion.div>
           ))}
@@ -254,364 +238,113 @@ function AboutMe() {
 }
 
 function Skills() {
-  const frontendSkills = [
-    {
-      name: 'HTML5',
-      icon: FaHtml5,
-      color: 'text-[#67C090]',
-      bgColor: 'from-[#67C090]/20 to-orange-600/10',
-      barColor: 'bg-[#67C090]',
-      percent: 95,
-    },
-    {
-      name: 'CSS3',
-      icon: FaCss3Alt,
-      color: 'text-blue-500',
-      bgColor: 'from-blue-500/20 to-blue-600/10',
-      barColor: 'bg-blue-500',
-      percent: 90,
-    },
-    {
-      name: 'JavaScript',
-      icon: FaJs,
-      color: 'text-yellow-500',
-      bgColor: 'from-yellow-500/20 to-yellow-600/10',
-      barColor: 'bg-yellow-500',
-      percent: 88,
-    },
-    {
-      name: 'React JS',
-      icon: FaReact,
-      color: 'text-[#AAFFC7]',
-      bgColor: 'from-[#AAFFC7]/20 to-[#67C090]/10',
-      barColor: 'bg-[#AAFFC7]',
-      percent: 90,
-    },
-    {
-      name: 'Next.js',
-      icon: TbBrandNextjs,
-      color: 'text-white',
-      bgColor: 'from-slate-400/20 to-slate-500/10',
-      barColor: 'bg-white',
-      percent: 82,
-    },
-    {
-      name: 'Tailwind CSS',
-      icon: SiTailwindcss,
-      color: 'text-sky-400',
-      bgColor: 'from-sky-400/20 to-sky-500/10',
-      barColor: 'bg-sky-400',
-      percent: 92,
-    },
-    {
-      name: 'Bootstrap',
-      icon: FaBootstrap,
-      color: 'text-purple-500',
-      bgColor: 'from-purple-500/20 to-purple-600/10',
-      barColor: 'bg-purple-500',
-      percent: 85,
-    },
-    {
-      name: 'DaisyUI',
-      icon: SiDaisyui,
-      color: 'text-pink-400',
-      bgColor: 'from-pink-400/20 to-pink-500/10',
-      barColor: 'bg-pink-400',
-      percent: 88,
-    },
-  ];
-
-  const backendSkills = [
-    {
-      name: 'Node JS',
-      icon: FaNodeJs,
-      color: 'text-green-500',
-      bgColor: 'from-green-500/20 to-green-600/10',
-      barColor: 'bg-green-500',
-      percent: 85,
-    },
-    {
-      name: 'Express JS',
-      icon: SiExpress,
-      color: 'text-slate-300',
-      bgColor: 'from-slate-300/20 to-slate-400/10',
-      barColor: 'bg-slate-300',
-      percent: 82,
-    },
-    {
-      name: 'MongoDB',
-      icon: SiMongodb,
-      color: 'text-green-400',
-      bgColor: 'from-green-400/20 to-green-500/10',
-      barColor: 'bg-green-400',
-      percent: 80,
-    },
-    {
-      name: 'Firebase',
-      icon: SiFirebase,
-      color: 'text-[#AAFFC7]',
-      bgColor: 'from-[#AAFFC7]/20 to-[#67C090]/10',
-      barColor: 'bg-[#AAFFC7]',
-      percent: 75,
-    },
-  ];
-
-  const toolsSkills = [
-    {
-      name: 'VS Code',
-      icon: TbBrandVscode,
-      color: 'text-blue-500',
-      bgColor: 'from-blue-500/20 to-blue-600/10',
-      barColor: 'bg-blue-500',
-      percent: 95,
-    },
-    {
-      name: 'Git',
-      icon: FaGitAlt,
-      color: 'text-orange-600',
-      bgColor: 'from-orange-600/20 to-orange-700/10',
-      barColor: 'bg-orange-600',
-      percent: 85,
-    },
-    {
-      name: 'GitHub',
-      icon: FaGithub,
-      color: 'text-white',
-      bgColor: 'from-slate-400/20 to-slate-500/10',
-      barColor: 'bg-white',
-      percent: 90,
-    },
-    {
-      name: 'NPM',
-      icon: FaNpm,
-      color: 'text-red-500',
-      bgColor: 'from-red-500/20 to-red-600/10',
-      barColor: 'bg-red-500',
-      percent: 88,
-    },
-    {
-      name: 'Netlify',
-      icon: SiNetlify,
-      color: 'text-teal-400',
-      bgColor: 'from-teal-400/20 to-teal-500/10',
-      barColor: 'bg-teal-400',
-      percent: 85,
-    },
-    {
-      name: 'Vercel',
-      icon: SiVercel,
-      color: 'text-white',
-      bgColor: 'from-slate-400/20 to-slate-500/10',
-      barColor: 'bg-white',
-      percent: 88,
-    },
-    {
-      name: 'Postman',
-      icon: SiPostman,
-      color: 'text-[#67C090]',
-      bgColor: 'from-[#67C090]/20 to-orange-600/10',
-      barColor: 'bg-[#67C090]',
-      percent: 80,
-    },
-  ];
-
-  const wordpressSkills = [
-    {
-      name: 'WordPress',
-      icon: FaWordpress,
-      color: 'text-blue-400',
-      bgColor: 'from-blue-400/20 to-blue-500/10',
-      barColor: 'bg-blue-400',
-      percent: 85,
-    },
-    {
-      name: 'Elementor',
-      icon: FaElementor,
-      color: 'text-pink-500',
-      bgColor: 'from-pink-500/20 to-pink-600/10',
-      barColor: 'bg-pink-500',
-      percent: 90,
-    },
-    {
-      name: 'WooCommerce',
-      icon: SiWoocommerce,
-      color: 'text-purple-400',
-      bgColor: 'from-purple-400/20 to-purple-500/10',
-      barColor: 'bg-purple-400',
-      percent: 78,
-    },
-  ];
-
   const skillCategories = [
     {
-      title: 'Frontend Development',
-      firstWord: 'Frontend',
+      title: 'Frontend',
       rest: ' Development',
-      skills: frontendSkills,
-      gradient: 'from-[#67C090] to-blue-500',
+      skills: [
+        { name: 'HTML5', icon: FaHtml5, color: '#E34F26' },
+        { name: 'CSS3', icon: FaCss3Alt, color: '#1572B6' },
+        { name: 'JavaScript', icon: FaJs, color: '#F7DF1E' },
+        { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
+        { name: 'React JS', icon: FaReact, color: '#61DAFB' },
+        { name: 'Next.js', icon: TbBrandNextjs, color: '#ffffff' },
+        { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#38BDF8' },
+        { name: 'Bootstrap', icon: FaBootstrap, color: '#7952B3' },
+        { name: 'DaisyUI', icon: SiDaisyui, color: '#F472B6' },
+      ],
     },
     {
-      title: 'Backend Development',
-      firstWord: 'Backend',
+      title: 'Backend',
       rest: ' Development',
-      skills: backendSkills,
-      gradient: 'from-green-500 to-emerald-500',
+      skills: [
+        { name: 'Node.js', icon: FaNodeJs, color: '#339933' },
+        { name: 'Express.js', icon: SiExpress, color: '#ffffff' },
+        { name: 'Firebase', icon: SiFirebase, color: '#FFCA28' },
+        { name: 'SQL', icon: VscDatabase, color: '#22c55e' },
+        { name: 'Prisma', icon: SiPrisma, color: '#5a67d8' },
+        { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
+      ],
     },
     {
-      title: 'Tools & Technologies',
-      firstWord: 'Tools',
+      title: 'Database',
+      rest: '',
+      skills: [
+        { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
+        { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
+        { name: 'MySQL', icon: SiMysql, color: '#00758F' },
+        { name: 'NoSQL', icon: VscDatabase, color: '#22c55e' },
+      ],
+    },
+    {
+      title: 'Tools',
       rest: ' & Technologies',
-      skills: toolsSkills,
-      gradient: 'from-purple-500 to-pink-500',
+      skills: [
+        { name: 'VS Code', icon: TbBrandVscode, color: '#007ACC' },
+        { name: 'Git', icon: FaGitAlt, color: '#F05032' },
+        { name: 'GitHub', icon: FaGithub, color: '#ffffff' },
+        { name: 'NPM', icon: FaNpm, color: '#CB3837' },
+        { name: 'Netlify', icon: SiNetlify, color: '#00C7B7' },
+        { name: 'Vercel', icon: SiVercel, color: '#ffffff' },
+        { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
+        { name: 'Docker', icon: FaDocker, color: '#2496ED' },
+        { name: 'Beekeeper', icon: VscDatabase, color: '#22c55e' },
+      ],
     },
     {
-      title: 'WordPress Development',
-      firstWord: 'WordPress',
+      title: 'WordPress',
       rest: ' Development',
-      skills: wordpressSkills,
-      gradient: 'from-blue-500 to-indigo-500',
+      skills: [
+        { name: 'WordPress', icon: FaWordpress, color: '#21759B' },
+        { name: 'Elementor', icon: FaElementor, color: '#E2155A' },
+        { name: 'WooCommerce', icon: SiWoocommerce, color: '#96588A' },
+      ],
     },
   ];
 
   return (
     <motion.div className="space-y-8" id="skills" variants={itemVariants}>
-      <motion.h3
-        className="text-3xl font-bold text-white flex items-center gap-3"
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        <motion.span
-          className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
-          initial={{ height: 0 }}
-          whileInView={{ height: 32 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        />
-        <span>
-          <span className="text-green-500">Skills</span>
-        </span>
-      </motion.h3>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <SectionHeading green="Skills" white="" />
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {skillCategories.map((category, catIndex) => (
           <motion.div
             key={category.title}
-            className="bg-surface-dark/40 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 shadow-xl overflow-hidden relative group"
+            className="border border-slate-800 rounded-2xl p-6 shadow-xl overflow-hidden relative"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: catIndex * 0.1, duration: 0.5 }}
-            whileHover={{ borderColor: 'rgba(34, 211, 238, 0.3)' }}
+            transition={{ delay: catIndex * 0.08, duration: 0.5 }}
+            whileHover={{ borderColor: 'rgba(34,197,94,0.3)' }}
           >
-            {/* Category header */}
             <div className="flex items-center gap-3 mb-5">
-              <motion.div
-                className={`w-1 h-6 bg-gradient-to-b ${category.gradient} rounded-full`}
-                initial={{ height: 0 }}
-                whileInView={{ height: 24 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: catIndex * 0.1 + 0.2 }}
-              />
-              <h4 className="text-lg font-bold">
-                <span className="text-green-500">{category.firstWord}</span>
+              <div className="w-1 h-6 bg-green-500 rounded-full" />
+              <h4 className="font-title text-lg font-bold">
+                <span className="text-green-500">{category.title}</span>
                 <span className="text-white">{category.rest}</span>
               </h4>
             </div>
-
-            {/* Skills grid */}
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              {category.skills.map((skill, index) => (
+            <div className="flex flex-wrap gap-3">
+              {category.skills.map((skill) => (
                 <motion.div
                   key={skill.name}
-                  className={`relative p-3 bg-gradient-to-br ${skill.bgColor} border border-slate-700/50 rounded-xl overflow-hidden group/skill cursor-default`}
-                  variants={{
-                    hidden: { opacity: 0, scale: 0.9 },
-                    visible: {
-                      opacity: 1,
-                      scale: 1,
-                      transition: {
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 12,
-                        delay: index * 0.05,
-                      },
-                    },
-                  }}
+                  className="flex flex-col items-center gap-1.5 p-3 border border-slate-700/50 rounded-xl bg-slate-800/30 cursor-default"
                   whileHover={{
-                    scale: 1.02,
+                    scale: 1.08,
+                    borderColor: 'rgba(34,197,94,0.4)',
                     y: -2,
-                    boxShadow: '0 10px 30px -10px rgba(34, 211, 238, 0.2)',
                   }}
+                  transition={{ type: 'spring', stiffness: 300 }}
                 >
-                  <div className="relative z-10 flex items-center gap-3">
-                    <motion.div
-                      className={`w-10 h-10 rounded-lg bg-surface-dark/80 border border-slate-700/50 flex items-center justify-center shadow-lg`}
-                      whileHover={{ rotate: 360, scale: 1.1 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <skill.icon className={`${skill.color} text-xl`} />
-                    </motion.div>
-
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-sm font-semibold text-white truncate">
-                          {skill.name}
-                        </span>
-                        <motion.span
-                          className={`text-xs font-bold ${skill.color}`}
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.5 + index * 0.05 }}
-                        >
-                          {skill.percent}%
-                        </motion.span>
-                      </div>
-
-                      {/* Progress bar */}
-                      <div className="h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
-                        <motion.div
-                          className={`h-full ${skill.barColor} rounded-full relative`}
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.percent}%` }}
-                          viewport={{ once: true }}
-                          transition={{
-                            duration: 1,
-                            delay: 0.3 + index * 0.05,
-                            ease: 'easeOut',
-                          }}
-                        >
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                            initial={{ x: '-100%' }}
-                            animate={{ x: '100%' }}
-                            transition={{
-                              duration: 1.5,
-                              repeat: Infinity,
-                              repeatDelay: 3,
-                              ease: 'easeInOut',
-                            }}
-                          />
-                        </motion.div>
-                      </div>
-                    </div>
-                  </div>
+                  <skill.icon
+                    className="text-2xl"
+                    style={{ color: skill.color }}
+                  />
+                  <span className="font-body text-xs text-slate-300 whitespace-nowrap">
+                    {skill.name}
+                  </span>
                 </motion.div>
               ))}
-            </motion.div>
-
-            {/* Decorative gradient */}
-            <div
-              className={`absolute -bottom-20 -right-20 w-40 h-40 bg-gradient-to-br ${category.gradient} opacity-5 rounded-full blur-3xl group-hover:opacity-10 transition-opacity duration-500`}
-            />
+            </div>
           </motion.div>
         ))}
       </div>
@@ -626,8 +359,7 @@ function Experience() {
       company: 'Self-Employed',
       period: '2023 - Present',
       description:
-        'Building custom websites and web applications for clients using MERN stack and WordPress Elementor.',
-      color: 'cyan',
+        'Building custom websites and web applications for clients using MERN stack, TypeScript, PostgreSQL, and WordPress Elementor.',
     },
     {
       title: 'Full Stack Development Training',
@@ -635,30 +367,12 @@ function Experience() {
       period: '2024 - 2025',
       description:
         'Completed intensive training in MongoDB, Express.js, React.js, Node.js, and modern web development practices.',
-      color: 'purple',
     },
   ];
 
   return (
     <motion.div className="space-y-6" id="experience" variants={itemVariants}>
-      <motion.h3
-        className="text-3xl font-bold text-white flex items-center gap-3"
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        <motion.span
-          className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
-          initial={{ height: 0 }}
-          whileInView={{ height: 32 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        />
-        <span>
-          <span className="text-green-500">Experience</span>
-        </span>
-      </motion.h3>
+      <SectionHeading green="Experience" white="" />
       <div className="space-y-6">
         {experiences.map((exp, index) => (
           <motion.div
@@ -670,7 +384,7 @@ function Experience() {
             transition={{ delay: index * 0.2, duration: 0.5 }}
           >
             <motion.div
-              className={`absolute left-0 top-1.5 w-6 h-6 rounded-full bg-surface-dark border-2 border-${exp.color}-500 flex items-center justify-center`}
+              className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-surface-dark border-2 border-green-500 flex items-center justify-center"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
@@ -681,17 +395,17 @@ function Experience() {
               }}
             >
               <motion.div
-                className={`w-2 h-2 rounded-full bg-${exp.color}-500`}
+                className="w-2 h-2 rounded-full bg-green-500"
                 animate={{ scale: [1, 1.5, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
             </motion.div>
             <motion.div
-              className={`bg-surface-dark/60 border border-slate-800 p-5 rounded-xl hover:border-${exp.color}-500/30 transition-colors`}
-              whileHover={{ x: 5, borderColor: `rgba(34, 211, 238, 0.3)` }}
+              className="border border-slate-800 p-5 rounded-xl"
+              whileHover={{ x: 5, borderColor: 'rgba(34,197,94,0.3)' }}
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-1">
-                <h4 className="text-lg font-bold">
+                <h4 className="font-title text-lg font-bold">
                   <span className="text-green-500">
                     {exp.title.split(' ')[0]}
                   </span>
@@ -700,17 +414,14 @@ function Experience() {
                     {exp.title.split(' ').slice(1).join(' ')}
                   </span>
                 </h4>
-                <motion.span
-                  className={`text-xs font-mono py-1 px-2 rounded bg-slate-800 text-${exp.color}-400 w-fit`}
-                  whileHover={{ scale: 1.05 }}
-                >
+                <span className="font-body text-xs font-mono py-1 px-2 rounded bg-slate-800 text-green-400 w-fit">
                   {exp.period}
-                </motion.span>
+                </span>
               </div>
-              <p className="text-sm font-medium text-slate-300 mb-2">
+              <p className="font-body text-sm font-medium text-slate-300 mb-2">
                 {exp.company}
               </p>
-              <p className="text-sm text-slate-400 leading-relaxed">
+              <p className="font-body text-sm text-slate-400 leading-relaxed">
                 {exp.description}
               </p>
             </motion.div>
@@ -742,44 +453,23 @@ function Education() {
 
   return (
     <motion.div className="space-y-6" id="education" variants={itemVariants}>
-      <motion.h3
-        className="text-3xl font-bold text-white flex items-center gap-3"
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        <motion.span
-          className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
-          initial={{ height: 0 }}
-          whileInView={{ height: 32 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        />
-        <span>
-          <span className="text-green-500">Education</span>
-        </span>
-      </motion.h3>
+      <SectionHeading green="Education" white="" />
       <div className="space-y-4">
         {educations.map((edu, index) => (
           <motion.div
             key={index}
-            className="bg-surface-dark/60 border border-slate-800 p-5 rounded-xl hover:border-pink-500/30 transition-colors flex gap-4"
+            className="border border-slate-800 p-5 rounded-xl flex gap-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.2, duration: 0.5 }}
-            whileHover={{ x: 5 }}
+            whileHover={{ x: 5, borderColor: 'rgba(34,197,94,0.3)' }}
           >
-            <motion.div
-              className="w-12 h-12 rounded-lg bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 flex items-center justify-center shrink-0 text-2xl shadow-inner"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: 'spring', stiffness: 400 }}
-            >
-              <edu.icon className="text-pink-400 text-2xl" />
-            </motion.div>
+            <div className="w-12 h-12 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center shrink-0">
+              <edu.icon className="text-green-400 text-2xl" />
+            </div>
             <div>
-              <h4 className="text-lg font-bold">
+              <h4 className="font-title text-lg font-bold">
                 <span className="text-green-500">
                   {edu.title.split(' ')[0]}
                 </span>
@@ -788,11 +478,15 @@ function Education() {
                   {edu.title.split(' ').slice(1).join(' ')}
                 </span>
               </h4>
-              <p className="text-[#AAFFC7] font-medium text-sm mb-1">
+              <p className="font-body text-green-400 font-medium text-sm mb-1">
                 {edu.institution}
               </p>
-              <p className="text-slate-500 text-xs mb-2">{edu.period}</p>
-              <p className="text-slate-400 text-sm">{edu.description}</p>
+              <p className="font-body text-slate-500 text-xs mb-2">
+                {edu.period}
+              </p>
+              <p className="font-body text-slate-400 text-sm">
+                {edu.description}
+              </p>
             </div>
           </motion.div>
         ))}
@@ -803,33 +497,28 @@ function Education() {
 
 function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
-
   const faqs = [
     {
       question: 'Why should you hire me?',
       answer:
-        'I bring a strong combination of MERN stack expertise and WordPress development experience. I focus on writing clean, maintainable code while ensuring responsive design and an excellent user experience. I am passionate about learning new technologies and delivering projects on time with great attention to detail. Most importantly, I focus on your business goals—helping you grow through effective websites and other digital media solutions.',
+        'I bring a strong combination of MERN stack, TypeScript, PostgreSQL, and WordPress expertise. I write clean, maintainable code while ensuring responsive design and excellent UX. I focus on your business goals — helping you grow through effective digital solutions.',
     },
     {
       question: 'How can I help grow your e-commerce business?',
       answer:
-        'I build fast, SEO-optimized eCommerce websites using React/Next.js or WordPress with WooCommerce. I focus on conversion optimization, mobile responsiveness, secure payment integration, and a smooth user experience to help increase sales and improve customer retention. I also follow the latest and most effective trends in web development and digital strategy to help grow your business through a modern, high-performing website.',
+        'I build fast, SEO-optimized eCommerce websites using React/Next.js or WordPress with WooCommerce. I focus on conversion optimization, mobile responsiveness, secure payment integration, and a smooth user experience.',
     },
     {
       question: 'What makes my development approach different?',
       answer:
-        'I prioritize communication and understanding your business goals first. I write clean, scalable code with proper documentation. I use modern technologies and best practices to ensure your website is fast, secure, and easy to maintain in the long run.',
+        'I prioritize communication and understanding your business goals first. I write clean, scalable code with proper documentation using modern technologies like TypeScript, Prisma, and PostgreSQL for long-term maintainability.',
     },
     {
       question: 'What is my project delivery process?',
       answer:
-        'I follow a structured approach: 1) Understanding requirements, 2) Design mockups and approval, 3) Development with regular updates, 4) Testing and quality assurance, 5) Deployment and training. I keep you informed at every step and welcome feedback throughout the process.',
+        'Structured 5-step approach: 1) Requirements gathering, 2) Design mockups and approval, 3) Development with regular updates, 4) Testing and QA, 5) Deployment and handoff. I keep you informed at every step.',
     },
   ];
-
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
 
   return (
     <motion.div
@@ -840,62 +529,38 @@ function FAQ() {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <motion.h3
-        className="text-3xl font-bold text-white flex items-center gap-3"
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        <motion.span
-          className="w-1.5 h-8 bg-gradient-to-b from-[#67C090] to-purple-600 rounded-full"
-          initial={{ height: 0 }}
-          whileInView={{ height: 32 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        />
-        <span>
-          <span className="text-green-500">Frequently</span>{' '}
-          <span className="text-white">Asked Questions</span>
-        </span>
-      </motion.h3>
-
+      <SectionHeading green="Frequently" white="Asked Questions" />
       <div className="space-y-4">
         {faqs.map((faq, index) => (
           <motion.div
             key={index}
-            className="bg-surface-dark/40 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden"
+            className="border border-slate-800 rounded-2xl overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1, duration: 0.4 }}
-            whileHover={{ borderColor: 'rgba(34, 211, 238, 0.3)' }}
+            whileHover={{ borderColor: 'rgba(34,197,94,0.3)' }}
           >
-            <motion.button
+            <button
               className="w-full p-5 flex items-center justify-between text-left"
-              onClick={() => toggleFAQ(index)}
+              onClick={() => setOpenIndex(openIndex === index ? null : index)}
             >
               <div className="flex items-center gap-3">
-                <motion.div
-                  className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#67C090]/20 to-purple-600/20 border border-slate-700/50 flex items-center justify-center"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: 'spring', stiffness: 400 }}
-                >
-                  <MdQuestionAnswer className="text-[#AAFFC7] text-xl" />
-                </motion.div>
-                <span className="text-lg font-semibold text-white">
+                <div className="w-9 h-9 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+                  <MdQuestionAnswer className="text-green-400 text-lg" />
+                </div>
+                <span className="font-title text-base font-semibold text-white">
                   {faq.question}
                 </span>
               </div>
               <motion.div
                 animate={{ rotate: openIndex === index ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
-                className="text-[#AAFFC7]"
+                className="text-green-500"
               >
-                <IoChevronDown className="text-2xl" />
+                <IoChevronDown className="text-xl" />
               </motion.div>
-            </motion.button>
-
+            </button>
             <motion.div
               initial={false}
               animate={{
@@ -905,17 +570,10 @@ function FAQ() {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               className="overflow-hidden"
             >
-              <div className="px-5 pb-5 pt-0">
-                <div className="pl-13 ml-[52px] border-l-2 border-[#67C090]/30 pl-4">
-                  <motion.p
-                    className="text-slate-300 leading-relaxed"
-                    initial={{ y: -10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.1 }}
-                  >
-                    {faq.answer}
-                  </motion.p>
-                </div>
+              <div className="px-5 pb-5 ml-12 border-l-2 border-green-500/20 pl-4">
+                <p className="font-body text-slate-300 leading-relaxed text-sm">
+                  {faq.answer}
+                </p>
               </div>
             </motion.div>
           </motion.div>
