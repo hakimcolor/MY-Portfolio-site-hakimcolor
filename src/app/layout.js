@@ -17,8 +17,9 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: 'Muhamaad Azizul Hakim - Portfolio',
-  description: 'MERN Stack Developer Portfolio',
+  title: 'Muhamaad Azizul Hakim | Full Stack Developer',
+  description:
+    'Full Stack Developer specializing in MERN Stack, TypeScript, PostgreSQL, and WordPress. Available for freelance and full-time opportunities.',
   icons: {
     icon: '/icon.svg',
   },
