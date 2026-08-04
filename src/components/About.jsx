@@ -152,10 +152,12 @@ function AboutMe() {
     <motion.div className="space-y-6" variants={itemVariants}>
       <SectionHeading green="About" white="Me" />
       <motion.div
-        className="border border-slate-800 rounded-2xl p-6 lg:p-8 shadow-xl relative overflow-hidden"
+        className="border border-slate-800 rounded-2xl p-6 lg:p-8 shadow-xl relative overflow-hidden bg-surface-dark/30"
         whileHover={{ borderColor: 'rgba(34,197,94,0.3)' }}
         transition={{ duration: 0.3 }}
       >
+        {/* Top green accent line */}
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-green-500/50 rounded-t-2xl" />
         <motion.p
           className="font-body text-slate-300 leading-relaxed text-lg relative z-10"
           initial={{ opacity: 0, y: 20 }}
