@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaFacebook, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
-import { MdEmail, MdLocationOn, MdPhone, MdSend } from 'react-icons/md';
+import { MdEmail, MdLocationOn, MdSend } from 'react-icons/md';
 import { IoCheckmarkCircle } from 'react-icons/io5';
 
 const contactInfo = [
