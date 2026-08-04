@@ -134,7 +134,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative flex flex-col-reverse lg:flex-row items-center justify-center px-6 py-16 gap-12 lg:gap-16 w-full max-w-[80%] mx-auto min-h-[calc(100vh-80px)] overflow-hidden"
+      className="relative flex flex-col-reverse lg:flex-row items-center justify-center px-6 py-16 gap-12 lg:gap-16 w-full max-w-[100%] mx-auto  overflow-hidden"
       id="home"
     >
       {/* Subtle grid background */}
@@ -323,6 +323,7 @@ function ProfileImage() {
             src="/hakimcolor.png"
             alt="Muhamaad Azizul Hakim"
             fill
+            sizes="(max-width: 768px) 288px, (max-width: 1024px) 320px, 384px"
             className="object-cover object-top"
             priority
           />

@@ -143,6 +143,8 @@ export default function Projects() {
                   src={project.image}
                   alt={project.title}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  loading="lazy"
                   className="object-cover transition-transform duration-500 hover:scale-105"
                 />
                 {/* Dark overlay with links on hover */}
