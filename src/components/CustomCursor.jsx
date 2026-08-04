@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 
 export default function CustomCursor() {
   const [pos, setPos] = useState({ x: -200, y: -200 });
@@ -16,33 +15,29 @@ export default function CustomCursor() {
     const onMove = (e) => {
       targetRef.current = { x: e.clientX, y: e.clientY };
       setPos({ x: e.clientX, y: e.clientY });
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(true);
     };
 
     const lerp = (a, b, t) => a + (b - a) * t;
-    let trailX = -200;
-    let trailY = -200;
+    let tx = -200,
+      ty = -200;
     const animate = () => {
-      trailX = lerp(trailX, targetRef.current.x, 0.1);
-      trailY = lerp(trailY, targetRef.current.y, 0.1);
-      setTrail({ x: trailX, y: trailY });
+      tx = lerp(tx, targetRef.current.x, 0.1);
+      ty = lerp(ty, targetRef.current.y, 0.1);
+      setTrail({ x: tx, y: ty });
       rafRef.current = requestAnimationFrame(animate);
     };
     rafRef.current = requestAnimationFrame(animate);
 
     const onOver = (e) => {
       const t = e.target;
-      if (
+      const hoverable =
         t.tagName === 'A' ||
         t.tagName === 'BUTTON' ||
         t.closest('a') ||
         t.closest('button') ||
-        window.getComputedStyle(t).cursor === 'pointer'
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+        window.getComputedStyle(t).cursor === 'pointer';
+      setIsHovering(!!hoverable);
     };
 
     const onDown = () => setIsClicking(true);
@@ -66,53 +61,45 @@ export default function CustomCursor() {
       document.removeEventListener('mouseenter', onEnter);
       cancelAnimationFrame(rafRef.current);
     };
-  }, [isVisible]);
+  }, []);
 
-  /* Profile image cursor — trails behind the pointer */
-  const imgSize = isHovering ? 80 : isClicking ? 52 : 64;
+  /* sizes */
+  const ringSize = isHovering ? 52 : isClicking ? 28 : 36;
+  const dotSize = isClicking ? 5 : 7;
 
   return (
     <>
-      {/* Profile image that follows with a lag */}
+      {/* Lagging outer ring */}
       <div
         className="fixed top-0 left-0 pointer-events-none z-9998"
         style={{
-          transform: `translate(${trail.x - imgSize / 2}px, ${trail.y - imgSize / 2}px)`,
-          width: imgSize,
-          height: imgSize,
+          transform: `translate(${trail.x - ringSize / 2}px, ${trail.y - ringSize / 2}px)`,
+          width: ringSize,
+          height: ringSize,
           borderRadius: '50%',
-          overflow: 'hidden',
-          border: `2px solid ${isHovering ? '#22c55e' : 'rgba(34,197,94,0.55)'}`,
+          border: `1.5px solid ${isHovering ? '#22c55e' : 'rgba(34,197,94,0.6)'}`,
+          background: isHovering ? 'rgba(34,197,94,0.08)' : 'transparent',
           boxShadow: isHovering
-            ? '0 0 20px 6px rgba(34,197,94,0.45)'
-            : '0 0 10px 3px rgba(34,197,94,0.2)',
-          transition:
-            'width 0.25s ease, height 0.25s ease, border-color 0.2s, box-shadow 0.2s',
+            ? '0 0 18px 4px rgba(34,197,94,0.35)'
+            : '0 0 8px 1px rgba(34,197,94,0.15)',
           opacity: isVisible ? 1 : 0,
+          transition:
+            'width 0.2s ease, height 0.2s ease, border-color 0.2s, box-shadow 0.2s, background 0.2s, opacity 0.2s',
         }}
-      >
-        <Image
-          src="/hakimcolor.png"
-          alt="cursor"
-          fill
-          sizes="80px"
-          className="object-cover object-top"
-          priority
-        />
-      </div>
+      />
 
-      {/* Tiny sharp dot — snaps to exact pointer */}
+      {/* Sharp centre dot */}
       <div
         className="fixed top-0 left-0 pointer-events-none z-9999"
         style={{
-          transform: `translate(${pos.x - 4}px, ${pos.y - 4}px)`,
-          width: 8,
-          height: 8,
+          transform: `translate(${pos.x - dotSize / 2}px, ${pos.y - dotSize / 2}px)`,
+          width: dotSize,
+          height: dotSize,
           borderRadius: '50%',
           backgroundColor: '#22c55e',
-          boxShadow: '0 0 8px 2px rgba(34,197,94,0.7)',
+          boxShadow: '0 0 10px 3px rgba(34,197,94,0.7)',
           opacity: isVisible ? 1 : 0,
-          transition: 'opacity 0.2s',
+          transition: 'width 0.15s, height 0.15s, opacity 0.2s',
         }}
       />
 
@@ -123,17 +110,17 @@ export default function CustomCursor() {
             key="ripple"
             className="fixed top-0 left-0 pointer-events-none z-9997"
             style={{
-              translateX: pos.x - 32,
-              translateY: pos.y - 32,
-              width: 64,
-              height: 64,
+              translateX: pos.x - 24,
+              translateY: pos.y - 24,
+              width: 48,
+              height: 48,
               borderRadius: '50%',
-              border: '2px solid #22c55e',
+              border: '1.5px solid #22c55e',
             }}
-            initial={{ scale: 0.5, opacity: 0.9 }}
-            animate={{ scale: 2, opacity: 0 }}
+            initial={{ scale: 0.4, opacity: 0.9 }}
+            animate={{ scale: 2.2, opacity: 0 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
+            transition={{ duration: 0.45, ease: 'easeOut' }}
           />
         )}
       </AnimatePresence>
