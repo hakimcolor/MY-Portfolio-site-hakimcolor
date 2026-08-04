@@ -78,7 +78,7 @@ const projects = [
 export default function Projects() {
   return (
     <section
-      className="flex flex-col gap-12 px-6 py-16 max-w-[95%] mx-auto w-full"
+      className="flex flex-col gap-12 px-6 py-16 max-w-[80%] mx-auto w-full"
       id="projects"
     >
       <div className="h-px w-full bg-slate-800 mb-4" />

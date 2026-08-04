@@ -91,7 +91,7 @@ function SectionHeading({ green, white }) {
 export default function About() {
   return (
     <section
-      className="w-full px-6 pb-20 max-w-[95%] mx-auto flex flex-col gap-16 relative z-10"
+      className="w-full px-6 pb-20 max-w-[80%] mx-auto flex flex-col gap-16 relative z-10"
       id="about"
     >
       <div className="h-px w-full bg-slate-800 mb-4" />

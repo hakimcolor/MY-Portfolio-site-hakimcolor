@@ -111,7 +111,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="w-full px-6 py-20 max-w-[95%] mx-auto" id="contact">
+    <section className="w-full px-6 py-20 max-w-[80%] mx-auto" id="contact">
       <div className="h-px w-full bg-slate-800 mb-12"></div>
 
       <motion.div

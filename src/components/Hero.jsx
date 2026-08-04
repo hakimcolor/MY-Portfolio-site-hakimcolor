@@ -134,7 +134,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative flex flex-col-reverse lg:flex-row items-center justify-center px-6 py-16 gap-12 lg:gap-16 w-full max-w-[95%] mx-auto min-h-[calc(100vh-80px)] overflow-hidden"
+      className="relative flex flex-col-reverse lg:flex-row items-center justify-center px-6 py-16 gap-12 lg:gap-16 w-full max-w-[80%] mx-auto min-h-[calc(100vh-80px)] overflow-hidden"
       id="home"
     >
       {/* Subtle grid background */}
