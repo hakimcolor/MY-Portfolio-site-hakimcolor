@@ -95,7 +95,6 @@ const mobileItemVariants = {
 
 export default function Header() {
   const headerRef = useRef(null);
-  const gradientRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('#');
 
@@ -106,15 +105,6 @@ export default function Header() {
       { y: -100, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
     );
-
-    if (gradientRef.current) {
-      gsap.to(gradientRef.current, {
-        backgroundPosition: '200% 50%',
-        duration: 8,
-        ease: 'none',
-        repeat: -1,
-      });
-    }
 
     // Scroll spy
     const handleScroll = () => {
@@ -156,62 +146,11 @@ export default function Header() {
       ref={headerRef}
       className="sticky top-0 z-50 w-full border-b border-slate-800/50 overflow-hidden"
     >
-      {/* Animated gradient background */}
-      <div
-        ref={gradientRef}
-        className="absolute inset-0 opacity-30"
-        style={{
-          background:
-            'linear-gradient(90deg, #0B1120, #1a1a3e, #0d2137, #1a0a2e, #0B1120, #1a1a3e)',
-          backgroundSize: '200% 100%',
-        }}
-      />
+      {/* Static dark background */}
+      <div className="absolute inset-0 bg-background-dark/80" />
 
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full bg-[#67C090]/40"
-            initial={{
-              x: `${Math.random() * 100}%`,
-              y: '100%',
-              opacity: 0,
-            }}
-            animate={{
-              y: '-100%',
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: i * 0.5,
-              ease: 'linear',
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Glowing line at bottom */}
-      <motion.div
-        className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-[#67C090] to-transparent"
-        initial={{ width: '0%', left: '50%', x: '-50%' }}
-        animate={{ width: '100%' }}
-        transition={{ duration: 1.5, delay: 0.5, ease: 'easeOut' }}
-      />
-
-      {/* Shimmer effect */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
-        initial={{ x: '-100%' }}
-        animate={{ x: '100%' }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          repeatDelay: 5,
-          ease: 'easeInOut',
-        }}
-      />
+      {/* Subtle bottom border glow */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-green-500/40 to-transparent" />
 
       <div className="relative flex items-center justify-between px-4 py-3 max-w-[80%] mx-auto w-full backdrop-blur-md bg-background-dark/60">
         <motion.div

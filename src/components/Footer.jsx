@@ -108,8 +108,8 @@ export default function Footer() {
             <span className="text-green-400 font-semibold">Next.js</span>
             {' & '}
             <span className="text-green-400 font-semibold">Tailwind CSS</span>
-            {' — '}
-            <span className="text-slate-400">Designed & developed by </span>
+            {' · '}
+            <span className="text-slate-400">Designed &amp; developed by </span>
             <span className="text-green-400 font-semibold">
               Muhamaad Azizul Hakim
             </span>

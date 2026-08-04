@@ -22,6 +22,8 @@ const projects = [
       'JWT',
       'Firebase',
       'Tailwind CSS',
+      'Docker',
+      'CI/CD',
     ],
   },
   {
@@ -39,6 +41,7 @@ const projects = [
       'Node.js',
       'Chart.js',
       'Tailwind CSS',
+      'Docker',
     ],
   },
   {
@@ -55,6 +58,7 @@ const projects = [
       'Express',
       'Tailwind CSS',
       'Firebase',
+      'CI/CD',
     ],
   },
   {
@@ -131,7 +135,7 @@ export default function Projects() {
             >
               {/* Image side */}
               <motion.div
-                className="w-full lg:w-1/2 h-72 lg:h-auto relative overflow-hidden shrink-0 min-h-[380px]"
+                className="w-full lg:w-1/2 h-72 lg:h-auto relative overflow-hidden shrink-0 min-h-120"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.4 }}
               >
