@@ -10,12 +10,12 @@ const DRIVE_LINK =
 const certificates = [
   {
     title: 'AI Workflows & Agents GP',
-    issuer: 'Programming Hero',
+    issuer: 'Grameenphone',
     category: 'AI / Agents',
   },
   {
     title: 'GenAI and Prompt Engineering GP',
-    issuer: 'Programming Hero',
+    issuer: 'Grameenphone',
     category: 'Generative AI',
   },
   {
