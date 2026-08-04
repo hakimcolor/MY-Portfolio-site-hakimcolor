@@ -112,7 +112,7 @@ export default function Contact() {
 
   return (
     <section className="w-full px-6 py-20 max-w-[95%] mx-auto" id="contact">
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent mb-12"></div>
+      <div className="h-px w-full bg-slate-800 mb-12"></div>
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
