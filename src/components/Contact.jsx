@@ -111,10 +111,7 @@ export default function Contact() {
   };
 
   return (
-    <section
-      className="w-full px-6 py-20 md:pl-8 max-w-7xl mx-auto"
-      id="contact"
-    >
+    <section className="w-full px-6 py-20 max-w-[95%] mx-auto" id="contact">
       <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent mb-12"></div>
 
       <motion.div
@@ -138,8 +135,8 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.2 }}
           />
           <span>
-            <span className="text-green-500">Get</span>{' '}
-            <span className="text-white">In Touch</span>
+            <span className="text-green-500">Contact</span>{' '}
+            <span className="text-white">With Me</span>
           </span>
         </motion.h3>
 
@@ -282,7 +279,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#67C090] transition-colors"
-                      placeholder="John Doe"
+                      placeholder="Enter your name"
                     />
                   </motion.div>
                   <motion.div
@@ -301,7 +298,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#67C090] transition-colors"
-                      placeholder="john@example.com"
+                      placeholder="Enter your email"
                     />
                   </motion.div>
                 </div>
@@ -322,7 +319,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#67C090] transition-colors"
-                    placeholder="Project Inquiry"
+                    placeholder="Enter project inquiry"
                   />
                 </motion.div>
 
@@ -342,7 +339,7 @@ export default function Contact() {
                     required
                     rows={5}
                     className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#67C090] transition-colors resize-none"
-                    placeholder="Tell me about your project..."
+                    placeholder="Enter your message here..."
                   />
                 </motion.div>
 
