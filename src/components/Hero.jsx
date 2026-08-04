@@ -137,6 +137,15 @@ export default function Hero() {
       className="relative flex flex-col-reverse lg:flex-row items-center justify-center px-6 py-16 gap-12 lg:gap-16 w-full max-w-[95%] mx-auto min-h-[calc(100vh-80px)] overflow-hidden"
       id="home"
     >
+      {/* Subtle grid background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(34,197,94,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,197,94,0.03) 1px, transparent 1px)',
+          backgroundSize: '60px 60px',
+        }}
+      />
       {/* Floating code symbols */}
       <div
         ref={particlesRef}
