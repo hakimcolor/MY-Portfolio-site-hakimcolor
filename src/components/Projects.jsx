@@ -115,37 +115,38 @@ export default function Projects() {
         </motion.div>
       </motion.div>
 
-      <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-16">
         {projects.map((project, index) => {
           const isEven = index % 2 === 0;
           return (
             <motion.div
               key={index}
-              className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center border border-slate-800 rounded-2xl overflow-hidden p-6 lg:p-8`}
+              className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-0 items-stretch border border-slate-800 rounded-2xl overflow-hidden`}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
-              whileHover={{ borderColor: 'rgba(34,197,94,0.3)' }}
+              whileHover={{ borderColor: 'rgba(34,197,94,0.4)' }}
             >
-              {/* Image */}
+              {/* Image side */}
               <motion.div
-                className="w-full lg:w-1/2 h-60 lg:h-72 relative rounded-xl overflow-hidden shrink-0"
+                className="w-full lg:w-1/2 h-64 lg:h-auto relative overflow-hidden shrink-0 min-h-[280px]"
                 whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.4 }}
               >
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background-dark/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 gap-3">
+                {/* Dark overlay with links on hover */}
+                <div className="absolute inset-0 bg-background-dark/50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-title font-bold rounded-full text-sm flex items-center gap-2 transition-colors"
+                    className="px-5 py-2.5 bg-green-500 hover:bg-green-600 text-white font-title font-bold rounded-full text-sm flex items-center gap-2 transition-colors shadow-lg"
                   >
                     <FaExternalLinkAlt className="text-xs" /> Live Demo
                   </a>
@@ -153,16 +154,27 @@ export default function Projects() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-slate-900 border border-white/20 text-white font-title font-bold rounded-full text-sm flex items-center gap-2 hover:bg-white hover:text-slate-900 transition-colors"
+                    className="px-5 py-2.5 bg-slate-900 border border-white/20 text-white font-title font-bold rounded-full text-sm flex items-center gap-2 hover:bg-white hover:text-slate-900 transition-colors shadow-lg"
                   >
                     <FaGithub /> GitHub
                   </a>
                 </div>
+                {/* Project number */}
+                <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-green-500 flex items-center justify-center font-title font-bold text-white text-sm shadow-lg">
+                  {String(index + 1).padStart(2, '0')}
+                </div>
               </motion.div>
 
-              {/* Text */}
-              <div className="flex flex-col gap-4 w-full lg:w-1/2">
-                <h4 className="font-title text-2xl font-bold">
+              {/* Text side */}
+              <div className="flex flex-col justify-center gap-5 w-full lg:w-1/2 p-8 lg:p-10 bg-surface-dark/40">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-px bg-green-500" />
+                  <span className="font-body text-green-400 text-xs uppercase tracking-widest font-semibold">
+                    Project {String(index + 1).padStart(2, '0')}
+                  </span>
+                </div>
+
+                <h4 className="font-title text-2xl lg:text-3xl font-bold leading-tight">
                   <span className="text-green-500">
                     {project.title.split(' ')[0]}
                   </span>
@@ -171,7 +183,8 @@ export default function Projects() {
                     {project.title.split(' ').slice(1).join(' ')}
                   </span>
                 </h4>
-                <p className="font-body text-slate-400 leading-relaxed">
+
+                <p className="font-body text-slate-400 leading-relaxed text-base">
                   {project.description}
                 </p>
 
@@ -186,12 +199,12 @@ export default function Projects() {
                   ))}
                 </div>
 
-                <div className="flex gap-3 mt-2">
+                <div className="flex gap-3 pt-2">
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-2.5 bg-green-500 hover:bg-green-600 text-white font-title font-bold rounded-full text-sm flex items-center gap-2 transition-colors"
+                    className="px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white font-title font-bold rounded-full text-sm flex items-center gap-2 transition-colors shadow-lg shadow-green-500/20"
                   >
                     <FaExternalLinkAlt className="text-xs" /> Live Demo
                   </a>
@@ -199,7 +212,7 @@ export default function Projects() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-2.5 bg-transparent border border-slate-600 text-white font-title font-bold rounded-full text-sm flex items-center gap-2 hover:border-green-500 hover:text-green-400 transition-colors"
+                    className="px-6 py-2.5 bg-transparent border border-slate-600 text-white font-title font-bold rounded-full text-sm flex items-center gap-2 hover:border-green-500 hover:text-green-400 transition-colors"
                   >
                     <FaGithub /> GitHub
                   </a>
