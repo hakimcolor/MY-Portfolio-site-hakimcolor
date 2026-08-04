@@ -213,7 +213,7 @@ export default function Header() {
         }}
       />
 
-      <div className="relative flex items-center justify-between px-4 py-3 max-w-[95%] mx-auto w-full backdrop-blur-md bg-green-950/40">
+      <div className="relative flex items-center justify-between px-4 py-3 max-w-[95%] mx-auto w-full backdrop-blur-md bg-background-dark/60">
         <motion.div
           className="flex items-center gap-2"
           variants={logoVariants}
