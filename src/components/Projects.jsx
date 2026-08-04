@@ -131,7 +131,7 @@ export default function Projects() {
             >
               {/* Image side */}
               <motion.div
-                className="w-full lg:w-1/2 h-64 lg:h-auto relative overflow-hidden shrink-0 min-h-[280px]"
+                className="w-full lg:w-1/2 h-72 lg:h-auto relative overflow-hidden shrink-0 min-h-[380px]"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.4 }}
               >
