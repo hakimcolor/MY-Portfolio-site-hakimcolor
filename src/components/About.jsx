@@ -173,7 +173,7 @@ function AboutMe() {
           <span className="text-green-400">
             PostgreSQL, SQL, Prisma, and TypeScript
           </span>{' '}
-          — with a strong focus on clean architecture and user-centric design.
+          — crafting clean architecture and user-centric digital experiences.
         </motion.p>
         <motion.p
           className="font-body text-slate-300 leading-relaxed text-lg relative z-10 mt-4"
@@ -182,11 +182,11 @@ function AboutMe() {
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          I&apos;m passionate about transforming ideas into seamless digital
-          experiences — whether it&apos;s building full-stack applications or
-          crafting responsive, conversion-optimized websites. I&apos;m also a{' '}
+          Whether it&apos;s a full-stack app, REST API, or a polished marketing
+          site — I deliver fast, reliable, and maintainable code. I&apos;m also
+          a{' '}
           <span className="text-green-400">WordPress Elementor Developer</span>,
-          delivering fast, SEO-friendly websites.
+          building conversion-optimized, SEO-friendly websites.
         </motion.p>
         <motion.p
           className="font-body text-slate-300 leading-relaxed text-lg relative z-10 mt-4"
@@ -195,11 +195,12 @@ function AboutMe() {
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
         >
-          I value clean code, performance, and continuous learning. Search{' '}
+          I value clean code, continuous learning, and strong collaboration.
+          Search{' '}
           <span className="text-green-400 font-semibold">
             &quot;hakimcolor&quot;
           </span>{' '}
-          on Google or any platform and you&apos;ll find me!
+          on any platform and you&apos;ll find me!
         </motion.p>
 
         <motion.div
