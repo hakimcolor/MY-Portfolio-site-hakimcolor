@@ -26,6 +26,32 @@ const projects = [
       'CI/CD',
     ],
   },
+  ,
+  {
+    title: 'FixItNow',
+    description:
+      'A full-stack on-demand home services marketplace that connects customers with skilled technicians through service discovery, real-time booking, secure digital payments, and transparent reviews.',
+    image: '/fixitnow.png',
+    liveUrl: 'https://fix-it-now-frontend-rosy.vercel.app/',
+    githubUrl: 'https://github.com/hakimcolor/Fix-it-now-Frontend',
+    tags: [
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Node.js',
+      'Express.js',
+      'PostgreSQL',
+      'Prisma',
+      'JWT',
+      'Stripe',
+      'SSLCommerz',
+      'Zod',
+      'Tailwind CSS',
+      'Framer Motion',
+      'Vercel',
+    ],
+  },
+  ,
   {
     title: 'Finance Management App',
     description:
