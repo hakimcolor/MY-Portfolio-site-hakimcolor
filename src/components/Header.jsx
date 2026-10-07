@@ -149,14 +149,14 @@ export default function Header() {
       className="sticky top-0 z-50 w-full border-b border-slate-800/50"
     >
       {/* Full-width dark background */}
-      <div className="absolute inset-0 bg-background-dark/90 backdrop-blur-md" />
+      <div className="absolute inset-0 bg-[#0b1120] backdrop-blur-md" />
 
       {/* Full-width green glow line at bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-green-500/50 to-transparent" />
 
       {/* Content constrained to match body layout — sidebar is 96px wide on md+ */}
       <div className="relative flex items-center justify-between py-3 w-full md:pl-24">
-        <div className="flex items-center justify-between w-full max-w-[80%] mx-auto">
+        <div className="flex items-center justify-between w-[95%] mx-auto">
           <motion.div
             className="flex items-center gap-2"
             variants={logoVariants}
@@ -316,7 +316,7 @@ export default function Header() {
             animate="visible"
             exit="hidden"
           >
-            <div className="max-w-[80%] mx-auto md:ml-24 px-4 py-4 space-y-2">
+            <div className="w-[95%] mx-auto md:ml-24 py-4 space-y-2">
               {navItems.map((item, index) => (
                 <motion.div key={item.name} variants={mobileItemVariants}>
                   <button
@@ -352,7 +352,7 @@ export default function Header() {
 
             {/* Mobile menu footer */}
             <motion.div
-              className="max-w-[80%] mx-auto md:ml-24 px-4 py-4 border-t border-slate-800/50"
+              className="w-[95%] mx-auto md:ml-24 py-4 border-t border-slate-800/50"
               variants={mobileItemVariants}
             >
               <p className="text-center text-slate-500 text-sm">

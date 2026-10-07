@@ -47,7 +47,7 @@ const cardVariants = {
 export default function Certificates() {
   return (
     <section
-      className="flex flex-col gap-12 px-6 py-16 max-w-[80%] mx-auto w-full"
+      className="flex flex-col gap-12 py-16 w-[95%] mx-auto"
       id="certificates"
     >
       <div className="h-px w-full bg-slate-800 mb-4" />
@@ -103,7 +103,7 @@ export default function Certificates() {
 
       {/* Decorative stat bar */}
       <motion.div
-        className="flex flex-wrap gap-6 p-6 rounded-2xl bg-surface-dark/40 border border-slate-800"
+        className="flex flex-wrap gap-6 p-6 rounded-2xl bg-[#0f1929] border border-slate-800"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -150,7 +150,7 @@ export default function Certificates() {
             variants={cardVariants}
             whileHover={{ y: -6, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="relative flex flex-col gap-4 p-6 rounded-2xl bg-surface-dark/40 border border-green-500/25 backdrop-blur-sm cursor-pointer group overflow-hidden"
+            className="relative flex flex-col gap-4 p-6 rounded-2xl bg-[#0f1929] border border-green-500/25 cursor-pointer group overflow-hidden"
           >
             {/* Subtle glow on hover */}
             <motion.div

@@ -134,7 +134,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative flex flex-col-reverse lg:flex-row items-center justify-center px-6 py-16 gap-12 lg:gap-16 w-full max-w-[100%] mx-auto  overflow-hidden"
+      className="relative flex flex-col items-center justify-center pt-8 pb-20 gap-10 lg:gap-16 w-[95%] mx-auto overflow-hidden min-h-svh lg:flex-row lg:pt-16"
       id="home"
     >
       {/* Subtle grid background */}
@@ -169,13 +169,13 @@ export default function Hero() {
 
       {/* Left: text content */}
       <motion.div
-        className="flex flex-col items-center md:items-start text-center md:text-left gap-6 max-w-2xl w-full z-10"
+        className="flex flex-col items-center md:items-start text-center md:text-left gap-5 max-w-2xl w-full z-10 order-2 lg:order-1"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.div className="space-y-3" variants={itemVariants}>
-          <div className="flex items-center gap-3 flex-wrap">
+        <motion.div className="space-y-2 sm:space-y-3" variants={itemVariants}>
+          <div className="flex items-center gap-2 flex-wrap justify-center md:justify-start">
             <motion.span className="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-surface-dark border border-green-500/30 text-sm font-medium text-green-400">
               Hello, I&apos;m
             </motion.span>
@@ -185,39 +185,42 @@ export default function Hero() {
             </motion.span>
           </div>
           <motion.h1
-            className="font-title text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight"
+            className="font-title text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight"
             variants={itemVariants}
           >
             <TypeWriter />
           </motion.h1>
           <motion.h2
-            className="font-title text-xl md:text-3xl font-bold mt-3 flex items-center gap-2 justify-center md:justify-start flex-wrap"
+            className="font-title text-lg sm:text-2xl md:text-3xl font-bold mt-2 flex items-center gap-2 justify-center md:justify-start flex-wrap"
             variants={itemVariants}
           >
-            <MdCode className="text-green-500 text-2xl" />
+            <MdCode className="text-green-500 text-xl sm:text-2xl" />
             <RoleTyper />
           </motion.h2>
 
-          {/* Tech stack line */}
-          <div className="text-sm md:text-base font-body text-slate-400 mt-3">
-            MongoDB • Express • React • Node.js • Next.js • PostgreSQL • SQL •
-            TypeScript
+          {/* Tech stack line — truncated on mobile */}
+          <div className="text-xs sm:text-sm md:text-base font-body text-slate-400 mt-2 leading-relaxed">
+            <span className="sm:hidden">
+              MERN • Next.js • PostgreSQL • TypeScript
+            </span>
+            <span className="hidden sm:inline">
+              MongoDB • Express • React • Node.js • Next.js • PostgreSQL • SQL •
+              TypeScript
+            </span>
           </div>
         </motion.div>
 
         <motion.p
-          className="font-body text-base md:text-lg text-slate-400 leading-relaxed max-w-lg"
+          className="font-body text-sm sm:text-base md:text-lg text-slate-400 leading-relaxed max-w-lg"
           variants={itemVariants}
         >
-          I&apos;m a Full Stack Developer with 2+ years of experience crafting
-          scalable web apps using MongoDB, Express, React, Node.js, PostgreSQL,
-          SQL, Prisma, and TypeScript. I turn ideas into polished digital
-          products — and also build fast, SEO-ready sites as a WordPress
-          Elementor Developer.
+          Full Stack Developer with 2+ years building scalable apps with MERN,
+          PostgreSQL, TypeScript &amp; Next.js. Also a WordPress Elementor
+          Developer for fast, SEO-ready sites.
         </motion.p>
 
         <motion.div
-          className="flex flex-col sm:flex-row w-full sm:w-auto gap-4 mt-4"
+          className="flex flex-row w-full sm:w-auto gap-3 mt-2"
           variants={itemVariants}
         >
           <motion.button
@@ -228,12 +231,12 @@ export default function Hero() {
               link.target = '_blank';
               link.click();
             }}
-            className="h-14 px-8 rounded-full bg-green-500 hover:bg-green-600 text-white font-title font-bold text-base shadow-lg shadow-green-500/25 flex items-center justify-center gap-2 transition-colors"
+            className="flex-1 sm:flex-none h-12 sm:h-14 px-5 sm:px-8 rounded-full bg-green-500 hover:bg-green-600 text-white font-title font-bold text-sm sm:text-base shadow-lg shadow-green-500/25 flex items-center justify-center gap-2 transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <MdDownload className="text-xl" />
-            <span>Download Resume</span>
+            <MdDownload className="text-lg sm:text-xl" />
+            <span>Resume</span>
           </motion.button>
           <motion.button
             onClick={() =>
@@ -241,35 +244,52 @@ export default function Hero() {
                 .getElementById('contact')
                 ?.scrollIntoView({ behavior: 'smooth' })
             }
-            className="h-14 px-8 rounded-full border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-title font-bold text-base transition-colors flex items-center justify-center gap-2"
+            className="flex-1 sm:flex-none h-12 sm:h-14 px-5 sm:px-8 rounded-full border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-title font-bold text-sm sm:text-base transition-colors flex items-center justify-center gap-2"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <MdSend className="text-xl" />
-            <span>Contact Me</span>
+            <MdSend className="text-lg sm:text-xl" />
+            <span>Contact</span>
           </motion.button>
         </motion.div>
 
         <motion.div
-          className="flex md:hidden items-center gap-6 mt-6 pt-6 border-t border-slate-800 w-full justify-center"
+          className="flex md:hidden items-center gap-4 mt-4 pt-4 border-t border-slate-800 w-full justify-center"
           variants={itemVariants}
         >
           {[
-            { icon: FaGithub, color: 'hover:text-white' },
-            { icon: FaLinkedin, color: 'hover:text-blue-500' },
-            { icon: FaWhatsapp, color: 'hover:text-green-500' },
-            { icon: MdEmail, color: 'hover:text-red-400' },
+            {
+              icon: FaGithub,
+              color: 'hover:text-white',
+              href: 'https://github.com/hakimcolor',
+            },
+            {
+              icon: FaLinkedin,
+              color: 'hover:text-blue-500',
+              href: 'https://www.linkedin.com/in/md-azizul-hakim-b646b22a7',
+            },
+            {
+              icon: FaWhatsapp,
+              color: 'hover:text-green-500',
+              href: 'https://wa.me/8801818777856',
+            },
+            {
+              icon: MdEmail,
+              color: 'hover:text-red-400',
+              href: 'mailto:hakimcolor777@gmail.com',
+            },
           ].map((item, i) => (
             <motion.div
               key={i}
-              whileHover={{ scale: 1.3, y: -5 }}
+              whileHover={{ scale: 1.3, y: -4 }}
               whileTap={{ scale: 0.9 }}
             >
               <Link
                 className={`text-slate-400 ${item.color} transition-colors`}
-                href="#"
+                href={item.href}
+                target="_blank"
               >
-                <item.icon className="w-6 h-6" />
+                <item.icon className="w-5 h-5" />
               </Link>
             </motion.div>
           ))}
@@ -277,11 +297,13 @@ export default function Hero() {
       </motion.div>
 
       {/* Right: profile image */}
-      <ProfileImage />
+      <div className="order-1 lg:order-2">
+        <ProfileImage />
+      </div>
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 hidden sm:flex"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2 }}
@@ -318,7 +340,7 @@ function ProfileImage() {
         className="relative"
       >
         {/* Image container — rectangular */}
-        <div className="relative w-72 h-80 md:w-80 md:h-96 lg:w-96 lg:h-[28rem] rounded-2xl overflow-hidden border border-green-500/25 shadow-2xl shadow-green-500/10">
+        <div className="relative w-56 h-64 sm:w-72 sm:h-80 md:w-80 md:h-96 lg:w-96 lg:h-112 rounded-2xl overflow-hidden border border-green-500/25 shadow-2xl shadow-green-500/10">
           <Image
             src="/hakimcolor.png"
             alt="Muhamaad Azizul Hakim"

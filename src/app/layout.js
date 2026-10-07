@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark">
       <body
-        className={`${playfair.variable} ${inter.variable} font-body bg-background-dark text-white min-h-screen flex flex-col overflow-x-hidden antialiased selection:bg-green-500 selection:text-white`}
+        className={`${playfair.variable} ${inter.variable} font-body text-white min-h-screen flex flex-col overflow-x-hidden antialiased selection:bg-green-500 selection:text-white`}
       >
         <SmoothScroll>{children}</SmoothScroll>
       </body>

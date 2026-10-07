@@ -93,7 +93,7 @@ function SectionHeading({ green, white }) {
 export default function About() {
   return (
     <section
-      className="w-full px-6 pb-20 max-w-[80%] mx-auto flex flex-col gap-16 relative z-10"
+      className="pb-20 w-[95%] mx-auto flex flex-col gap-16 relative z-10"
       id="about"
     >
       <div className="h-px w-full bg-slate-800 mb-4" />
@@ -161,7 +161,7 @@ function AboutMe() {
     <motion.div className="space-y-6" variants={itemVariants}>
       <SectionHeading green="About" white="Me" />
       <motion.div
-        className="border border-slate-800 rounded-2xl p-6 lg:p-8 shadow-xl relative overflow-hidden bg-surface-dark/30"
+        className="border border-slate-800 rounded-2xl p-6 lg:p-8 shadow-xl relative overflow-hidden bg-[#0f1929]"
         whileHover={{ borderColor: 'rgba(34,197,94,0.3)' }}
         transition={{ duration: 0.3 }}
       >
@@ -373,7 +373,7 @@ function Skills() {
   return (
     <motion.div className="space-y-8" id="skills" variants={itemVariants}>
       <SectionHeading green="Skills" white="" />
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
         {skillCategories.map((category, catIndex) => (
           <motion.div
             key={category.title}

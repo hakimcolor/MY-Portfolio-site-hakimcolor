@@ -226,119 +226,78 @@ export default function Sidebar() {
         </AnimatePresence>
       </aside>
 
-      {/* Mobile Bottom Bar with Scroll Progress */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-background-dark/90 backdrop-blur-lg border-t border-slate-800/50">
-        {/* Progress bar at top */}
-        <div className="h-1 bg-slate-800 w-full">
-          <motion.div
-            className="h-full bg-green-500"
+      {/* Mobile Bottom Bar */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#0b1120] border-t border-slate-800/50">
+        {/* Progress bar */}
+        <div className="h-0.5 bg-slate-800 w-full">
+          <div
+            className="h-full bg-green-500 transition-all duration-100"
             style={{ width: `${scrollPercent}%` }}
-            transition={{ duration: 0.1 }}
           />
         </div>
 
-        <div className="flex items-center justify-between px-4 py-3">
-          {/* Scroll percentage */}
-          <div className="flex items-center gap-2">
-            <div className="relative w-10 h-10">
-              <svg className="w-10 h-10 -rotate-90" viewBox="0 0 40 40">
-                <circle
-                  cx="20"
-                  cy="20"
-                  r="16"
-                  fill="none"
-                  stroke="#1e293b"
-                  strokeWidth="2"
-                />
-                <circle
-                  cx="20"
-                  cy="20"
-                  r="16"
-                  fill="none"
-                  stroke="#22c55e"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeDasharray={100.5}
-                  strokeDashoffset={100.5 - (100.5 * scrollPercent) / 100}
-                  style={{ transition: 'stroke-dashoffset 0.1s ease-out' }}
-                />
-              </svg>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-[10px] font-bold text-green-500">
-                  {scrollPercent}%
-                </span>
-              </div>
-            </div>
-          </div>
+        <div className="flex items-center justify-between px-4 py-2.5">
+          {/* Scroll % */}
+          <span className="text-xs font-bold text-green-500 w-8">
+            {scrollPercent}%
+          </span>
 
-          {/* Social icons */}
-          <div className="flex items-center gap-3">
+          {/* 5 key social icons */}
+          <div className="flex items-center gap-2">
             <Link
-              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all"
+              className="p-2 rounded-lg bg-surface-dark text-slate-400 active:scale-95"
               href="https://github.com/hakimcolor"
               target="_blank"
             >
-              <FaGithub className="w-5 h-5" />
+              <FaGithub className="w-4 h-4" />
             </Link>
             <Link
-              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all"
+              className="p-2 rounded-lg bg-surface-dark transition-all active:scale-95"
               href="https://www.linkedin.com/in/md-azizul-hakim-b646b22a7"
               target="_blank"
             >
-              <FaLinkedin className="w-5 h-5 text-blue-400" />
+              <FaLinkedin className="w-4 h-4 text-blue-400" />
             </Link>
             <Link
-              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all"
-              href="https://x.com/hakimcolor"
-              target="_blank"
-            >
-              <FaXTwitter className="w-5 h-5" />
-            </Link>
-            <Link
-              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all"
-              href="https://www.instagram.com/hakim.color/"
-              target="_blank"
-            >
-              <FaInstagram className="w-5 h-5 text-pink-500" />
-            </Link>
-            <Link
-              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all"
-              href="https://www.facebook.com/hakimcolorofficial"
-              target="_blank"
-            >
-              <FaFacebook className="w-5 h-5 text-blue-500" />
-            </Link>
-            <Link
-              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all"
+              className="p-2 rounded-lg bg-surface-dark transition-all active:scale-95"
               href="https://wa.me/8801818777856"
               target="_blank"
             >
-              <FaWhatsapp className="w-5 h-5 text-green-500" />
+              <FaWhatsapp className="w-4 h-4 text-green-500" />
             </Link>
             <Link
-              className="p-2 rounded-full bg-surface-dark hover:bg-slate-800 transition-all"
+              className="p-2 rounded-lg bg-surface-dark transition-all active:scale-95"
+              href="https://www.facebook.com/hakimcolorofficial"
+              target="_blank"
+            >
+              <FaFacebook className="w-4 h-4 text-blue-500" />
+            </Link>
+            <Link
+              className="p-2 rounded-lg bg-surface-dark transition-all active:scale-95"
               href="mailto:hakimcolor777@gmail.com"
             >
-              <MdEmail className="w-5 h-5 text-red-400" />
+              <MdEmail className="w-4 h-4 text-red-400" />
             </Link>
           </div>
-        </div>
 
-        {/* Scroll buttons for mobile */}
-        <AnimatePresence>
-          {showScrollTop && (
-            <motion.button
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={scrollToTop}
-              className="fixed bottom-20 right-4 p-3 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg shadow-green-500/25 z-50 transition-colors"
-            >
-              <FaArrowUp className="w-4 h-4" />
-            </motion.button>
-          )}
-        </AnimatePresence>
+          {/* Scroll to top */}
+          <AnimatePresence>
+            {showScrollTop ? (
+              <motion.button
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={scrollToTop}
+                className="p-2 rounded-lg bg-green-500 text-white shadow-lg shadow-green-500/25"
+              >
+                <FaArrowUp className="w-4 h-4" />
+              </motion.button>
+            ) : (
+              <div className="w-8" />
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </>
   );

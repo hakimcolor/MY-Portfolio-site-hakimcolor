@@ -15,101 +15,98 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-background-dark/80 backdrop-blur-sm border-t border-slate-800/50 mt-16">
-      <div className="max-w-[80%] mx-auto px-6 py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Left side - Copyright */}
+    <footer className="w-full bg-[#0b1120] border-t border-slate-800/50 mt-16 relative z-10">
+      <div className="w-[95%] mx-auto py-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Copyright */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-slate-400 text-sm"
+            className="text-slate-400 text-sm text-center sm:text-left order-2 sm:order-1"
           >
             <p>© {currentYear} Md Azizul Hakim. All rights reserved.</p>
           </motion.div>
 
-          {/* Right side - Social Links */}
+          {/* Social Links — scrollable on very small screens */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex items-center gap-4"
+            className="flex items-center gap-2 order-1 sm:order-2 flex-wrap justify-center"
           >
-            <Link
-              className="p-2.5 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110"
-              href="https://github.com/hakimcolor"
-              target="_blank"
-              aria-label="GitHub"
-            >
-              <FaGithub className="w-5 h-5" />
-            </Link>
-            <Link
-              className="p-2.5 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-blue-400 transition-all hover:scale-110"
-              href="https://www.linkedin.com/in/md-azizul-hakim-b646b22a7"
-              target="_blank"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedin className="w-5 h-5" />
-            </Link>
-            <Link
-              className="p-2.5 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-white transition-all hover:scale-110"
-              href="https://x.com/hakimcolor"
-              target="_blank"
-              aria-label="X (Twitter)"
-            >
-              <FaXTwitter className="w-5 h-5" />
-            </Link>
-            <Link
-              className="p-2.5 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-pink-500 transition-all hover:scale-110"
-              href="https://www.instagram.com/hakim.color/"
-              target="_blank"
-              aria-label="Instagram"
-            >
-              <FaInstagram className="w-5 h-5" />
-            </Link>
-            <Link
-              className="p-2.5 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-blue-500 transition-all hover:scale-110"
-              href="https://www.facebook.com/hakimcolorofficial"
-              target="_blank"
-              aria-label="Facebook"
-            >
-              <FaFacebook className="w-5 h-5" />
-            </Link>
-            <Link
-              className="p-2.5 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-green-500 transition-all hover:scale-110"
-              href="https://wa.me/8801818777856"
-              target="_blank"
-              aria-label="WhatsApp"
-            >
-              <FaWhatsapp className="w-5 h-5" />
-            </Link>
-            <Link
-              className="p-2.5 rounded-full bg-surface-dark hover:bg-slate-800 text-slate-400 hover:text-red-400 transition-all hover:scale-110"
-              href="mailto:hakimcolor777@gmail.com"
-              aria-label="Email"
-            >
-              <MdEmail className="w-5 h-5" />
-            </Link>
+            {[
+              {
+                href: 'https://github.com/hakimcolor',
+                icon: FaGithub,
+                label: 'GitHub',
+                color: 'hover:text-white',
+              },
+              {
+                href: 'https://www.linkedin.com/in/md-azizul-hakim-b646b22a7',
+                icon: FaLinkedin,
+                label: 'LinkedIn',
+                color: 'hover:text-blue-400',
+              },
+              {
+                href: 'https://x.com/hakimcolor',
+                icon: FaXTwitter,
+                label: 'X',
+                color: 'hover:text-white',
+              },
+              {
+                href: 'https://www.instagram.com/hakim.color/',
+                icon: FaInstagram,
+                label: 'Instagram',
+                color: 'hover:text-pink-500',
+              },
+              {
+                href: 'https://www.facebook.com/hakimcolorofficial',
+                icon: FaFacebook,
+                label: 'Facebook',
+                color: 'hover:text-blue-500',
+              },
+              {
+                href: 'https://wa.me/8801818777856',
+                icon: FaWhatsapp,
+                label: 'WhatsApp',
+                color: 'hover:text-green-500',
+              },
+              {
+                href: 'mailto:hakimcolor777@gmail.com',
+                icon: MdEmail,
+                label: 'Email',
+                color: 'hover:text-red-400',
+              },
+            ].map(({ href, icon: Icon, label, color }) => (
+              <Link
+                key={label}
+                className={`p-2 rounded-full bg-surface-dark text-slate-400 ${color} transition-all active:scale-90 hover:scale-110`}
+                href={href}
+                target={href.startsWith('mailto') ? undefined : '_blank'}
+                aria-label={label}
+              >
+                <Icon className="w-4 h-4" />
+              </Link>
+            ))}
           </motion.div>
         </div>
 
-        {/* Bottom text */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-center mt-6 pt-6 border-t border-slate-800/50"
+          className="text-center mt-4 pt-4 border-t border-slate-800/50"
         >
-          <p className="text-slate-500 text-xs">
+          <p className="text-slate-500 text-xs leading-relaxed">
             Built with{' '}
             <span className="text-green-400 font-semibold">Next.js</span>
             {' & '}
             <span className="text-green-400 font-semibold">Tailwind CSS</span>
-            {' · '}
-            <span className="text-slate-400">Designed &amp; developed by </span>
+            {' · '}Designed &amp; developed by{' '}
             <span className="text-green-400 font-semibold">
               Muhamaad Azizul Hakim
             </span>

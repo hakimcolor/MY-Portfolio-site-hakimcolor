@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@source '../components/**/*.{js,jsx}';
 
 @theme {
   --color-primary: #22c55e;
@@ -7,22 +8,6 @@
   --color-surface-dark: #151e32;
   --color-accent-pink: #f43f5e;
   --color-accent-purple: #8b5cf6;
-}
-
-/* Hide default cursor */
-* {
-  cursor: none !important;
-}
-
-/* Cursor pointer for interactive elements */
-a,
-button,
-input,
-textarea,
-select,
-[role='button'],
-.cursor-pointer {
-  cursor: none !important;
 }
 
 ::-webkit-scrollbar {
@@ -53,7 +38,6 @@ select,
 body {
   min-height: max(884px, 100dvh);
   font-family: var(--font-space), sans-serif;
-  background-color: #0b1120;
 }
 
 h1,

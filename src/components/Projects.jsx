@@ -26,7 +26,7 @@ const projects = [
       'CI/CD',
     ],
   },
-  ,
+
   {
     title: 'FixItNow',
     description:
@@ -51,7 +51,7 @@ const projects = [
       'Vercel',
     ],
   },
-  ,
+
   {
     title: 'Finance Management App',
     description:
@@ -108,7 +108,7 @@ const projects = [
 export default function Projects() {
   return (
     <section
-      className="flex flex-col gap-12 px-6 py-16 max-w-[80%] mx-auto w-full"
+      className="flex flex-col gap-12 py-16 w-[95%] mx-auto"
       id="projects"
     >
       <div className="h-px w-full bg-slate-800 mb-4" />
@@ -161,7 +161,7 @@ export default function Projects() {
             >
               {/* Image side */}
               <motion.div
-                className="w-full lg:w-1/2 h-72 lg:h-auto relative overflow-hidden shrink-0 min-h-120"
+                className="w-full lg:w-1/2 h-56 sm:h-72 lg:h-auto relative overflow-hidden shrink-0 lg:min-h-96"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.4 }}
               >
@@ -174,7 +174,7 @@ export default function Projects() {
                   className="object-cover transition-transform duration-500 hover:scale-105"
                 />
                 {/* Dark overlay with links on hover */}
-                <div className="absolute inset-0 bg-background-dark/50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                <div className="absolute inset-0 bg-[#0b1120]/70 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                   <a
                     href={project.liveUrl}
                     target="_blank"
@@ -199,7 +199,7 @@ export default function Projects() {
               </motion.div>
 
               {/* Text side */}
-              <div className="flex flex-col justify-center gap-5 w-full lg:w-1/2 p-8 lg:p-10 bg-surface-dark/40">
+              <div className="flex flex-col justify-center gap-4 w-full lg:w-1/2 p-5 sm:p-8 lg:p-10 bg-[#0f1929]">
                 <div className="flex items-center gap-2">
                   <div className="w-6 h-px bg-green-500" />
                   <span className="font-body text-green-400 text-xs uppercase tracking-widest font-semibold">

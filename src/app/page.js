@@ -10,7 +10,7 @@ import Contact from '@/components/Contact';
 import Sidebar from '@/components/Sidebar';
 import LoadingScreen from '@/components/LoadingScreen';
 import Footer from '@/components/Footer';
-import CustomCursor from '@/components/CustomCursor';
+import ThreeBackground from '@/components/ThreeBackground';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <>
-      <CustomCursor />
+      <ThreeBackground />
       <AnimatePresence mode="wait">
         {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
       </AnimatePresence>
@@ -31,10 +31,11 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
+          style={{ position: 'relative', zIndex: 1 }}
         >
           <Header />
           <Sidebar />
-          <div className="md:pl-24">
+          <div className="md:pl-24 pb-16 md:pb-0">
             <Hero />
             <main className="flex-1 w-full flex flex-col">
               <About />

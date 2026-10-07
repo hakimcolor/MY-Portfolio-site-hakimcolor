@@ -102,7 +102,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="w-full px-6 py-20 max-w-[80%] mx-auto" id="contact">
+    <section className="py-20 w-[95%] mx-auto" id="contact">
       <div className="h-px w-full bg-slate-800 mb-12"></div>
 
       <motion.div
@@ -223,7 +223,7 @@ export default function Contact() {
 
           {/* Contact Form */}
           <motion.div
-            className="bg-surface-dark/40 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 lg:p-8"
+            className="bg-[#0f1929] border border-slate-800 rounded-2xl p-6 lg:p-8"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -253,7 +253,7 @@ export default function Contact() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -269,7 +269,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#67C090] transition-colors"
+                      className="w-full px-4 py-3.5 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-green-500 transition-colors text-base"
                       placeholder="Enter your name"
                     />
                   </motion.div>
@@ -288,7 +288,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#67C090] transition-colors"
+                      className="w-full px-4 py-3.5 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-green-500 transition-colors text-base"
                       placeholder="Enter your email"
                     />
                   </motion.div>
@@ -309,7 +309,7 @@ export default function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#67C090] transition-colors"
+                    className="w-full px-4 py-3.5 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-green-500 transition-colors text-base"
                     placeholder="Enter project inquiry"
                   />
                 </motion.div>
@@ -329,7 +329,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#67C090] transition-colors resize-none"
+                    className="w-full px-4 py-3.5 bg-surface-dark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-green-500 transition-colors resize-none text-base"
                     placeholder="Enter your message here..."
                   />
                 </motion.div>
