@@ -231,9 +231,9 @@ export default function ThreeBackground() {
           const x = baseX[i],
             z = baseZ[i];
           posArr[i * 3 + 1] =
-            Math.sin(x * 0.42 + t * 0.85) * 0.9 +
-            Math.sin(z * 0.38 + t * 0.65) * 0.75 +
-            Math.sin((x + z) * 0.2 + t * 1.1) * 0.45;
+            Math.sin(x * 0.42 + t * 0.85) * 1.2 +
+            Math.sin(z * 0.38 + t * 0.65) * 1.0 +
+            Math.sin((x + z) * 0.2 + t * 1.1) * 0.6;
         }
         gridGeo.attributes.position.needsUpdate = true;
       }
