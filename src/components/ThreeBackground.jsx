@@ -249,7 +249,7 @@ export default function ThreeBackground() {
       orbData.forEach(
         ({ mesh, speed, offset, rotX, rotZ, isRing, ringIdx }) => {
           if (isRing) {
-            const speeds = [0.09, 0.06, 0.04];
+            const speeds = [0.14, 0.09, 0.06];
             mesh.rotation.z +=
               speeds[ringIdx] * (ringIdx % 2 === 0 ? 1 : -1) * 0.016;
             return;
