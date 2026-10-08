@@ -24,7 +24,7 @@ export default function ThreeBackground() {
       isMobile ? 1 : Math.min(window.devicePixelRatio, 1.5)
     );
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
+    renderer.toneMappingExposure = 1.4;
     mount.appendChild(renderer.domElement);
 
     // ── Scene / Camera ───────────────────────────────────────────
