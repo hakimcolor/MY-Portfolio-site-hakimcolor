@@ -79,10 +79,10 @@ export default function ThreeBackground() {
 
     const gridMat = new THREE.PointsMaterial({
       vertexColors: true,
-      size: isMobile ? 0.1 : 0.09,
+      size: isMobile ? 0.13 : 0.11,
       sizeAttenuation: true,
       transparent: true,
-      opacity: isMobile ? 0.75 : 0.9,
+      opacity: isMobile ? 0.8 : 0.92,
       depthWrite: false,
     });
 
