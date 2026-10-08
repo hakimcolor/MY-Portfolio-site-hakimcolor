@@ -2,105 +2,133 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-// ── Tech icon definitions (colour + label) ──────────────────────
+// ── Tech definitions — SVG path or unicode symbol + color ────────
 const TECHS = [
-  // Orbit 1 — closest
-  { label: 'HTML', color: '#e34c26', orbit: 1 },
-  { label: 'CSS', color: '#1572b6', orbit: 1 },
-  { label: 'JS', color: '#f7df1e', orbit: 1 },
-  { label: 'TS', color: '#3178c6', orbit: 1 },
+  // Orbit 1
+  { label: 'HTML5', color: '#e34c26', orbit: 1, symbol: '⬡', bg: '#e34c26' },
+  { label: 'CSS3', color: '#1572b6', orbit: 1, symbol: '◈', bg: '#1572b6' },
+  {
+    label: 'JavaScript',
+    color: '#f7df1e',
+    orbit: 1,
+    symbol: 'JS',
+    bg: '#f7df1e',
+  },
+  {
+    label: 'TypeScript',
+    color: '#3178c6',
+    orbit: 1,
+    symbol: 'TS',
+    bg: '#3178c6',
+  },
   // Orbit 2
-  { label: 'React', color: '#61dafb', orbit: 2 },
-  { label: 'Next.js', color: '#ffffff', orbit: 2 },
-  { label: 'Tailwind', color: '#38bdf8', orbit: 2 },
-  { label: 'Node.js', color: '#339933', orbit: 2 },
-  { label: 'Express', color: '#aaaaaa', orbit: 2 },
+  { label: 'React', color: '#61dafb', orbit: 2, symbol: '⚛', bg: '#61dafb' },
+  { label: 'Next.js', color: '#ffffff', orbit: 2, symbol: 'N›', bg: '#111111' },
+  { label: 'Tailwind', color: '#38bdf8', orbit: 2, symbol: '~', bg: '#0f172a' },
+  { label: 'Node.js', color: '#339933', orbit: 2, symbol: '⬡', bg: '#1a2e1a' },
+  { label: 'Express', color: '#cccccc', orbit: 2, symbol: 'Ex', bg: '#1c1c1c' },
   // Orbit 3
-  { label: 'MongoDB', color: '#47a248', orbit: 3 },
-  { label: 'PostgreSQL', color: '#4169e1', orbit: 3 },
-  { label: 'ORM', color: '#5a67d8', orbit: 3 },
-  { label: 'Redis', color: '#dc382d', orbit: 3 },
+  { label: 'MongoDB', color: '#47a248', orbit: 3, symbol: '🍃', bg: '#1a2e1a' },
+  {
+    label: 'PostgreSQL',
+    color: '#4169e1',
+    orbit: 3,
+    symbol: '🐘',
+    bg: '#0d1433',
+  },
+  { label: 'Prisma', color: '#5a67d8', orbit: 3, symbol: '◆', bg: '#1a1a2e' },
+  { label: 'MySQL', color: '#00758f', orbit: 3, symbol: 'My', bg: '#001a20' },
   // Orbit 4
-  { label: 'Git', color: '#f05032', orbit: 4 },
-  { label: 'GitHub', color: '#ffffff', orbit: 4 },
-  { label: 'Docker', color: '#2496ed', orbit: 4 },
-  { label: 'CI/CD', color: '#22c55e', orbit: 4 },
-  { label: 'VS Code', color: '#007acc', orbit: 4 },
-  // Orbit 5 — outermost
-  { label: 'WordPress', color: '#21759b', orbit: 5 },
-  { label: 'Elementor', color: '#e2155a', orbit: 5 },
-  { label: 'WooCommerce', color: '#96588a', orbit: 5 },
-  { label: 'Postman', color: '#ff6c37', orbit: 5 },
-  { label: 'Beekeeper', color: '#22c55e', orbit: 5 },
-  { label: 'Payment GW', color: '#635bff', orbit: 5 },
-  { label: 'ERD', color: '#f59e0b', orbit: 5 },
+  { label: 'Git', color: '#f05032', orbit: 4, symbol: '⑂', bg: '#2e0d08' },
+  { label: 'GitHub', color: '#ffffff', orbit: 4, symbol: '🐙', bg: '#161b22' },
+  { label: 'Docker', color: '#2496ed', orbit: 4, symbol: '🐳', bg: '#051929' },
+  { label: 'VS Code', color: '#007acc', orbit: 4, symbol: '⌨', bg: '#001a2e' },
+  { label: 'Postman', color: '#ff6c37', orbit: 4, symbol: '📬', bg: '#2e1208' },
+  // Orbit 5
+  {
+    label: 'WordPress',
+    color: '#21759b',
+    orbit: 5,
+    symbol: 'W',
+    bg: '#071520',
+  },
+  {
+    label: 'Elementor',
+    color: '#e2155a',
+    orbit: 5,
+    symbol: '⬛',
+    bg: '#2e0315',
+  },
+  {
+    label: 'WooCommerce',
+    color: '#96588a',
+    orbit: 5,
+    symbol: '🛒',
+    bg: '#1e0d20',
+  },
+  { label: 'Stripe', color: '#635bff', orbit: 5, symbol: '💳', bg: '#0d0b2e' },
+  { label: 'CI/CD', color: '#22c55e', orbit: 5, symbol: '⟳', bg: '#071a0e' },
+  {
+    label: 'Docker Hub',
+    color: '#2496ed',
+    orbit: 5,
+    symbol: '⊞',
+    bg: '#051929',
+  },
+  { label: 'ERD', color: '#f59e0b', orbit: 5, symbol: '🗄', bg: '#1e1200' },
 ];
 
-// Draw a rounded-rect label onto a canvas, return as texture
-function makeLabelTexture(label, color) {
-  const W = 128,
-    H = 64;
+// Draw a clean circle icon — symbol inside, colored ring
+function makeIconTexture(tech) {
+  const S = 96;
   const cv = document.createElement('canvas');
-  cv.width = W;
-  cv.height = H;
+  cv.width = S;
+  cv.height = S;
   const ctx = cv.getContext('2d');
 
-  // Background pill
-  const r = 14;
+  const cx = S / 2,
+    cy = S / 2,
+    R = S / 2 - 4;
+
+  // Outer glow
+  const glow = ctx.createRadialGradient(cx, cy, R * 0.5, cx, cy, R + 4);
+  glow.addColorStop(0, tech.color + '44');
+  glow.addColorStop(1, 'transparent');
+  ctx.fillStyle = glow;
   ctx.beginPath();
-  ctx.moveTo(r, 0);
-  ctx.lineTo(W - r, 0);
-  ctx.quadraticCurveTo(W, 0, W, r);
-  ctx.lineTo(W, H - r);
-  ctx.quadraticCurveTo(W, H, W - r, H);
-  ctx.lineTo(r, H);
-  ctx.quadraticCurveTo(0, H, 0, H - r);
-  ctx.lineTo(0, r);
-  ctx.quadraticCurveTo(0, 0, r, 0);
-  ctx.closePath();
-  ctx.fillStyle = 'rgba(8,14,30,0.88)';
+  ctx.arc(cx, cy, R + 4, 0, Math.PI * 2);
   ctx.fill();
 
-  // Coloured border
-  ctx.strokeStyle = color;
+  // Circle bg
+  ctx.beginPath();
+  ctx.arc(cx, cy, R, 0, Math.PI * 2);
+  ctx.fillStyle = tech.bg;
+  ctx.fill();
+
+  // Colored ring
+  ctx.beginPath();
+  ctx.arc(cx, cy, R, 0, Math.PI * 2);
+  ctx.strokeStyle = tech.color;
   ctx.lineWidth = 3;
   ctx.stroke();
 
-  // Glow dot
-  const dotR = 7;
-  ctx.beginPath();
-  ctx.arc(dotR + 6, H / 2, dotR, 0, Math.PI * 2);
-  ctx.fillStyle = color;
-  ctx.fill();
-  // dot glow
-  const grd = ctx.createRadialGradient(
-    dotR + 6,
-    H / 2,
-    0,
-    dotR + 6,
-    H / 2,
-    dotR * 2.5
-  );
-  grd.addColorStop(0, color + 'aa');
-  grd.addColorStop(1, 'transparent');
-  ctx.fillStyle = grd;
-  ctx.beginPath();
-  ctx.arc(dotR + 6, H / 2, dotR * 2.5, 0, Math.PI * 2);
-  ctx.fill();
-
-  // Label text
-  ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${label.length > 8 ? 13 : 15}px monospace`;
-  ctx.textAlign = 'left';
+  // Symbol / emoji
+  const sym = tech.symbol;
+  const isEmoji = /\p{Emoji}/u.test(sym) && sym.length <= 2;
+  ctx.font = isEmoji
+    ? `${S * 0.38}px serif`
+    : `bold ${sym.length > 2 ? S * 0.28 : S * 0.36}px monospace`;
+  ctx.fillStyle = isEmoji ? '#ffffff' : tech.color;
+  ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText(label, dotR * 2 + 14, H / 2);
+  ctx.fillText(sym, cx, cy + 1);
 
   const tex = new THREE.CanvasTexture(cv);
   tex.needsUpdate = true;
   return tex;
 }
 
-// Draw CPU chip texture
+// CPU chip texture
 function makeCpuTexture() {
   const S = 256;
   const cv = document.createElement('canvas');
@@ -108,65 +136,67 @@ function makeCpuTexture() {
   cv.height = S;
   const ctx = cv.getContext('2d');
 
-  // Background
-  ctx.fillStyle = '#080e1e';
+  ctx.fillStyle = '#060d1a';
   ctx.fillRect(0, 0, S, S);
 
-  // Outer border
-  ctx.strokeStyle = '#22c55e';
-  ctx.lineWidth = 4;
-  ctx.strokeRect(6, 6, S - 12, S - 12);
+  // Outer glow ring
+  const grd = ctx.createRadialGradient(S / 2, S / 2, 40, S / 2, S / 2, S / 2);
+  grd.addColorStop(0, 'rgba(34,197,94,0.5)');
+  grd.addColorStop(0.5, 'rgba(6,182,212,0.2)');
+  grd.addColorStop(1, 'transparent');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, S, S);
 
-  // Inner chip body
+  // Chip body
   ctx.fillStyle = '#0f1e38';
-  ctx.fillRect(30, 30, S - 60, S - 60);
-  ctx.strokeStyle = '#06b6d4';
-  ctx.lineWidth = 2;
-  ctx.strokeRect(30, 30, S - 60, S - 60);
+  ctx.fillRect(28, 28, S - 56, S - 56);
+  ctx.strokeStyle = '#22c55e';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(28, 28, S - 56, S - 56);
 
-  // Grid lines on chip
-  ctx.strokeStyle = 'rgba(6,182,212,0.15)';
+  // Grid
+  ctx.strokeStyle = 'rgba(6,182,212,0.12)';
   ctx.lineWidth = 1;
-  for (let i = 1; i < 6; i++) {
-    const x = 30 + i * ((S - 60) / 6);
+  for (let i = 1; i < 7; i++) {
+    const v = 28 + i * ((S - 56) / 7);
     ctx.beginPath();
-    ctx.moveTo(x, 30);
-    ctx.lineTo(x, S - 30);
+    ctx.moveTo(v, 28);
+    ctx.lineTo(v, S - 28);
     ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(30, x);
-    ctx.lineTo(S - 30, x);
+    ctx.moveTo(28, v);
+    ctx.lineTo(S - 28, v);
     ctx.stroke();
   }
 
-  // Center core glow
-  const grd = ctx.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, 55);
-  grd.addColorStop(0, 'rgba(34,197,94,0.9)');
-  grd.addColorStop(0.4, 'rgba(6,182,212,0.5)');
-  grd.addColorStop(1, 'transparent');
-  ctx.fillStyle = grd;
+  // Core
   ctx.beginPath();
-  ctx.arc(S / 2, S / 2, 55, 0, Math.PI * 2);
+  ctx.arc(S / 2, S / 2, 38, 0, Math.PI * 2);
+  const core = ctx.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, 38);
+  core.addColorStop(0, 'rgba(34,197,94,1)');
+  core.addColorStop(0.6, 'rgba(6,182,212,0.7)');
+  core.addColorStop(1, 'transparent');
+  ctx.fillStyle = core;
   ctx.fill();
 
-  // CPU text
-  ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 22px monospace';
+  // Text
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 20px monospace';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('CPU', S / 2, S / 2 - 10);
-  ctx.font = '11px monospace';
+  ctx.fillText('CPU', S / 2, S / 2 - 8);
   ctx.fillStyle = '#06b6d4';
-  ctx.fillText('FULL-STACK', S / 2, S / 2 + 12);
+  ctx.font = '9px monospace';
+  ctx.fillText('FULL-STACK', S / 2, S / 2 + 10);
 
-  // Pins (left & right)
+  // Pins
   ctx.fillStyle = '#22c55e';
-  for (let i = 0; i < 6; i++) {
-    const y = 50 + i * 28;
-    ctx.fillRect(8, y, 18, 6); // left
-    ctx.fillRect(S - 26, y, 18, 6); // right
-    ctx.fillRect(y, 8, 6, 18); // top
-    ctx.fillRect(y, S - 26, 6, 18); // bottom
+  for (let i = 0; i < 7; i++) {
+    const p = 40 + i * 27;
+    ctx.fillRect(6, p, 16, 5);
+    ctx.fillRect(S - 22, p, 16, 5);
+    ctx.fillRect(p, 6, 5, 16);
+    ctx.fillRect(p, S - 22, 5, 16);
   }
 
   const tex = new THREE.CanvasTexture(cv);
@@ -176,14 +206,15 @@ function makeCpuTexture() {
 
 export default function ThreeBackground() {
   const mountRef = useRef(null);
+  const tooltipRef = useRef(null);
 
   useEffect(() => {
     const mount = mountRef.current;
     if (!mount) return;
 
     const isMobile = window.innerWidth < 768;
-    const W = window.innerWidth;
-    const H = window.innerHeight;
+    const W = window.innerWidth,
+      H = window.innerHeight;
 
     // ── Renderer ─────────────────────────────────────────────────
     const renderer = new THREE.WebGLRenderer({
@@ -202,68 +233,68 @@ export default function ThreeBackground() {
     // ── Scene / Camera ───────────────────────────────────────────
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#05080f');
-    scene.fog = new THREE.FogExp2('#05080f', isMobile ? 0.018 : 0.009);
+    scene.fog = new THREE.FogExp2('#05080f', isMobile ? 0.016 : 0.008);
 
-    const camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 300);
-    // Tilt camera for a cinematic top-down-ish angle
-    camera.position.set(0, isMobile ? 22 : 18, isMobile ? 28 : 38);
+    const camera = new THREE.PerspectiveCamera(58, W / H, 0.1, 300);
+    camera.position.set(0, isMobile ? 24 : 20, isMobile ? 26 : 36);
     camera.lookAt(0, 0, 0);
 
-    // ── Lighting ─────────────────────────────────────────────────
-    scene.add(new THREE.AmbientLight('#1a1a2e', 2));
+    // ── Lights ───────────────────────────────────────────────────
+    scene.add(new THREE.AmbientLight('#1a1a2e', 2.5));
+    const pGreen = new THREE.PointLight('#22c55e', 4, 70);
+    pGreen.position.set(0, 2, 0);
+    scene.add(pGreen);
+    const pCyan = new THREE.PointLight('#06b6d4', 2.5, 90);
+    pCyan.position.set(12, 6, -12);
+    scene.add(pCyan);
+    const pPurple = new THREE.PointLight('#7c3aed', 2, 70);
+    pPurple.position.set(-12, -4, 12);
+    scene.add(pPurple);
 
-    const pointGreen = new THREE.PointLight('#22c55e', 3, 60);
-    pointGreen.position.set(0, 0, 0);
-    scene.add(pointGreen);
-
-    const pointCyan = new THREE.PointLight('#06b6d4', 2, 80);
-    pointCyan.position.set(10, 5, -10);
-    scene.add(pointCyan);
-
-    const pointPurple = new THREE.PointLight('#7c3aed', 1.5, 60);
-    pointPurple.position.set(-10, -5, 10);
-    scene.add(pointPurple);
-
-    // ── Starfield ────────────────────────────────────────────────
-    const starCount = isMobile ? 600 : 1400;
-    const starPos = new Float32Array(starCount * 3);
+    // ── Stars ────────────────────────────────────────────────────
+    const starCount = isMobile ? 700 : 1600;
+    const sPos = new Float32Array(starCount * 3);
     for (let i = 0; i < starCount; i++) {
-      starPos[i * 3] = (Math.random() - 0.5) * 250;
-      starPos[i * 3 + 1] = (Math.random() - 0.5) * 250;
-      starPos[i * 3 + 2] = (Math.random() - 0.5) * 250;
+      sPos[i * 3] = (Math.random() - 0.5) * 280;
+      sPos[i * 3 + 1] = (Math.random() - 0.5) * 280;
+      sPos[i * 3 + 2] = (Math.random() - 0.5) * 280;
     }
-    const starGeo = new THREE.BufferGeometry();
-    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-    const starMat = new THREE.PointsMaterial({
-      color: '#ffffff',
-      size: 0.18,
-      transparent: true,
-      opacity: 0.55,
-      depthWrite: false,
-    });
-    scene.add(new THREE.Points(starGeo, starMat));
+    const sGeo = new THREE.BufferGeometry();
+    sGeo.setAttribute('position', new THREE.BufferAttribute(sPos, 3));
+    scene.add(
+      new THREE.Points(
+        sGeo,
+        new THREE.PointsMaterial({
+          color: '#ffffff',
+          size: 0.2,
+          transparent: true,
+          opacity: 0.5,
+          depthWrite: false,
+        })
+      )
+    );
 
-    // ── CPU at center ────────────────────────────────────────────
-    const cpuSize = isMobile ? 2.2 : 3.0;
-    const cpuGeo = new THREE.BoxGeometry(cpuSize, cpuSize * 0.18, cpuSize);
+    // ── CPU center ───────────────────────────────────────────────
+    const cpuSize = isMobile ? 2.4 : 3.2;
+    const cpuGeo = new THREE.BoxGeometry(cpuSize, cpuSize * 0.15, cpuSize);
     const cpuTex = makeCpuTexture();
     const cpuMat = new THREE.MeshStandardMaterial({
       map: cpuTex,
       emissiveMap: cpuTex,
       emissive: new THREE.Color('#22c55e'),
-      emissiveIntensity: 0.4,
-      metalness: 0.8,
-      roughness: 0.2,
+      emissiveIntensity: 0.5,
+      metalness: 0.85,
+      roughness: 0.15,
     });
     const cpu = new THREE.Mesh(cpuGeo, cpuMat);
     scene.add(cpu);
 
-    // CPU glow halo
-    const haloGeo = new THREE.RingGeometry(cpuSize * 0.6, cpuSize * 0.85, 64);
+    // Halo ring
+    const haloGeo = new THREE.RingGeometry(cpuSize * 0.55, cpuSize * 0.8, 64);
     const haloMat = new THREE.MeshBasicMaterial({
       color: '#22c55e',
       transparent: true,
-      opacity: 0.18,
+      opacity: 0.2,
       side: THREE.DoubleSide,
     });
     const halo = new THREE.Mesh(haloGeo, haloMat);
@@ -271,84 +302,132 @@ export default function ThreeBackground() {
     scene.add(halo);
 
     // ── Orbit rings ──────────────────────────────────────────────
-    const ORBIT_RADII = isMobile
-      ? [5, 8.5, 12, 15.5, 19]
-      : [6.5, 11, 15.5, 20, 25];
-    const ORBIT_COLORS = [
-      '#22c55e',
-      '#06b6d4',
-      '#7c3aed',
-      '#f43f5e',
-      '#f59e0b',
-    ];
-    const ORBIT_TILTS = [0, 0.12, -0.08, 0.15, -0.06]; // slight tilt for depth
-    const ORBIT_SPEEDS = isMobile
-      ? [0.45, 0.3, 0.2, 0.14, 0.09]
-      : [0.4, 0.27, 0.18, 0.12, 0.08];
+    const RADII = isMobile ? [5.5, 9, 13, 17, 21] : [7, 12, 17, 22, 27];
+    const OCOLOR = ['#22c55e', '#06b6d4', '#7c3aed', '#f43f5e', '#f59e0b'];
+    const OTILTS = [0, 0.1, -0.07, 0.13, -0.05];
+    const OSPEED = isMobile
+      ? [0.42, 0.28, 0.19, 0.13, 0.085]
+      : [0.38, 0.25, 0.17, 0.11, 0.075];
 
-    ORBIT_RADII.forEach((rad, idx) => {
+    RADII.forEach((rad, idx) => {
       const pts = [];
       for (let i = 0; i <= 128; i++) {
         const a = (i / 128) * Math.PI * 2;
         pts.push(new THREE.Vector3(Math.cos(a) * rad, 0, Math.sin(a) * rad));
       }
-      const ringGeo = new THREE.BufferGeometry().setFromPoints(pts);
-      const ringMat = new THREE.LineBasicMaterial({
-        color: ORBIT_COLORS[idx],
+      const rGeo = new THREE.BufferGeometry().setFromPoints(pts);
+      const rMat = new THREE.LineBasicMaterial({
+        color: OCOLOR[idx],
         transparent: true,
-        opacity: isMobile ? 0.18 : 0.22,
+        opacity: isMobile ? 0.2 : 0.25,
       });
-      const ring = new THREE.LineLoop(ringGeo, ringMat);
-      ring.rotation.x = ORBIT_TILTS[idx];
-      scene.add(ring);
+      const rLine = new THREE.LineLoop(rGeo, rMat);
+      rLine.rotation.x = OTILTS[idx];
+      scene.add(rLine);
     });
 
-    // ── Tech icon sprites ─────────────────────────────────────────
-    // Group per orbit so we can rotate whole group
-    const orbitGroups = ORBIT_RADII.map(() => {
+    // ── Tech icons ───────────────────────────────────────────────
+    const orbitGroups = RADII.map(() => {
       const g = new THREE.Group();
       scene.add(g);
       return g;
     });
-
-    // Distribute techs evenly within each orbit
     const byOrbit = [[], [], [], [], []];
     TECHS.forEach((t) => byOrbit[t.orbit - 1].push(t));
 
-    const allNodes = []; // { sprite, orbitIdx, angleOffset, bobOffset }
+    const spriteMap = new Map(); // sprite → tech label (for click)
+    const allSprites = [];
 
     byOrbit.forEach((group, oi) => {
-      const rad = ORBIT_RADII[oi];
+      const rad = RADII[oi];
       group.forEach((tech, ti) => {
-        const angleOffset = (ti / group.length) * Math.PI * 2;
-        const tex = makeLabelTexture(tech.label, tech.color);
+        const angle = (ti / group.length) * Math.PI * 2;
+        const tex = makeIconTexture(tech);
         const mat = new THREE.SpriteMaterial({
           map: tex,
           transparent: true,
-          opacity: 0.95,
+          opacity: 0.92,
           depthWrite: false,
         });
         const sprite = new THREE.Sprite(mat);
-        const spriteScale = isMobile ? 1.6 : 2.0;
-        sprite.scale.set(spriteScale, spriteScale * 0.5, 1);
-        // Initial position
-        sprite.position.set(
-          Math.cos(angleOffset) * rad,
-          0,
-          Math.sin(angleOffset) * rad
-        );
+        const sc = isMobile ? 1.5 : 1.9;
+        sprite.scale.set(sc, sc, 1);
+        sprite.position.set(Math.cos(angle) * rad, 0, Math.sin(angle) * rad);
         orbitGroups[oi].add(sprite);
-        allNodes.push({
-          sprite,
-          orbitIdx: oi,
-          angleOffset,
-          bobOffset: Math.random() * Math.PI * 2,
-          rad,
-        });
+        spriteMap.set(sprite, tech.label);
+        allSprites.push({ sprite, bobOffset: Math.random() * Math.PI * 2 });
       });
     });
 
-    // ── Scroll / mouse ───────────────────────────────────────────
+    // ── Tooltip DOM element ───────────────────────────────────────
+    const tooltip = document.createElement('div');
+    tooltip.style.cssText = `
+      position:fixed; padding:6px 14px; background:rgba(8,14,30,0.95);
+      border:1px solid #22c55e; border-radius:8px; color:#fff;
+      font:bold 13px monospace; pointer-events:none; opacity:0;
+      transition:opacity 0.2s; z-index:9999; white-space:nowrap;
+      box-shadow:0 0 14px rgba(34,197,94,0.4);
+    `;
+    document.body.appendChild(tooltip);
+    tooltipRef.current = tooltip;
+
+    // ── Raycaster for click/hover ─────────────────────────────────
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+
+    const getSprites = () => [...spriteMap.keys()];
+
+    const onPointerMove = (e) => {
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      pointer.x = (clientX / window.innerWidth) * 2 - 1;
+      pointer.y = -(clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(getSprites());
+      if (hits.length > 0) {
+        const label = spriteMap.get(hits[0].object);
+        tooltip.textContent = label;
+        tooltip.style.left = clientX + 14 + 'px';
+        tooltip.style.top = clientY - 10 + 'px';
+        tooltip.style.opacity = '1';
+        renderer.domElement.style.cursor = 'pointer';
+      } else {
+        tooltip.style.opacity = '0';
+        renderer.domElement.style.cursor = 'default';
+      }
+      // mouse parallax
+      if (!isMobile) {
+        mouseX = (clientX / window.innerWidth - 0.5) * 2;
+        mouseY = (clientY / window.innerHeight - 0.5) * 2;
+      }
+    };
+
+    const onPointerDown = (e) => {
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      pointer.x = (clientX / window.innerWidth) * 2 - 1;
+      pointer.y = -(clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(getSprites());
+      if (hits.length > 0) {
+        const label = spriteMap.get(hits[0].object);
+        // Pulse clicked sprite
+        const sp = hits[0].object;
+        const origScale = sp.scale.x;
+        sp.scale.set(origScale * 1.5, origScale * 1.5, 1);
+        setTimeout(() => sp.scale.set(origScale, origScale, 1), 300);
+      }
+    };
+
+    // pointerEvents must be active for click
+    renderer.domElement.style.pointerEvents = 'auto';
+    renderer.domElement.addEventListener('mousemove', onPointerMove);
+    renderer.domElement.addEventListener('click', onPointerDown);
+    renderer.domElement.addEventListener('touchstart', onPointerDown, {
+      passive: true,
+    });
+
+    // ── Scroll ───────────────────────────────────────────────────
     let scrollY = 0,
       targetScrollY = 0,
       mouseX = 0,
@@ -356,12 +435,7 @@ export default function ThreeBackground() {
     const onScroll = () => {
       targetScrollY = window.scrollY;
     };
-    const onMouse = (e) => {
-      mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-      mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-    };
     window.addEventListener('scroll', onScroll, { passive: true });
-    if (!isMobile) window.addEventListener('mousemove', onMouse);
 
     const onResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -370,7 +444,7 @@ export default function ThreeBackground() {
     };
     window.addEventListener('resize', onResize);
 
-    // ── Animation ────────────────────────────────────────────────
+    // ── Animate ──────────────────────────────────────────────────
     let animId;
     const clock = new THREE.Clock();
     let frame = 0;
@@ -381,57 +455,48 @@ export default function ThreeBackground() {
       const t = clock.getElapsedTime();
 
       scrollY += (targetScrollY - scrollY) * 0.05;
-
-      // Camera position — scroll pulls back, mouse tilts
-      camera.position.y = (isMobile ? 22 : 18) + scrollY * 0.003;
+      camera.position.y = (isMobile ? 24 : 20) + scrollY * 0.003;
       if (!isMobile) {
-        camera.position.x += (mouseX * 4 - camera.position.x) * 0.02;
-        camera.position.y += (-mouseY * 2 - (camera.position.y - 18)) * 0.02;
+        camera.position.x += (mouseX * 4 - camera.position.x) * 0.022;
+        camera.position.y += (-mouseY * 2 - (camera.position.y - 20)) * 0.022;
       }
       camera.lookAt(0, 0, 0);
 
-      // Rotate each orbit group at its own speed
       orbitGroups.forEach((g, i) => {
-        g.rotation.y = t * ORBIT_SPEEDS[i];
+        g.rotation.y = t * OSPEED[i];
       });
 
-      // CPU slow spin + pulse
-      cpu.rotation.y = t * 0.2;
-      const pulse = 0.35 + Math.sin(t * 1.8) * 0.15;
-      cpuMat.emissiveIntensity = pulse;
-      halo.material.opacity = 0.1 + Math.sin(t * 1.8) * 0.08;
+      cpu.rotation.y = t * 0.18;
+      cpuMat.emissiveIntensity = 0.35 + Math.sin(t * 2) * 0.18;
+      halo.material.opacity = 0.12 + Math.sin(t * 2) * 0.08;
+      pGreen.intensity = 3.5 + Math.sin(t * 2.5) * 1.0;
+      pCyan.intensity = 2.0 + Math.sin(t * 1.6 + 1) * 0.6;
 
-      // Point light pulse
-      pointGreen.intensity = 2.5 + Math.sin(t * 2.2) * 0.8;
-      pointCyan.intensity = 1.5 + Math.sin(t * 1.4 + 1) * 0.5;
-
-      // Sprites — keep upright & add gentle bob
       if (!isMobile || frame % 2 === 0) {
-        allNodes.forEach(({ sprite, bobOffset }) => {
-          sprite.position.y = Math.sin(t * 0.8 + bobOffset) * 0.35;
+        allSprites.forEach(({ sprite, bobOffset }) => {
+          sprite.position.y = Math.sin(t * 0.75 + bobOffset) * 0.4;
         });
       }
 
       renderer.render(scene, camera);
     };
-
     animate();
 
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('mousemove', onMouse);
       window.removeEventListener('resize', onResize);
+      renderer.domElement.removeEventListener('mousemove', onPointerMove);
+      renderer.domElement.removeEventListener('click', onPointerDown);
+      renderer.domElement.removeEventListener('touchstart', onPointerDown);
       renderer.dispose();
+      if (tooltip.parentNode) tooltip.parentNode.removeChild(tooltip);
       if (mount.contains(renderer.domElement))
         mount.removeChild(renderer.domElement);
     };
   }, []);
 
   return (
-    <div
-      ref={mountRef}
-      style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }}
-    />
+    <div ref={mountRef} style={{ position: 'fixed', inset: 0, zIndex: 0 }} />
   );
 }

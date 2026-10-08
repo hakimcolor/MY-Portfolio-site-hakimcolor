@@ -377,47 +377,44 @@ function Skills() {
         {skillCategories.map((category, catIndex) => (
           <motion.div
             key={category.title}
-            className="border border-slate-800 rounded-2xl p-6 shadow-xl overflow-hidden relative"
+            className="border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl overflow-hidden relative bg-[#0a1020]"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: catIndex * 0.08, duration: 0.5 }}
-            whileHover={{ borderColor: 'rgba(34,197,94,0.3)' }}
+            whileHover={{ borderColor: 'rgba(34,197,94,0.4)', y: -2 }}
           >
             {/* Top accent line */}
             <div
               className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl"
-              style={{ backgroundColor: category.accent, opacity: 0.7 }}
+              style={{ backgroundColor: category.accent }}
             />
-            <div className="flex items-center gap-3 mb-5">
+            <div className="flex items-center gap-3 mb-4">
               <div
                 className="w-1 h-6 rounded-full"
                 style={{ backgroundColor: category.accent }}
               />
-              <h4 className="font-title text-lg font-bold">
+              <h4 className="font-title text-base font-bold">
                 <span style={{ color: category.accent }}>{category.title}</span>
                 <span className="text-white">{category.rest}</span>
               </h4>
             </div>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2.5">
               {category.skills.map((skill) => (
                 <motion.div
                   key={skill.name}
-                  className="flex flex-col items-center gap-1.5 p-3 border border-slate-700/50 rounded-xl bg-slate-800/30 cursor-default group"
-                  whileHover={{
-                    scale: 1.1,
-                    y: -3,
-                  }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                  style={{
-                    '--icon-color': skill.color,
-                  }}
+                  className="flex flex-col items-center gap-1.5 p-2.5 sm:p-3 rounded-xl bg-slate-900 border border-slate-700 group"
+                  style={{ minWidth: '52px' }}
+                  whileHover={{ scale: 1.15, y: -4, borderColor: skill.color }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 18 }}
+                  title={skill.name}
                 >
                   <skill.icon
-                    className="text-2xl transition-all duration-200 group-hover:drop-shadow-[0_0_6px_var(--icon-color)]"
-                    style={{ color: skill.color }}
+                    className="text-3xl sm:text-4xl transition-all duration-200 group-hover:drop-shadow-[0_0_8px_var(--ic)]"
+                    style={{ color: skill.color, '--ic': skill.color }}
                   />
-                  <span className="font-body text-xs text-slate-400 whitespace-nowrap group-hover:text-slate-200 transition-colors">
+                  <span className="font-body text-[10px] sm:text-xs text-slate-400 whitespace-nowrap group-hover:text-white transition-colors text-center leading-tight">
                     {skill.name}
                   </span>
                 </motion.div>
