@@ -128,7 +128,7 @@ export default function ThreeBackground() {
       const mat = new THREE.MeshBasicMaterial({
         color: new THREE.Color(orbColors[i % orbColors.length]),
         transparent: true,
-        opacity: 0.28,
+        opacity: 0.35,
         wireframe: true,
       });
       const mesh = new THREE.Mesh(geo, mat);
