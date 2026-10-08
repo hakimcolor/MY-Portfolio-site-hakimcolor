@@ -30,7 +30,7 @@ export default function ThreeBackground() {
     // ── Scene / Camera ───────────────────────────────────────────
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#060d1a');
-    scene.fog = new THREE.FogExp2('#060d1a', isMobile ? 0.022 : 0.013);
+    scene.fog = new THREE.FogExp2('#060d1a', isMobile ? 0.018 : 0.01);
 
     const camera = new THREE.PerspectiveCamera(72, W / H, 0.1, 200);
     camera.position.set(0, 10, 32);
