@@ -1,160 +1,178 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { createElement } from 'react';
 
-// ── Tech definitions — SVG path or unicode symbol + color ────────
+// ── Real react-icon imports ───────────────────────────────────────
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaNodeJs,
+  FaBootstrap,
+  FaWordpress,
+  FaGitAlt,
+  FaGithub,
+  FaNpm,
+  FaElementor,
+  FaDocker,
+} from 'react-icons/fa';
+import {
+  SiTailwindcss,
+  SiExpress,
+  SiMongodb,
+  SiFirebase,
+  SiDaisyui,
+  SiNetlify,
+  SiVercel,
+  SiPostman,
+  SiWoocommerce,
+  SiTypescript,
+  SiPrisma,
+  SiPostgresql,
+  SiMysql,
+  SiStripe,
+} from 'react-icons/si';
+import { TbBrandNextjs, TbBrandVscode } from 'react-icons/tb';
+import { VscDatabase } from 'react-icons/vsc';
+import { MdPayment } from 'react-icons/md';
+
+// ── Tech list — matches Skills section exactly ────────────────────
 const TECHS = [
-  // Orbit 1
-  { label: 'HTML5', color: '#e34c26', orbit: 1, symbol: '⬡', bg: '#e34c26' },
-  { label: 'CSS3', color: '#1572b6', orbit: 1, symbol: '◈', bg: '#1572b6' },
-  {
-    label: 'JavaScript',
-    color: '#f7df1e',
-    orbit: 1,
-    symbol: 'JS',
-    bg: '#f7df1e',
-  },
-  {
-    label: 'TypeScript',
-    color: '#3178c6',
-    orbit: 1,
-    symbol: 'TS',
-    bg: '#3178c6',
-  },
-  // Orbit 2
-  { label: 'React', color: '#61dafb', orbit: 2, symbol: '⚛', bg: '#61dafb' },
-  { label: 'Next.js', color: '#ffffff', orbit: 2, symbol: 'N›', bg: '#111111' },
-  { label: 'Tailwind', color: '#38bdf8', orbit: 2, symbol: '~', bg: '#0f172a' },
-  { label: 'Node.js', color: '#339933', orbit: 2, symbol: '⬡', bg: '#1a2e1a' },
-  { label: 'Express', color: '#cccccc', orbit: 2, symbol: 'Ex', bg: '#1c1c1c' },
-  // Orbit 3
-  { label: 'MongoDB', color: '#47a248', orbit: 3, symbol: '🍃', bg: '#1a2e1a' },
-  {
-    label: 'PostgreSQL',
-    color: '#4169e1',
-    orbit: 3,
-    symbol: '🐘',
-    bg: '#0d1433',
-  },
-  { label: 'Prisma', color: '#5a67d8', orbit: 3, symbol: '◆', bg: '#1a1a2e' },
-  { label: 'MySQL', color: '#00758f', orbit: 3, symbol: 'My', bg: '#001a20' },
-  // Orbit 4
-  { label: 'Git', color: '#f05032', orbit: 4, symbol: '⑂', bg: '#2e0d08' },
-  { label: 'GitHub', color: '#ffffff', orbit: 4, symbol: '🐙', bg: '#161b22' },
-  { label: 'Docker', color: '#2496ed', orbit: 4, symbol: '🐳', bg: '#051929' },
-  { label: 'VS Code', color: '#007acc', orbit: 4, symbol: '⌨', bg: '#001a2e' },
-  { label: 'Postman', color: '#ff6c37', orbit: 4, symbol: '📬', bg: '#2e1208' },
-  // Orbit 5
-  {
-    label: 'WordPress',
-    color: '#21759b',
-    orbit: 5,
-    symbol: 'W',
-    bg: '#071520',
-  },
-  {
-    label: 'Elementor',
-    color: '#e2155a',
-    orbit: 5,
-    symbol: '⬛',
-    bg: '#2e0315',
-  },
-  {
-    label: 'WooCommerce',
-    color: '#96588a',
-    orbit: 5,
-    symbol: '🛒',
-    bg: '#1e0d20',
-  },
-  { label: 'Stripe', color: '#635bff', orbit: 5, symbol: '💳', bg: '#0d0b2e' },
-  { label: 'CI/CD', color: '#22c55e', orbit: 5, symbol: '⟳', bg: '#071a0e' },
-  {
-    label: 'Docker Hub',
-    color: '#2496ed',
-    orbit: 5,
-    symbol: '⊞',
-    bg: '#051929',
-  },
-  { label: 'ERD', color: '#f59e0b', orbit: 5, symbol: '🗄', bg: '#1e1200' },
+  // Orbit 1 — Frontend core
+  { label: 'HTML5', color: '#E34F26', icon: FaHtml5, orbit: 1 },
+  { label: 'CSS3', color: '#1572B6', icon: FaCss3Alt, orbit: 1 },
+  { label: 'JavaScript', color: '#F7DF1E', icon: FaJs, orbit: 1 },
+  { label: 'TypeScript', color: '#3178C6', icon: SiTypescript, orbit: 1 },
+  // Orbit 2 — Frameworks
+  { label: 'React', color: '#61DAFB', icon: FaReact, orbit: 2 },
+  { label: 'Next.js', color: '#ffffff', icon: TbBrandNextjs, orbit: 2 },
+  { label: 'Tailwind CSS', color: '#38BDF8', icon: SiTailwindcss, orbit: 2 },
+  { label: 'Bootstrap', color: '#7952B3', icon: FaBootstrap, orbit: 2 },
+  { label: 'DaisyUI', color: '#F472B6', icon: SiDaisyui, orbit: 2 },
+  // Orbit 3 — Backend & DB
+  { label: 'Node.js', color: '#339933', icon: FaNodeJs, orbit: 3 },
+  { label: 'Express.js', color: '#cccccc', icon: SiExpress, orbit: 3 },
+  { label: 'MongoDB', color: '#47A248', icon: SiMongodb, orbit: 3 },
+  { label: 'PostgreSQL', color: '#4169E1', icon: SiPostgresql, orbit: 3 },
+  { label: 'MySQL', color: '#00758F', icon: SiMysql, orbit: 3 },
+  { label: 'Prisma', color: '#5a67d8', icon: SiPrisma, orbit: 3 },
+  { label: 'Firebase', color: '#FFCA28', icon: SiFirebase, orbit: 3 },
+  // Orbit 4 — Tools
+  { label: 'Git', color: '#F05032', icon: FaGitAlt, orbit: 4 },
+  { label: 'GitHub', color: '#ffffff', icon: FaGithub, orbit: 4 },
+  { label: 'VS Code', color: '#007ACC', icon: TbBrandVscode, orbit: 4 },
+  { label: 'Docker', color: '#2496ED', icon: FaDocker, orbit: 4 },
+  { label: 'NPM', color: '#CB3837', icon: FaNpm, orbit: 4 },
+  { label: 'Postman', color: '#FF6C37', icon: SiPostman, orbit: 4 },
+  { label: 'Netlify', color: '#00C7B7', icon: SiNetlify, orbit: 4 },
+  { label: 'Vercel', color: '#ffffff', icon: SiVercel, orbit: 4 },
+  // Orbit 5 — CMS & Payments
+  { label: 'WordPress', color: '#21759B', icon: FaWordpress, orbit: 5 },
+  { label: 'Elementor', color: '#E2155A', icon: FaElementor, orbit: 5 },
+  { label: 'WooCommerce', color: '#96588A', icon: SiWoocommerce, orbit: 5 },
+  { label: 'Stripe', color: '#635BFF', icon: SiStripe, orbit: 5 },
+  { label: 'SQL / ORM', color: '#22c55e', icon: VscDatabase, orbit: 5 },
+  { label: 'SSL / Pay', color: '#22c55e', icon: MdPayment, orbit: 5 },
 ];
 
-// Draw a clean circle icon — symbol inside, colored ring
+// ── Render a react-icon to a canvas texture ───────────────────────
 function makeIconTexture(tech) {
-  const S = 96;
+  const S = 128;
   const cv = document.createElement('canvas');
   cv.width = S;
   cv.height = S;
   const ctx = cv.getContext('2d');
-
   const cx = S / 2,
     cy = S / 2,
-    R = S / 2 - 4;
+    R = S / 2 - 5;
 
-  // Outer glow
-  const glow = ctx.createRadialGradient(cx, cy, R * 0.5, cx, cy, R + 4);
-  glow.addColorStop(0, tech.color + '44');
-  glow.addColorStop(1, 'transparent');
-  ctx.fillStyle = glow;
-  ctx.beginPath();
-  ctx.arc(cx, cy, R + 4, 0, Math.PI * 2);
-  ctx.fill();
-
-  // Circle bg
+  // Dark circle bg
   ctx.beginPath();
   ctx.arc(cx, cy, R, 0, Math.PI * 2);
-  ctx.fillStyle = tech.bg;
+  ctx.fillStyle = '#0a0f1e';
   ctx.fill();
 
   // Colored ring
   ctx.beginPath();
   ctx.arc(cx, cy, R, 0, Math.PI * 2);
   ctx.strokeStyle = tech.color;
-  ctx.lineWidth = 3;
+  ctx.lineWidth = 4;
   ctx.stroke();
 
-  // Symbol / emoji
-  const sym = tech.symbol;
-  const isEmoji = /\p{Emoji}/u.test(sym) && sym.length <= 2;
-  ctx.font = isEmoji
-    ? `${S * 0.38}px serif`
-    : `bold ${sym.length > 2 ? S * 0.28 : S * 0.36}px monospace`;
-  ctx.fillStyle = isEmoji ? '#ffffff' : tech.color;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(sym, cx, cy + 1);
+  // Outer glow
+  const glow = ctx.createRadialGradient(cx, cy, R - 8, cx, cy, R + 6);
+  glow.addColorStop(0, tech.color + '55');
+  glow.addColorStop(1, 'transparent');
+  ctx.fillStyle = glow;
+  ctx.beginPath();
+  ctx.arc(cx, cy, R + 6, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Return a Promise that resolves to the texture
+  // We render the SVG icon via renderToStaticMarkup then draw via Image
+  const iconSize = Math.round(S * 0.52);
+  const svgStr = renderToStaticMarkup(
+    createElement(tech.icon, {
+      size: iconSize,
+      color: tech.color,
+      style: {},
+    })
+  );
+
+  // Wrap in a proper SVG envelope with xmlns so Image() can load it
+  const wrapped = `<svg xmlns="http://www.w3.org/2000/svg" width="${iconSize}" height="${iconSize}" viewBox="0 0 ${iconSize} ${iconSize}">${svgStr.replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '')}</svg>`;
+
+  // We need to embed the actual inner paths — extract them from the rendered SVG
+  // Better: use the SVG string directly from renderToStaticMarkup
+  const fullSvg = svgStr
+    .replace('<svg ', `<svg xmlns="http://www.w3.org/2000/svg" `)
+    // ensure width/height present
+    .replace(/width="[^"]*"/, `width="${iconSize}"`)
+    .replace(/height="[^"]*"/, `height="${iconSize}"`);
+
+  const blob = new Blob([fullSvg], { type: 'image/svg+xml' });
+  const url = URL.createObjectURL(blob);
+  const img = new Image();
+  img.onload = () => {
+    ctx.drawImage(
+      img,
+      cx - iconSize / 2,
+      cy - iconSize / 2,
+      iconSize,
+      iconSize
+    );
+    tex.needsUpdate = true;
+    URL.revokeObjectURL(url);
+  };
+  img.src = url;
 
   const tex = new THREE.CanvasTexture(cv);
-  tex.needsUpdate = true;
   return tex;
 }
 
-// CPU chip texture
+// ── CPU chip texture ─────────────────────────────────────────────
 function makeCpuTexture() {
   const S = 256;
   const cv = document.createElement('canvas');
   cv.width = S;
   cv.height = S;
   const ctx = cv.getContext('2d');
-
   ctx.fillStyle = '#060d1a';
   ctx.fillRect(0, 0, S, S);
-
-  // Outer glow ring
-  const grd = ctx.createRadialGradient(S / 2, S / 2, 40, S / 2, S / 2, S / 2);
+  const grd = ctx.createRadialGradient(S / 2, S / 2, 30, S / 2, S / 2, S / 2);
   grd.addColorStop(0, 'rgba(34,197,94,0.5)');
   grd.addColorStop(0.5, 'rgba(6,182,212,0.2)');
   grd.addColorStop(1, 'transparent');
   ctx.fillStyle = grd;
   ctx.fillRect(0, 0, S, S);
-
-  // Chip body
   ctx.fillStyle = '#0f1e38';
   ctx.fillRect(28, 28, S - 56, S - 56);
   ctx.strokeStyle = '#22c55e';
   ctx.lineWidth = 3;
   ctx.strokeRect(28, 28, S - 56, S - 56);
-
-  // Grid
   ctx.strokeStyle = 'rgba(6,182,212,0.12)';
   ctx.lineWidth = 1;
   for (let i = 1; i < 7; i++) {
@@ -168,8 +186,6 @@ function makeCpuTexture() {
     ctx.lineTo(S - 28, v);
     ctx.stroke();
   }
-
-  // Core
   ctx.beginPath();
   ctx.arc(S / 2, S / 2, 38, 0, Math.PI * 2);
   const core = ctx.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, 38);
@@ -178,8 +194,6 @@ function makeCpuTexture() {
   core.addColorStop(1, 'transparent');
   ctx.fillStyle = core;
   ctx.fill();
-
-  // Text
   ctx.fillStyle = '#fff';
   ctx.font = 'bold 20px monospace';
   ctx.textAlign = 'center';
@@ -188,8 +202,6 @@ function makeCpuTexture() {
   ctx.fillStyle = '#06b6d4';
   ctx.font = '9px monospace';
   ctx.fillText('FULL-STACK', S / 2, S / 2 + 10);
-
-  // Pins
   ctx.fillStyle = '#22c55e';
   for (let i = 0; i < 7; i++) {
     const p = 40 + i * 27;
@@ -198,7 +210,6 @@ function makeCpuTexture() {
     ctx.fillRect(p, 6, 5, 16);
     ctx.fillRect(p, S - 22, 5, 16);
   }
-
   const tex = new THREE.CanvasTexture(cv);
   tex.needsUpdate = true;
   return tex;
@@ -234,7 +245,6 @@ export default function ThreeBackground() {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#05080f');
     scene.fog = new THREE.FogExp2('#05080f', isMobile ? 0.016 : 0.008);
-
     const camera = new THREE.PerspectiveCamera(58, W / H, 0.1, 300);
     camera.position.set(0, isMobile ? 24 : 20, isMobile ? 26 : 36);
     camera.lookAt(0, 0, 0);
@@ -252,9 +262,9 @@ export default function ThreeBackground() {
     scene.add(pPurple);
 
     // ── Stars ────────────────────────────────────────────────────
-    const starCount = isMobile ? 700 : 1600;
-    const sPos = new Float32Array(starCount * 3);
-    for (let i = 0; i < starCount; i++) {
+    const sc = isMobile ? 700 : 1600;
+    const sPos = new Float32Array(sc * 3);
+    for (let i = 0; i < sc; i++) {
       sPos[i * 3] = (Math.random() - 0.5) * 280;
       sPos[i * 3 + 1] = (Math.random() - 0.5) * 280;
       sPos[i * 3 + 2] = (Math.random() - 0.5) * 280;
@@ -274,7 +284,7 @@ export default function ThreeBackground() {
       )
     );
 
-    // ── CPU center ───────────────────────────────────────────────
+    // ── CPU ───────────────────────────────────────────────────────
     const cpuSize = isMobile ? 2.4 : 3.2;
     const cpuGeo = new THREE.BoxGeometry(cpuSize, cpuSize * 0.15, cpuSize);
     const cpuTex = makeCpuTexture();
@@ -288,8 +298,6 @@ export default function ThreeBackground() {
     });
     const cpu = new THREE.Mesh(cpuGeo, cpuMat);
     scene.add(cpu);
-
-    // Halo ring
     const haloGeo = new THREE.RingGeometry(cpuSize * 0.55, cpuSize * 0.8, 64);
     const haloMat = new THREE.MeshBasicMaterial({
       color: '#22c55e',
@@ -308,25 +316,25 @@ export default function ThreeBackground() {
     const OSPEED = isMobile
       ? [0.42, 0.28, 0.19, 0.13, 0.085]
       : [0.38, 0.25, 0.17, 0.11, 0.075];
-
     RADII.forEach((rad, idx) => {
       const pts = [];
       for (let i = 0; i <= 128; i++) {
         const a = (i / 128) * Math.PI * 2;
         pts.push(new THREE.Vector3(Math.cos(a) * rad, 0, Math.sin(a) * rad));
       }
-      const rGeo = new THREE.BufferGeometry().setFromPoints(pts);
-      const rMat = new THREE.LineBasicMaterial({
-        color: OCOLOR[idx],
-        transparent: true,
-        opacity: isMobile ? 0.2 : 0.25,
-      });
-      const rLine = new THREE.LineLoop(rGeo, rMat);
+      const rLine = new THREE.LineLoop(
+        new THREE.BufferGeometry().setFromPoints(pts),
+        new THREE.LineBasicMaterial({
+          color: OCOLOR[idx],
+          transparent: true,
+          opacity: isMobile ? 0.2 : 0.25,
+        })
+      );
       rLine.rotation.x = OTILTS[idx];
       scene.add(rLine);
     });
 
-    // ── Tech icons ───────────────────────────────────────────────
+    // ── Sprites ───────────────────────────────────────────────────
     const orbitGroups = RADII.map(() => {
       const g = new THREE.Group();
       scene.add(g);
@@ -334,8 +342,7 @@ export default function ThreeBackground() {
     });
     const byOrbit = [[], [], [], [], []];
     TECHS.forEach((t) => byOrbit[t.orbit - 1].push(t));
-
-    const spriteMap = new Map(); // sprite → tech label (for click)
+    const spriteMap = new Map();
     const allSprites = [];
 
     byOrbit.forEach((group, oi) => {
@@ -346,11 +353,11 @@ export default function ThreeBackground() {
         const mat = new THREE.SpriteMaterial({
           map: tex,
           transparent: true,
-          opacity: 0.92,
+          opacity: 0.95,
           depthWrite: false,
         });
         const sprite = new THREE.Sprite(mat);
-        const sc = isMobile ? 1.5 : 1.9;
+        const sc = isMobile ? 1.7 : 2.2;
         sprite.scale.set(sc, sc, 1);
         sprite.position.set(Math.cos(angle) * rad, 0, Math.sin(angle) * rad);
         orbitGroups[oi].add(sprite);
@@ -359,67 +366,58 @@ export default function ThreeBackground() {
       });
     });
 
-    // ── Tooltip DOM element ───────────────────────────────────────
+    // ── Tooltip ───────────────────────────────────────────────────
     const tooltip = document.createElement('div');
-    tooltip.style.cssText = `
-      position:fixed; padding:6px 14px; background:rgba(8,14,30,0.95);
-      border:1px solid #22c55e; border-radius:8px; color:#fff;
-      font:bold 13px monospace; pointer-events:none; opacity:0;
-      transition:opacity 0.2s; z-index:9999; white-space:nowrap;
-      box-shadow:0 0 14px rgba(34,197,94,0.4);
-    `;
+    tooltip.style.cssText =
+      'position:fixed;padding:5px 12px;background:rgba(5,8,15,0.95);border:1px solid #22c55e;border-radius:8px;color:#fff;font:bold 12px monospace;pointer-events:none;opacity:0;transition:opacity 0.18s;z-index:9999;white-space:nowrap;box-shadow:0 0 12px rgba(34,197,94,0.45)';
     document.body.appendChild(tooltip);
     tooltipRef.current = tooltip;
 
-    // ── Raycaster for click/hover ─────────────────────────────────
+    // ── Raycaster ────────────────────────────────────────────────
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2();
-
-    const getSprites = () => [...spriteMap.keys()];
+    let mouseX = 0,
+      mouseY = 0;
 
     const onPointerMove = (e) => {
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      pointer.x = (clientX / window.innerWidth) * 2 - 1;
-      pointer.y = -(clientY / window.innerHeight) * 2 + 1;
+      const cx = e.touches ? e.touches[0].clientX : e.clientX;
+      const cy2 = e.touches ? e.touches[0].clientY : e.clientY;
+      pointer.x = (cx / window.innerWidth) * 2 - 1;
+      pointer.y = -(cy2 / window.innerHeight) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
-      const hits = raycaster.intersectObjects(getSprites());
+      const hits = raycaster.intersectObjects([...spriteMap.keys()]);
       if (hits.length > 0) {
-        const label = spriteMap.get(hits[0].object);
-        tooltip.textContent = label;
-        tooltip.style.left = clientX + 14 + 'px';
-        tooltip.style.top = clientY - 10 + 'px';
+        const lbl = spriteMap.get(hits[0].object);
+        tooltip.textContent = lbl;
+        tooltip.style.left = cx + 16 + 'px';
+        tooltip.style.top = cy2 - 12 + 'px';
         tooltip.style.opacity = '1';
         renderer.domElement.style.cursor = 'pointer';
       } else {
         tooltip.style.opacity = '0';
         renderer.domElement.style.cursor = 'default';
       }
-      // mouse parallax
       if (!isMobile) {
-        mouseX = (clientX / window.innerWidth - 0.5) * 2;
-        mouseY = (clientY / window.innerHeight - 0.5) * 2;
+        mouseX = (cx / window.innerWidth - 0.5) * 2;
+        mouseY = (cy2 / window.innerHeight - 0.5) * 2;
       }
     };
 
     const onPointerDown = (e) => {
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      pointer.x = (clientX / window.innerWidth) * 2 - 1;
-      pointer.y = -(clientY / window.innerHeight) * 2 + 1;
+      const cx = e.touches ? e.touches[0].clientX : e.clientX;
+      const cy2 = e.touches ? e.touches[0].clientY : e.clientY;
+      pointer.x = (cx / window.innerWidth) * 2 - 1;
+      pointer.y = -(cy2 / window.innerHeight) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
-      const hits = raycaster.intersectObjects(getSprites());
+      const hits = raycaster.intersectObjects([...spriteMap.keys()]);
       if (hits.length > 0) {
-        const label = spriteMap.get(hits[0].object);
-        // Pulse clicked sprite
         const sp = hits[0].object;
-        const origScale = sp.scale.x;
-        sp.scale.set(origScale * 1.5, origScale * 1.5, 1);
-        setTimeout(() => sp.scale.set(origScale, origScale, 1), 300);
+        const os = sp.scale.x;
+        sp.scale.set(os * 1.6, os * 1.6, 1);
+        setTimeout(() => sp.scale.set(os, os, 1), 280);
       }
     };
 
-    // pointerEvents must be active for click
     renderer.domElement.style.pointerEvents = 'auto';
     renderer.domElement.addEventListener('mousemove', onPointerMove);
     renderer.domElement.addEventListener('click', onPointerDown);
@@ -427,16 +425,13 @@ export default function ThreeBackground() {
       passive: true,
     });
 
-    // ── Scroll ───────────────────────────────────────────────────
+    // ── Scroll / resize ──────────────────────────────────────────
     let scrollY = 0,
-      targetScrollY = 0,
-      mouseX = 0,
-      mouseY = 0;
+      targetScrollY = 0;
     const onScroll = () => {
       targetScrollY = window.scrollY;
     };
     window.addEventListener('scroll', onScroll, { passive: true });
-
     const onResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
@@ -448,12 +443,10 @@ export default function ThreeBackground() {
     let animId;
     const clock = new THREE.Clock();
     let frame = 0;
-
     const animate = () => {
       animId = requestAnimationFrame(animate);
       frame++;
       const t = clock.getElapsedTime();
-
       scrollY += (targetScrollY - scrollY) * 0.05;
       camera.position.y = (isMobile ? 24 : 20) + scrollY * 0.003;
       if (!isMobile) {
@@ -461,23 +454,19 @@ export default function ThreeBackground() {
         camera.position.y += (-mouseY * 2 - (camera.position.y - 20)) * 0.022;
       }
       camera.lookAt(0, 0, 0);
-
       orbitGroups.forEach((g, i) => {
         g.rotation.y = t * OSPEED[i];
       });
-
       cpu.rotation.y = t * 0.18;
       cpuMat.emissiveIntensity = 0.35 + Math.sin(t * 2) * 0.18;
       halo.material.opacity = 0.12 + Math.sin(t * 2) * 0.08;
       pGreen.intensity = 3.5 + Math.sin(t * 2.5) * 1.0;
       pCyan.intensity = 2.0 + Math.sin(t * 1.6 + 1) * 0.6;
-
       if (!isMobile || frame % 2 === 0) {
         allSprites.forEach(({ sprite, bobOffset }) => {
           sprite.position.y = Math.sin(t * 0.75 + bobOffset) * 0.4;
         });
       }
-
       renderer.render(scene, camera);
     };
     animate();
