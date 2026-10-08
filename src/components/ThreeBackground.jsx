@@ -244,7 +244,7 @@ export default function ThreeBackground() {
         camera.position.x += (mouseX * 2.5 - camera.position.x) * 0.025;
       camera.lookAt(0, 0, 0);
 
-      grid.rotation.y = t * 0.01;
+      grid.rotation.y = t * 0.007;
 
       orbData.forEach(
         ({ mesh, speed, offset, rotX, rotZ, isRing, ringIdx }) => {
